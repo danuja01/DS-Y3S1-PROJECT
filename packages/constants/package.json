@@ -1,0 +1,17 @@
+{
+  "name": "@app/constants",
+  "version": "0.0.0",
+  "description": "constants used in the application",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node ../../workspace-scripts/services/build/esbuild.js",
+    "lint": "sh ../../workspace-scripts/services/lint.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "celebrate": "15.0.1"
+  }
+}
