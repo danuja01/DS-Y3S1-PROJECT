@@ -5,12 +5,11 @@ const logger = moduleLogger("Mongoose-DB-Connector");
 
 export const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URL, {
+    await mongoose.connect(process.env.DB_URL, {
       keepAlive: true,
       socketTimeoutMS: 30000,
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true,
     });
     logger.info("Connected to the database");
   } catch (error) {
