@@ -37,6 +37,11 @@ const initialize = ({
   app.use(context.middleware);
 
   app.use((req, _res, next) => {
+    _res.header("Access-Control-Allow-Origin", "*"); // allow front end to access the api
+    _res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
     context.set(
       "correlationId",
       req.headers[correlationId] ?? crypto.randomBytes(16).toString("hex")
