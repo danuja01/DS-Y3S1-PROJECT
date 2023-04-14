@@ -1,4 +1,6 @@
 import express from "express";
+import mongoose from "mongoose";
+// import { Joi } from "celebrate";
 import { celebrate, Segments } from "celebrate";
 import { default as filterQuery } from "@sliit-foss/mongoose-filter-query";
 import { asyncHandler } from "@sliit-foss/functions";
@@ -16,11 +18,35 @@ import { createReviewSchema, updateReviewSchema } from "./schema";
 
 const review = express.Router();
 
+// review.post(
+//   "/",
+//   celebrate({
+//     [Segments.BODY]: {
+//       user_id: Joi.string().required(),
+//       user_name: Joi.string().required(),
+//       product_id: objectIdSchema(), // validate product_id as ObjectId
+//       title: Joi.string().required(),
+//       description: Joi.string().required(),
+//       rating: Joi.number().required(),
+//     },
+//   }),
+//   asyncHandler(async function controllerCreateReview(req, res) {
+//     const data = await serviceCreateReview({
+//       ...req.body,
+//       product_id: mongoose.Types.ObjectId(req.body.product_id), // convert product_id to ObjectId
+//     });
+//     return toSuccess({ res, data, message: "Review created successfully!" });
+//   })
+// );
+
 review.post(
   "/",
   celebrate({ [Segments.BODY]: createReviewSchema }),
   asyncHandler(async function controllerCreateReview(req, res) {
-    const data = await serviceCreateReview(req.body);
+    const data = await serviceCreateReview({
+      ...req.body,
+      product_id: mongoose.Types.ObjectId(req.body.product_id), // convert product_id to ObjectId
+    });
     return toSuccess({ res, data, message: "Review created successfully!" });
   })
 );
