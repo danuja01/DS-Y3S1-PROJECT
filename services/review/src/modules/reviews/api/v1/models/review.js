@@ -16,7 +16,7 @@ const ReviewSchema = new Schema(
       required: false,
     },
     user_id: {
-      type: Number,
+      type: String,
       ref: "User",
       required: false,
     },
