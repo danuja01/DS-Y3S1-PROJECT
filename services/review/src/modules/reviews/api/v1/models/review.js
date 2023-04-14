@@ -5,15 +5,20 @@ const { Schema } = mongoose;
 
 const ReviewSchema = new Schema(
   {
-    user_id: {
+    product_id: {
+      type: mongoose.Types.ObjectId,
+      ref: "Product",
+      required: false,
+    },
+    user_name: {
       type: String,
       ref: "User",
-      required: true,
+      required: false,
     },
-    product_id: {
-      type: String,
-      ref: "Product",
-      required: true,
+    user_id: {
+      type: Number,
+      ref: "User",
+      required: false,
     },
     rating: {
       type: Number,
