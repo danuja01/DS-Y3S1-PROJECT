@@ -15,6 +15,10 @@ const NotificationSchema = new Schema(
       type: String,
       required: true,
     },
+    notification_id: {
+      type: String,
+      required: true,
+    },
     message: {
       type: String,
       required: true,

@@ -3,6 +3,7 @@ import { Joi } from "celebrate";
 
 export const createNotificationSchema = Joi.object({
   user_id: Joi.string().required(),
+  notification_id: Joi.string().required(),
   notification_title: Joi.string().required(),
   message: Joi.string().required(),
   isRead: Joi.boolean().required(),
