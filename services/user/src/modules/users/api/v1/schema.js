@@ -9,7 +9,6 @@ export const createUserSchema = Joi.object({
     .valid(...Object.values(roles))
     .optional(),
   address: Joi.string().optional(),
-  verification_code: Joi.string().required(),
 });
 
 export const updateUserSchema = Joi.object({
