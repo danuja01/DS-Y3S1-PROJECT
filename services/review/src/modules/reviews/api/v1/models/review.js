@@ -36,7 +36,7 @@ const ReviewSchema = new Schema(
     },
   },
   {
-    versionKey: false,
+    versionKey: "_version",
     minimize: false,
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
   }
