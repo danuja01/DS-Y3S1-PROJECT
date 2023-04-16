@@ -35,6 +35,7 @@ export const serviceRegister = async ({ name, email, password, address }) => {
   }
   const code = crypto.randomUUID();
   // sendVerificationEmail(constructVerificationEmailPayload(email, code));
+
   return createUser({
     name,
     email,

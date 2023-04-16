@@ -21,6 +21,7 @@ export const registerSchema = Joi.object({
       })
     ),
   address: Joi.string().optional(),
+  verification_code: Joi.string().optional().allow(null),
 });
 
 export const refreshTokenSchema = Joi.object({
