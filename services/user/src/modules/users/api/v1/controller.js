@@ -9,6 +9,7 @@ import {
   serviceGetUsers,
   serviceGetUserById,
   serviceUpdateUserById,
+  serviceUpdateMultipleUsers,
   serviceDeleteUserById,
 } from "./service";
 
@@ -59,6 +60,16 @@ user.patch(
   asyncHandler(async function controllerUpdateUserById(req, res) {
     const data = await serviceUpdateUserById(req.params.id, req.body);
     return toSuccess({ res, data, message: "User updated successfully!" });
+  })
+);
+
+user.patch(
+  "/",
+  filterQuery,
+  celebrate({ [Segments.BODY]: updateUserSchema }),
+  asyncHandler(async function controllerUpdateMultipleUsers(req, res) {
+    const data = await serviceUpdateMultipleUsers(req.query.filter, req.body);
+    return toSuccess({ res, data, message: "Users updated successfully!" });
   })
 );
 

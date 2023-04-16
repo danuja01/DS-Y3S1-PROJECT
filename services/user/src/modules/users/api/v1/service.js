@@ -4,6 +4,7 @@ import {
   getAllUsers,
   getUserById,
   updateUserById,
+  updateMultipleUsers,
   deleteUserById,
 } from "../../repository";
 
@@ -26,6 +27,11 @@ export const serviceGetUserById = (id) => {
 export const serviceUpdateUserById = async (id, data) => {
   await hashPasswordIfProvided(data);
   return updateUserById(id, data);
+};
+
+export const serviceUpdateMultipleUsers = async (filters, data) => {
+  await hashPasswordIfProvided(data);
+  return updateMultipleUsers(filters, data);
 };
 
 export const serviceDeleteUserById = (id) => {

@@ -32,6 +32,10 @@ export function updateUserById(id, data) {
   return User.findByIdAndUpdate(id, data, { new: true }).lean();
 }
 
+export function updateMultipleUsers(filters, data) {
+  return User.updateMany(filters, data, { new: true }).lean();
+}
+
 export function deleteUserById(id) {
   return User.findByIdAndDelete(id).lean();
 }
