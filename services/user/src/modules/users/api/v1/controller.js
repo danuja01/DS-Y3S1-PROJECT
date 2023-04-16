@@ -18,7 +18,9 @@ const user = express.Router();
 
 user.post(
   "/",
+
   celebrate({ [Segments.BODY]: createUserSchema }),
+
   asyncHandler(async function controllerCreateUser(req, res) {
     const data = await serviceCreateUser(req.body);
     return toSuccess({ res, data, message: "User created successfully!" });
