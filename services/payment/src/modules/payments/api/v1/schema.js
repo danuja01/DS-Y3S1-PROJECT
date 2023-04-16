@@ -9,6 +9,42 @@ export const createPaymentSchema = Joi.object({
     .required(),
   transactionId: Joi.string().required(),
   payment_status: Joi.string().default("Pending"),
+  paypal_payment_details: Joi.object()
+    .keys({
+      intent: Joi.string().valid("sale").required(),
+      payer: Joi.object()
+        .keys({
+          payment_method: Joi.string().valid("paypal").required(),
+        })
+        .required(),
+      redirect_urls: Joi.object()
+        .keys({
+          return_url: Joi.string().optional(),
+          cancel_url: Joi.string().optional(),
+        })
+        .optional(),
+      transactions: Joi.array().items(
+        Joi.object().keys({
+          item_list: Joi.object().keys({
+            items: Joi.array().items(
+              Joi.object().keys({
+                name: Joi.string().required(),
+                sku: Joi.string().required(),
+                price: Joi.string().required(),
+                currency: Joi.string().required(),
+                quantity: Joi.number().required(),
+              })
+            ),
+          }),
+          amount: Joi.object().keys({
+            currency: Joi.string().required(),
+            total: Joi.string().required(),
+          }),
+          description: Joi.string().required(),
+        })
+      ),
+    })
+    .required(),
 });
 
 export const updatePaymentSchema = Joi.object({
@@ -20,5 +56,41 @@ export const updatePaymentSchema = Joi.object({
   transactionId: Joi.string().optional(),
   payment_status: Joi.string()
     .valid("Pending", "Processing", "Completed", "Failed")
+    .optional(),
+  paypal_payment_details: Joi.object()
+    .keys({
+      intent: Joi.string().valid("sale").optional(),
+      payer: Joi.object()
+        .keys({
+          payment_method: Joi.string().valid("paypal").optional(),
+        })
+        .optional(),
+      redirect_urls: Joi.object()
+        .keys({
+          return_url: Joi.string().optional(),
+          cancel_url: Joi.string().optional(),
+        })
+        .optional(),
+      transactions: Joi.array().items(
+        Joi.object().keys({
+          item_list: Joi.object().keys({
+            items: Joi.array().items(
+              Joi.object().keys({
+                name: Joi.string().optional(),
+                sku: Joi.string().optional(),
+                price: Joi.string().optional(),
+                currency: Joi.string().optional(),
+                quantity: Joi.number().optional(),
+              })
+            ),
+          }),
+          amount: Joi.object().keys({
+            currency: Joi.string().optional(),
+            total: Joi.string().optional(),
+          }),
+          description: Joi.string().optional(),
+        })
+      ),
+    })
     .optional(),
 });

@@ -8,7 +8,7 @@ const PaymentSchema = new Schema(
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
+      required: false,
     },
     amount: {
       type: Number,
@@ -32,6 +32,79 @@ const PaymentSchema = new Schema(
       enum: ["Pending", "Processing", "Completed", "Failed"],
       default: "Pending",
       required: true,
+    },
+    paypal_payment_details: {
+      type: {
+        intent: {
+          type: String,
+          required: true,
+          enum: ["sale"],
+        },
+        payer: {
+          payment_method: {
+            type: String,
+            required: true,
+            enum: ["paypal"],
+          },
+        },
+        redirect_urls: {
+          return_url: {
+            type: String,
+            default: "http://localhost:4003/api/v1/payments/success",
+            required: false,
+          },
+          cancel_url: {
+            type: String,
+            default: "http://localhost:4003/api/v1/payments/cancel",
+            required: false,
+          },
+        },
+        transactions: [
+          {
+            item_list: {
+              items: [
+                {
+                  name: {
+                    type: String,
+                    required: true,
+                  },
+                  sku: {
+                    type: String,
+                    required: true,
+                  },
+                  price: {
+                    type: String,
+                    required: true,
+                  },
+                  currency: {
+                    type: String,
+                    required: true,
+                  },
+                  quantity: {
+                    type: Number,
+                    required: true,
+                  },
+                },
+              ],
+            },
+            amount: {
+              currency: {
+                type: String,
+                required: true,
+              },
+              total: {
+                type: String,
+                required: true,
+              },
+            },
+            description: {
+              type: String,
+              required: true,
+            },
+          },
+        ],
+      },
+      required: false,
     },
   },
   {

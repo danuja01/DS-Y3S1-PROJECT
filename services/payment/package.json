@@ -29,7 +29,8 @@
     "mongoose": "^6.3.4",
     "mongoose-lean-defaults": "2.2.1",
     "mongoose-paginate-v2": "1.6.3",
-    "paypal-rest-sdk": "^1.0.2"
+    "paypal-rest-sdk": "^1.0.2",
+    "ejs": "^3.1.9"
   },
   "devDependencies": {
     "nodemon": "1.12.1"
