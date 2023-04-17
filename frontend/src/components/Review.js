@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import ReviewDataService from "../services/review";
+import ReviewDataService from "../services/review/review";
 
-const RestaurantsList = (props) => {
+const ReviewList = (props) => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    retrieveRestaurants();
+    retrieveReviews();
   }, []);
 
-  const retrieveRestaurants = (page) => {
+  const retrieveReviews = (page) => {
     ReviewDataService.getAll(page)
       .then((response) => {
         setReviews(response.data.data);
@@ -23,6 +23,7 @@ const RestaurantsList = (props) => {
       {reviews.map((review) => {
         return (
           <div key={review._id}>
+            <h2>Reviews</h2>
             <h3>Review title: {review.title}</h3>
             <p>Review description: {review.description}</p>
             <p>Rating: {review.rating}</p>
@@ -33,4 +34,4 @@ const RestaurantsList = (props) => {
   );
 };
 
-export default RestaurantsList;
+export default ReviewList;
