@@ -13,7 +13,7 @@ import {
   verifyUser,
 } from "../../../../services";
 import { errors, verify, generateTokens } from "../../../../utils";
-// import { constructVerificationEmailPayload } from './mappers';
+import { constructVerificationEmailPayload } from "./mappers";
 
 export const serviceLogin = async ({ email, password }) => {
   const user = await getUserByEmail(email);
@@ -34,7 +34,7 @@ export const serviceRegister = async ({ name, email, password, address }) => {
     throw createError(400, "User already exists");
   }
   const code = crypto.randomUUID();
-  // sendVerificationEmail(constructVerificationEmailPayload(email, code));
+  sendVerificationEmail(constructVerificationEmailPayload(name, email, code));
 
   return createUser({
     name,
