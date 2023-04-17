@@ -1,10 +1,6 @@
 # DS PROJECT -Y3S1
 
-## Name Suggestions
-
-1. HerbalHealingHub
-2. OrganicHerbals
-3. WellnessRoots
+## WellnessRoots
 
 `... Feel free to add if theres any suggetions :)`
 
