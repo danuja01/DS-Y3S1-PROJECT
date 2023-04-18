@@ -6,7 +6,7 @@ const AddData = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("/api/v1/notifications", { name });
+    await axios.post("/api/v1/notification", { name });
     setName("");
   };
 
