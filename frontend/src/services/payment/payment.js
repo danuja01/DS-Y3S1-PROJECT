@@ -17,6 +17,10 @@ class PaymentDataService {
     return http.post("/", data);
   }
 
+  postToPayPal() {
+    return http.post("/pay");
+  }
+
   updateReview(data) {
     return http.put("/review", data);
   }
