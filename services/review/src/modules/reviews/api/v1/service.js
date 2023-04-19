@@ -6,11 +6,11 @@ import {
   deleteReviewById,
 } from "../../repository";
 
-import { hashPasswordIfProvided } from "./helpers";
+// import { hashPasswordIfProvided } from "./helpers";
 
-export const serviceCreateReview = async (review) => {
-  if (!review.rating) throw new Error("Rating is required");
-  await hashPasswordIfProvided(review);
+export const serviceCreateReview = (review) => {
+  // if (!review.rating) throw new Error("Rating is required");
+  // await hashPasswordIfProvided(review);
   return createReview(review);
 };
 
@@ -22,8 +22,8 @@ export const serviceGetReviewById = (id) => {
   return getReviewById(id);
 };
 
-export const serviceUpdateReviewById = async (id, data) => {
-  await hashPasswordIfProvided(data);
+export const serviceUpdateReviewById = (id, data) => {
+  // await hashPasswordIfProvided(data);
   return updateReviewById(id, data);
 };
 
