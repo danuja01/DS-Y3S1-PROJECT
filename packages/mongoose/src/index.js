@@ -5,6 +5,7 @@ const logger = moduleLogger("Mongoose-DB-Connector");
 
 export const connect = async () => {
   try {
+    mongoose.set("strictQuery", false);
     await mongoose.connect(process.env.DB_URL, {
       keepAlive: true,
       socketTimeoutMS: 30000,

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "workspaces": [
+    "frontend",
     "packages/*",
     "services/*"
   ],
@@ -13,7 +14,8 @@
     "format": "prettier --write \"**/*.{js,md}\"",
     "lint": "turbo run lint",
     "prepare": "husky install",
-    "test": "dotenv -- turbo run test"
+    "test": "dotenv -- turbo run test",
+    "kill": "sh ./workspace-scripts/terminate.sh"
   },
   "dependencies": {
     "dotenv-cli": "7.0.0",
