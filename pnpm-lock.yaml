@@ -163,6 +163,39 @@ importers:
     devDependencies:
       nodemon: 1.12.1
 
+  services/orchestrator:
+    specifiers:
+      '@app/constants': workspace*
+      '@app/middleware': workspace*
+      '@app/server': workspace*
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/service-connector': 1.2.0
+      celebrate: 15.0.1
+      express: 4.16.3
+      express-http-context: 1.2.4
+      express-rate-limit: 6.7.0
+      http-errors: 2.0.0
+      lodash: 4.17.10
+      nodemon: 1.12.1
+      rate-limit-redis: 3.0.1
+    dependencies:
+      '@app/constants': link:../../packages/constants
+      '@app/middleware': link:../../packages/middleware
+      '@app/server': link:../../packages/server
+      '@sliit-foss/functions': 2.0.1
+      '@sliit-foss/module-logger': 1.1.2
+      '@sliit-foss/service-connector': 1.2.0
+      celebrate: 15.0.1
+      express: 4.16.3
+      express-http-context: 1.2.4
+      express-rate-limit: 6.7.0_express@4.16.3
+      http-errors: 2.0.0
+      lodash: 4.17.10
+      rate-limit-redis: 3.0.1_express-rate-limit@6.7.0
+    devDependencies:
+      nodemon: 1.12.1
+
   services/order:
     specifiers:
       '@app/constants': workspace*
@@ -4259,6 +4292,15 @@ packages:
       cls-hooked: 4.2.2
     dev: false
 
+  /express-rate-limit/6.7.0_express@4.16.3:
+    resolution: {integrity: sha512-vhwIdRoqcYB/72TK3tRZI+0ttS8Ytrk24GfmsxDXK9o9IhHNO5bXRiXQSExPQ4GbaE5tvIS7j1SGrxsuWs+sGA==}
+    engines: {node: '>= 12.9.0'}
+    peerDependencies:
+      express: ^4 || ^5
+    dependencies:
+      express: 4.16.3
+    dev: false
+
   /express/4.16.3:
     resolution: {integrity: sha512-CDaOBMB9knI6vx9SpIxEMOJ6VBbC2U/tYNILs0qv1YOZc15K9U2EcF06v10F0JX6IYcWnKYZJwIDJspEHLvUaQ==}
     engines: {node: '>= 0.10.0'}
@@ -6424,6 +6466,15 @@ packages:
   /range-parser/1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /rate-limit-redis/3.0.1_express-rate-limit@6.7.0:
+    resolution: {integrity: sha512-L6yhOUBrAZ8VEMX9DwlM3X6hfm8yq+gBO4LoOW7+JgmNq59zE7QmLz4v5VnwYPvLeSh/e7PDcrzUI3UumJw1iw==}
+    engines: {node: '>= 14.5.0'}
+    peerDependencies:
+      express-rate-limit: ^6
+    dependencies:
+      express-rate-limit: 6.7.0_express@4.16.3
     dev: false
 
   /raw-body/2.3.2:
