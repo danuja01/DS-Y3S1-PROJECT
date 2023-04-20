@@ -1,9 +1,10 @@
 import express from "express";
 import serviceConnector from "@sliit-foss/service-connector";
 import { tracedAsyncHandler } from "@sliit-foss/functions";
-import { roles } from "@app/constants";
 import { serviceHosts } from "../constants";
+//  eslint-disable-next-line no-unused-vars
 import { permittedRoles } from "../../../middleware";
+import { routeGuards } from "./middleware";
 
 const orchestrator = express.Router();
 
@@ -14,7 +15,7 @@ orchestrator.all(
   tracedAsyncHandler(function attachMiddleware(req, res, next) {
     switch (req.params.module) {
       case "users":
-        return permittedRoles([roles.admin])(req, res, next);
+        return routeGuards[req.params.module](req, res, next);
       case "emails":
       default:
         return;
