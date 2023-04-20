@@ -16,6 +16,14 @@ export const roles = ["admin", "seller", "buyer"].reduce((acc, role) => {
   return acc;
 }, {});
 
+export const cancellationStatus = ["pending", "approved", "rejected"].reduce(
+  (acc, status) => {
+    acc[status] = status;
+    return acc;
+  },
+  {}
+);
+
 export const objectIdSchema = (name = "id") =>
   Joi.object({
     [name]: Joi.string().hex().length(24).required(),
