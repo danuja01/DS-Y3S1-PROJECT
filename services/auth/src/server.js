@@ -4,6 +4,6 @@ import config from "./config";
 
 initializeServer({
   service: "Auth service",
-  leadingMiddleware: [authorizer],
+  lMiddleware: [authorizer],
   config,
 });
