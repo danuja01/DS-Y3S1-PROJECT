@@ -6,15 +6,15 @@ import ItemSlider from '../../common/itemSlider'
 const ItemCategories = () => {
   return (
     <>
-      <Section>
+      <Section className="bg-gray-100">
         <Heading>Body-Lotions</Heading>
         <ItemSlider />
       </Section>
-      <Section>
+      <Section className="bg-white">
         <Heading>Scrubs</Heading>
         <ItemSlider />
       </Section>
-      <Section>
+      <Section className="bg-gray-100">
         <Heading>Shampoo</Heading>
         <ItemSlider />
       </Section>

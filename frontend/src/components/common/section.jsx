@@ -1,6 +1,8 @@
-const Section = ({ children }, ...props) => {
+import { twMerge } from 'tailwind-merge'
+
+const Section = ({ children, ...props }) => {
   return (
-    <div {...props} className=" py-10 px-20 bg-gray-100 h-[40rem]">
+    <div {...props} className={twMerge('py-10 px-20  h-[40rem]', props.className)}>
       {children}
     </div>
   )
