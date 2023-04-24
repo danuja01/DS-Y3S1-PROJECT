@@ -7,7 +7,7 @@ const Navbar = ({ CartItem }) => {
   window.addEventListener('scroll', function () {
     const search = document.querySelector('.search')
     search.classList.toggle('pb-[5rem]')
-    search.classList.toggle('active', window.scrollY > 80)
+    search.classList.toggle('active', window.scrollY > 36)
   })
 
   // Toogle Menu

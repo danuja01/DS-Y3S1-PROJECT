@@ -1,3 +1,6 @@
+import { Button } from '../common'
+import ButtonLink from '../common/buttonLink'
+
 const Hero = () => {
   return (
     <div className="relative bg-white  pb-[110px] lg:pt-[100px] px-20">
@@ -9,9 +12,7 @@ const Hero = () => {
               <p className="mb-8 max-w-[480px] text-base text-body-color">Discover the power of nature with WellnessRoots: Your trusted source for Ayurvedic remedies and natural wellness products.</p>
               <ul className="flex flex-wrap items-center">
                 <li>
-                  <a href="javascript:void(0)" className=" inline-flex items-center justify-center rounded-lg bg-green-700 py-4 px-6 text-center text-base font-bold text-white hover:bg-opacity-90 sm:px-10 lg:px-8 xl:px-10">
-                    SHOP NOW!
-                  </a>
+                  <ButtonLink className="font-bold text-lg ">SHOP NOW!</ButtonLink>
                 </li>
               </ul>
             </div>
@@ -20,7 +21,7 @@ const Hero = () => {
           <div className="w-full px-4 lg:w-6/12">
             <div className="lg:ml-auto lg:text-right">
               <div className="relative z-10 inline-block  lg:pt-0">
-                <img src="./public/assets/images/homeopathy-burlington 1.png" alt="hero" className="w-[31rem] lg:ml-auto" />
+                <img src="/assets/images/homeopathy-burlington 1.png" alt="hero" className="w-[31rem] lg:ml-auto" />
               </div>
             </div>
           </div>

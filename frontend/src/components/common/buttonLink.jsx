@@ -2,9 +2,9 @@ import { twMerge } from 'tailwind-merge'
 
 const ButtonLink = ({ children, ...props }) => {
   return (
-    <button {...props} className={twMerge(`${props.disabled ? 'bg-white/30' : 'bg-gray-light hover:bg-primary hover:text-white'} rounded-md flex items-center justify-center text-base font-normal transition duration-300`, props.className)}>
+    <a {...props} className={twMerge(`${props.disabled ? 'bg-green-800' : 'bg-green-800 hover:bg-green-700 text-white '} rounded-md px-5 py-3 flex items-center justify-center text-base  transition duration-300`, props.className)}>
       {children}
-    </button>
+    </a>
   )
 }
 
