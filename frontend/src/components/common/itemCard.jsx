@@ -6,8 +6,8 @@ import Button from './button'
 const ItemCard = (props) => {
   const item = {
     id: 1,
-    name: 'banana',
-    price: 30,
+    name: 'Cinomon Herbal Cream',
+    price: 1250.0,
   }
 
   const dispatch = useDispatch()

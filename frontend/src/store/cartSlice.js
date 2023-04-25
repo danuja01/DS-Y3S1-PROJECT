@@ -11,13 +11,11 @@ const cartSlice = createSlice({
     addItem(state, action) {
       const newItem = action.payload
       const existingItem = state.items.find((item) => item.id === newItem.id)
-
       if (!existingItem) {
         state.items.push({ ...newItem, quantity: 1 })
       } else {
         existingItem.quantity++
       }
-
       // Update local storage
       localStorage.setItem(CART_KEY, JSON.stringify(state.items))
     },
@@ -35,7 +33,8 @@ const cartSlice = createSlice({
         item.quantity = quantity
 
         // Update local storage
-        localStorage.setItem(CART_KEY, JSON.stringify(state.items))
+        const updatedItems = state.items.map((item) => (item.id === id ? { ...item, quantity } : item))
+        localStorage.setItem(CART_KEY, JSON.stringify(updatedItems))
       }
     },
     clearCart(state) {
