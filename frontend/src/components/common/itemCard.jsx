@@ -4,6 +4,7 @@ import { addItem } from '../../store/cartSlice'
 import Button from './button'
 
 const ItemCard = (props) => {
+
   const item = {
     id: 1,
     name: 'Cinomon Herbal Cream',

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// import logo from "../../components/assets/images/logo.svg"
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Navbar = ({ CartItem }) => {
@@ -17,6 +17,12 @@ const Navbar = ({ CartItem }) => {
     setUserMenue(!userMenue)
   }
 
+  const cartItems = useSelector((state) => state.cart.items)
+
+  // Calculate total number of items in the cart
+  const totalItems = cartItems.length
+
+  // navLinks
   const navLinks = [
     {
       title: 'Home',
@@ -69,8 +75,8 @@ const Navbar = ({ CartItem }) => {
             </div>
             <div className="cart">
               <Link to="/cart">
+                <p className={`${totalItems == 0 ? 'hidden' : ''} absolute right-0 top-[-4px] bg-red-600 text-white rounded-full px-1.5 pt-0.5 text-xs`}>{totalItems}</p>
                 <i className="fa fa-shopping-bag icon-circle icon-circle"></i>
-                {/* <span>{CartItem.length === 0 ? '' : CartItem.length}</span> */}
               </Link>
             </div>
           </div>
