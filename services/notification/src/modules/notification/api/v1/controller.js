@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import { celebrate, Segments } from "celebrate";
 import { default as filterQuery } from "@sliit-foss/mongoose-filter-query";
 import { asyncHandler } from "@sliit-foss/functions";
@@ -20,7 +21,11 @@ notification.post(
   "/",
   celebrate({ [Segments.BODY]: createNotificationSchema }),
   asyncHandler(async function controllerCreateNotification(req, res) {
-    const data = await serviceCreateNotification(req.body);
+    const data = await serviceCreateNotification({
+      ...req.body,
+
+      user_id: mongoose.Types.ObjectId(req.body.user_id), // convert product_id to ObjectId
+    });
     return toSuccess({
       res,
       data,

@@ -4,5 +4,6 @@ import config from "./config";
 initializeServer({
   service: "Delivery service",
   database: true,
+  cors: true,
   config,
 });

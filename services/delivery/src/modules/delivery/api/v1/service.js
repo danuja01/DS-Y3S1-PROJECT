@@ -7,11 +7,12 @@ import {
   deleteDeliveryById,
 } from "../../repository";
 
-import { hashPasswordIfProvided } from "./helpers";
+// import { hashPasswordIfProvided } from "./helpers";
 
+// eslint-disable-next-line
 export const serviceCreateDelivery = async (delivery) => {
-  if (!delivery.message) throw new Error("Delivery not created");
-  await hashPasswordIfProvided(delivery);
+  // if (!delivery.message) throw new Error("Delivery not created");
+  // await hashPasswordIfProvided(delivery);
   return createDelivery(delivery);
 };
 
@@ -23,8 +24,9 @@ export const serviceGetDeliveryById = (id) => {
   return getDeliveryById(id);
 };
 
+// eslint-disable-next-line
 export const serviceUpdateDeliveryById = async (id, data) => {
-  await hashPasswordIfProvided(data);
+  // await hashPasswordIfProvided(data);
   return updateDeliveryById(id, data);
 };
 

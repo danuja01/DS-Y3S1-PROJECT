@@ -7,26 +7,30 @@ const { Schema } = mongoose;
 const DeliverySchema = new Schema(
   {
     user_id: {
-      type: String,
-      // ref: "User",
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    },
+    order_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Order",
+      required: false,
+    },
+    shippingPrice: {
+      type: Number,
+      ref: "Order",
       required: true,
     },
-    product_id: {
+    shippingAddress: {
       type: String,
-      // ref: "User",
+      ref: "User",
       required: true,
     },
-    delivery_title: {
+    status: {
       type: String,
-      required: true,
-    },
-    message: {
-      type: String,
-      required: true,
-    },
-    isRead: {
-      type: Boolean,
-      default: false,
+      ref: "Order",
+      enum: ["Pending", "Confirmed", "Shipped", "Delivered", "Cancelled"],
+      default: "Pending",
     },
   },
   {

@@ -7,21 +7,22 @@ const { Schema } = mongoose;
 const NotificationSchema = new Schema(
   {
     user_id: {
-      type: String,
-      // ref: "User",
-      required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
     },
     notification_title: {
-      type: String,
-      required: true,
-    },
-    notification_id: {
       type: String,
       required: true,
     },
     message: {
       type: String,
       required: true,
+    },
+    time: {
+      type: Date,
+      required: true,
+      default: Date.now,
     },
     isRead: {
       type: Boolean,
