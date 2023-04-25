@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
-import ItemCard from '../common/itemCard'
+import ItemCard from '../../common/itemCard'
 
 import 'swiper/css'
 import 'swiper/css/navigation'

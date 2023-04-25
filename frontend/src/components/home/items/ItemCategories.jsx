@@ -1,7 +1,7 @@
 import Heading from '../../common/heading'
 import Section from '../../common/section'
 
-import ItemSlider from '../../common/itemSlider'
+import ItemSlider from './itemSlider'
 
 const ItemCategories = () => {
   return (
