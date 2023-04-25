@@ -4,8 +4,11 @@ import App from './app'
 import 'react-toastify/dist/ReactToastify.css'
 import './styles/index.css'
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+
+      <App />
+
   </React.StrictMode>,
 )

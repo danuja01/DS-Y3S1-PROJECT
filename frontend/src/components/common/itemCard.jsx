@@ -1,6 +1,21 @@
-import ButtonLink from './buttonLink'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../../store/cartSlice'
+
+import Button from './button'
 
 const ItemCard = (props) => {
+  const item = {
+    id: 1,
+    name: 'banana',
+    price: 30,
+  }
+
+  const dispatch = useDispatch()
+
+  const handleAddToCart = (item) => {
+    dispatch(addItem(item))
+  }
+
   return (
     <div className=" flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
       <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
@@ -37,12 +52,18 @@ const ItemCard = (props) => {
             <span className="mr-2 ml-3 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">5.0</span>
           </div>
         </div>
-        <ButtonLink className="flex items-center justify-center rounded-md px-5 py-2.5 text-center text-sm font-medium  focus:outline-none focus:ring-4 focus:ring-green-300">
+        <Button
+          onClick={() => {
+            console.log('clicked')
+            handleAddToCart(item)
+          }}
+          className="flex items-center justify-center rounded-md px-5 py-2.5 text-center text-sm font-medium  focus:outline-none focus:ring-4 focus:ring-green-300"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
           Add to cart
-        </ButtonLink>
+        </Button>
       </div>
     </div>
   )
