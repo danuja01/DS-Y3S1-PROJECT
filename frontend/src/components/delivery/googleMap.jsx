@@ -20,7 +20,8 @@ const boralesgamuwa = {
 function GoogleMaps() {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyB1ImSb6QNfp0o4C9LWrswVfaUfQmJnlSw"
+        // googleMapsApiKey: "AIzaSyB1ImSb6QNfp0o4C9LWrswVfaUfQmJnlSw"
+        googleMapsApiKey: import.meta.env.VITE_GOOGLE_APS_API_KEY
     })
 
     const [map, setMap] = React.useState(null)

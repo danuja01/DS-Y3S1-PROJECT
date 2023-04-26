@@ -120,7 +120,7 @@ const Navbar = ({ CartItem }) => {
       if (!notification.isRead) {
         data.time = currentTime;
       }
-      const response = await updateNotifications(notification._id, data, true);
+      const response = await updateNotifications(notification._id, data, false);
       updatedNotifications.push(response.data);
     }
     setNotifications(updatedNotifications);
