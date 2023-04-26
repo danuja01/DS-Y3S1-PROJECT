@@ -40,7 +40,7 @@ const initialize = ({
     _res.header("Access-Control-Allow-Origin", "*"); // allow front end to access the api
     _res.header(
       "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
+      "Origin, X-Requested-With, Content-Type, Accept"
     );
     context.set(
       "correlationId",

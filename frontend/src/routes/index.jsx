@@ -3,10 +3,10 @@ import { AnimatePresence } from 'framer-motion'
 import { useAuth } from '../hooks'
 import Home from '../pages/home'
 import NotFound from '../pages/404'
-import Cart from '../components/cart/cart'
 import Delivery from '../pages/delivery'
 import TestProgress from '../pages/testProgress'
 import DispatchDelivery from '../pages/dispatchDelivery'
+import Cart from '../pages/cart'
 
 const AnimatedRoutes = () => {
   // useAuth()

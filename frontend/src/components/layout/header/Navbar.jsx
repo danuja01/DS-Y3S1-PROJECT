@@ -10,6 +10,7 @@ import React, { useState, useRef, useEffect } from 'react';
 // import firebase from 'firebase/app';
 // import 'firebase/messaging';
 
+
 const Navbar = ({ CartItem }) => {
   // fixed Header
   window.addEventListener('scroll', function () {
@@ -24,7 +25,6 @@ const Navbar = ({ CartItem }) => {
   const handleClick = () => {
     setUserMenue(!userMenue)
   }
-
 
   //Notifications-----------------------------------------------------------------------------------------
   /*
@@ -133,6 +133,7 @@ const Navbar = ({ CartItem }) => {
   console.log('is array?', Array.isArray(notifications.data))
 
   //----------------------------------------------------------------------------------------------
+
   const navLinks = [
     {
       title: 'Home',
@@ -195,7 +196,6 @@ const Navbar = ({ CartItem }) => {
               </button>
 
             </div>
-
           </div>
           {/* mobile nav */}
           <div className={`50 ${userMenue ? '' : 'hidden'}  absolute right-12  top-28 z-30 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown`}>
