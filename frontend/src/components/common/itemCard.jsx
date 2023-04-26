@@ -1,9 +1,47 @@
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { addItem } from '../../store/cartSlice'
+import { Link } from 'react-router-dom';
+//import { productPage } from '../../pages/productPage'
+//import ProductPage from './productPage'
+import { getAllProducts, getProductById } from '../../services/product';
 
 import Button from './button'
 
 const ItemCard = (props) => {
+  const [products, setProducts] = useState([])
+
+  /*const getProduct = async (id) => {
+    try {
+      const response = await getProductById(id, true);
+      setProducts(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };*/
+
+  /*useEffect(() => {
+
+    getProduct(props.match.params.id);
+
+  }, [props.match.params.id]);*/
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const response = await getAllProducts(true)
+        setProducts(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchData()
+  }, [])
+
+
+
   const item = {
     id: 1,
     name: 'Cinomon Herbal Cream',
@@ -17,16 +55,18 @@ const ItemCard = (props) => {
   }
 
   return (
+    
     <div className=" flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-      <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
+        <Link to="/productPage">
         <img className="object-cover w-full" src="https://www.srisrimadhara.com/wp-content/uploads/2020/12/Muhurath_1.png" alt="product image" />
         {/* OFF LIMIT */}
         {/* <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span> */}
-      </a>
+        </Link>
+        <h3>{products.title}</h3>
       <div className="mt-4 px-5 pb-5">
-        <a href="#">
+        <Link to={'/productPage'}>
           <h5 className="text-md tracking-tight text-slate-900">Muharat - Herbal Body Lotion</h5>
-        </a>
+        </Link>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
             <span className="text-lg font-bold text-slate-900">LKR 449</span>

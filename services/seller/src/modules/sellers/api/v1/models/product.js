@@ -8,35 +8,35 @@ const ProductSchema = new Schema(
     user_id: {
       type: String,
       ref: "User",
-      required: true,
+      required: false,
     },
     title: {
       type: String,
-      required: true,
+      required: false,
     },
     message: {
       type: String,
-      required: true,
+      required: false,
     },
     category: {
       type: String,
-      required: true,
+      required: false,
     },
     price: {
       type: Number,
-      required: true,
+      required: false,
     },
     seller: {
       type: String,
-      required: true,
+      required: false,
     },
     tags: {
       type: [String],
-      required: true,
+      required: false,
     },
     selectedFile: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   {
