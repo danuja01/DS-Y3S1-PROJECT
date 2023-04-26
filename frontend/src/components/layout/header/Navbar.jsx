@@ -1,6 +1,15 @@
-import React, { useState } from 'react'
+//import React, { useState } from 'react'
 // import logo from "../../components/assets/images/logo.svg"
 import { Link } from 'react-router-dom'
+import NotificationDropDown from '../../common/notificationDropDown'
+
+//Notificaiton import
+import { getNotifications, addNotifications, updateNotifications } from '../../../services/notifications'
+import React, { useState, useRef, useEffect } from 'react';
+// import axios from 'axios';
+// import firebase from 'firebase/app';
+// import 'firebase/messaging';
+
 
 const Navbar = ({ CartItem }) => {
   // fixed Header
@@ -17,6 +26,114 @@ const Navbar = ({ CartItem }) => {
     setUserMenue(!userMenue)
   }
 
+  //Notifications-----------------------------------------------------------------------------------------
+  /*
+    //FIREBASE
+  
+    // Initialize Firebase client SDK
+    firebase.initializeApp({
+      apiKey: "AIzaSyBB29SJIFo_GE5_FyiAyCRIQEnb-wrrZmY",
+      authDomain: "distributedsystemsprojec-b662c.firebaseapp.com",
+      projectId: "distributedsystemsprojec-b662c",
+      storageBucket: "distributedsystemsprojec-b662c.appspot.com",
+      messagingSenderId: "532404390755",
+      appId: "1:532404390755:web:3a67f9cfc17bf883cee156"
+    });
+  
+    // Request permission from the user to receive push notifications
+    useEffect(() => {
+      const messaging = firebase.messaging();
+      messaging.requestPermission()
+        .then(() => {
+          console.log('Permission granted');
+          // Subscribe to the messaging service
+          messaging.getToken()
+            .then((token) => {
+              console.log(`Token received: ${token}`);
+              // Send the token to your backend endpoint
+              const tokenString = JSON.stringify({ token });
+              const fetchData = async () => {
+                try {
+                  const response = await addNotifications(tokenString, true)
+                  setNotifications(response.data)
+                } catch (error) {
+                  console.log(error)
+                }
+              }
+              fetchData()
+            })
+            .catch((err) => {
+              console.log(`Error getting token: ${err}`);
+            });
+        })
+        .catch((err) => {
+          console.log(`Error requesting permission: ${err}`);
+        });
+    })
+  
+    // Listen for incoming messages
+    messaging.onMessage((message) => {
+      console.log('Message received:', message);
+      // Display the message to the user
+      // ...
+    });
+    //----------
+    */
+  const [notificationMenu, setNotificationMenu] = useState(false)
+  const [notifications, setNotifications] = useState([]);
+  const [isRead, setIsRead] = useState();
+
+  //notification count
+  var count = 0;
+  notifications.map((notification) => {
+    if (notification.isRead == false) {
+      count++;
+    }
+    console.log(count);
+  })
+  const notificationCount = count;
+
+  // fetching notifications
+  const fetchData = async () => {
+    try {
+      const response = await getNotifications(false)
+      setNotifications(response.data);
+      setIsRead(response.data.isRead);
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+
+    const interval = setInterval(() => {
+      fetchData();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [])
+
+  const currentTime = new Date().toISOString();
+  const handleNotificaiton = async (e) => {
+    const updatedNotifications = [];
+    for (const notification of notifications) {
+      const data = { isRead: true};
+      if (!notification.isRead) {
+        data.time = currentTime;
+      }
+      const response = await updateNotifications(notification._id, data, true);
+      updatedNotifications.push(response.data);
+    }
+    setNotifications(updatedNotifications);
+    setNotificationMenu(!notificationMenu);
+    setUserMenue(false);
+  }
+
+  console.log('isOpen:', notificationMenu);
+  console.log('notifications:', notifications);
+  console.log('is array?', Array.isArray(notifications.data))
+
+  //----------------------------------------------------------------------------------------------
+
   const navLinks = [
     {
       title: 'Home',
@@ -32,7 +149,7 @@ const Navbar = ({ CartItem }) => {
     },
     {
       title: 'Contact',
-      path: '/contact',
+      path: '/delivery',
     },
   ]
 
@@ -73,6 +190,12 @@ const Navbar = ({ CartItem }) => {
                 {/* <span>{CartItem.length === 0 ? '' : CartItem.length}</span> */}
               </Link>
             </div>
+            <div className="cart">
+              <button onClick={handleNotificaiton}>
+                <i className="fa fa-bell icon-circle icon-circle" />
+              </button>
+
+            </div>
           </div>
           {/* mobile nav */}
           <div className={`50 ${userMenue ? '' : 'hidden'}  absolute right-12  top-28 z-30 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown`}>
@@ -102,6 +225,28 @@ const Navbar = ({ CartItem }) => {
                 </a>
               </li>
             </ul>
+          </div>
+          {/*Notification*/}
+          <div className='relative'>
+            <button onClick={() => setNotificationMenu(!notificationMenu)}>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" />
+              {notificationCount > 0 && <span className="absolute -top-3 -right-0 px-2 rounded-full bg-red-500 text-white text-xs">{notificationCount}</span>}
+            </button>
+            <div className={`50 ${notificationMenu ? '' : 'hidden'}  absolute right-5  top-25 z-30 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown`} style={{ maxHeight: '150px', overflowY: 'scroll' }}>
+              <div className="px-4 py-3">
+                {notifications.map((notification) => {
+                    const time = new Date(notification.time).toLocaleTimeString();
+                  return (
+                    <div key={notification._id}>
+                      <span className="block text-sm text-gray-900 dark:text-white">{notification.notification_title}</span>
+                      <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{notification.message}</span>
+                      <span className="block text-sm  text-gray-500 truncate dark:text-gray-400" style={{textAlign: 'right'}}>{time}</span>
+                      <hr />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>

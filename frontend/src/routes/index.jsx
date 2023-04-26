@@ -3,6 +3,9 @@ import { AnimatePresence } from 'framer-motion'
 import { useAuth } from '../hooks'
 import Home from '../pages/home'
 import NotFound from '../pages/404'
+import Delivery from '../pages/delivery'
+import TestProgress from '../pages/testProgress'
+import DispatchDelivery from '../pages/dispatchDelivery'
 import Cart from '../pages/cart'
 
 const AnimatedRoutes = () => {
@@ -15,6 +18,9 @@ const AnimatedRoutes = () => {
       <Routes location={location}>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/delivery" element={<Delivery />} />
+        <Route path='/delivery/testProgress' element={<TestProgress />} />
+        <Route path='/delivery/dispatchDelivery' element={<DispatchDelivery />}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
