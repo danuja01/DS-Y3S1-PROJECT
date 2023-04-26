@@ -70,7 +70,7 @@ notification.post(
     const data = await serviceCreateNotification({
       ...req.body,
 
-      user_id: mongoose.Types.ObjectId(req.body.user_id), // convert product_id to ObjectId
+      user_id: mongoose.Types.ObjectId(req.body.user_id), // convert user_id to ObjectId
     });
     return toSuccess({
       res,
