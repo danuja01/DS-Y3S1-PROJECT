@@ -5,7 +5,8 @@ import Home from '../pages/home'
 import NotFound from '../pages/404'
 import Cart from '../components/cart/cart'
 import Delivery from '../pages/delivery'
-import TestProgress from '../components/testProgress'
+import TestProgress from '../pages/testProgress'
+import DispatchDelivery from '../pages/dispatchDelivery'
 
 const AnimatedRoutes = () => {
   // useAuth()
@@ -18,7 +19,8 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/delivery" element={<Delivery />} />
-        <Route path='/testProgress' element={<TestProgress />} />
+        <Route path='/delivery/testProgress' element={<TestProgress />} />
+        <Route path='/delivery/dispatchDelivery' element={<DispatchDelivery />}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>

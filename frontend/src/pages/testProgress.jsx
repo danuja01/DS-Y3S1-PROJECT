@@ -1,12 +1,12 @@
-import TestProgress from '../components/testProgress'
-import Layout from '../components/layout'
+import TestProgress from '../components/delivery/testProgress'
+import Layout from '../components/layout/'
 
-const TestProgress = () => {
+const Progress = () => {
   return (
-    <Layout title="testProgress">
+    <Layout title="Test Progress">
      <TestProgress />   
     </Layout>
   )
 }
 
-export default TestProgress
+export default Progress;

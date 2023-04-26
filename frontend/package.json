@@ -13,6 +13,7 @@
     "@react-google-maps/api": "^2.18.1",
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",
+    "firebase": "^9.20.0",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.11",
     "framer-motion": "^7.3.4",

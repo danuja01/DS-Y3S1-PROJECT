@@ -10,7 +10,6 @@ export const createNotificationSchema = Joi.object({
 });
 
 export const updateNotificationSchema = Joi.object({
-  user_id: Joi.string().optional(),
   notification_title: Joi.string().optional(),
   message: Joi.string().optional(),
   time: Joi.date().optional(),

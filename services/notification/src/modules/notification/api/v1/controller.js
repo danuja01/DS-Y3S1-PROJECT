@@ -11,10 +11,56 @@ import {
   serviceGetNotificationById,
   serviceUpdateNotificationById,
   serviceDeleteNotificationById,
+
+  // ----------------------------------
+  // serviceGetNotification,
+  // serviceNotificationsByUser,
+  // serviceUpdateNotificationRead
+  // ----------------------------------
 } from "./service";
 
 import { createNotificationSchema, updateNotificationSchema } from "./schema";
+/*
 
+// FIREBASE
+
+const admin = require('firebase-admin');
+// const express = require('express');
+
+const app = express();
+
+// Initialize Firebase admin SDK
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
+  databaseURL: 'https://distributedsystemsprojec-b662c.firebaseio.com',
+});
+
+// ----
+const { celebrate, Segments, Joi } = require('celebrate');
+const asyncHandler = require('express-async-handler');
+
+app.post('/',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      token: Joi.string().required(),
+      // add any other validation rules for your message object
+    }),
+  }),
+  asyncHandler(async (req, res) => {
+    const { token, ...message } = req.body;
+    await admin.messaging().send({
+      token,
+      notification: {
+        ...message,
+      },
+    });
+    res.send('Message sent successfully');
+  })
+);
+
+// -------------------
+
+*/
 const notification = express.Router();
 
 notification.post(
@@ -57,6 +103,7 @@ notification.get(
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
   asyncHandler(async function controllerGetNotificationById(req, res) {
     const data = await serviceGetNotificationById(req.params.id);
+    // const data = await serviceGetNotification(req.params.id);
     return toSuccess({
       res,
       data,
@@ -64,7 +111,45 @@ notification.get(
     });
   })
 );
+// ---------------------------------------
+// Notification.get(
+//   "/user/:id",
+//   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
+//   filterQuery,
+//   asyncHandler(async function controllerGetNotificationsByUser(req, res) {
+//     const data = await serviceNotificationsByUser(
+//       req.params.id,
+//       req.query.filter,
+//       req.query.sort,
+//       req.query.page,
+//       req.query.limit
+//     );
 
+//     return toSuccess({ res, data, message: "Notifications fetched successfully!" });
+//   })
+// );
+//
+// Notification.patch(
+//   "/:id/isRead",
+//   celebrate({
+//     [Segments.PARAMS]: objectIdSchema(),
+//     [Segments.BODY]: updateNotificationSchema,
+//   }),
+//   asyncHandler(async function controllerUpdateNotificationRead(req, res) {
+//     const data = await serviceUpdateNotificationRead(
+//       req.params.id,
+//       req.body.isRead
+//     );
+
+//     return toSuccess({
+//       res,
+//       data,
+//       message: "Notification read updated successfully!",
+//     });
+//   })
+// );
+
+// ---------------------------------------
 notification.patch(
   "/:id",
   celebrate({
@@ -93,5 +178,6 @@ notification.delete(
     });
   })
 );
+// ---------------------------------------------------
 
 export default notification;

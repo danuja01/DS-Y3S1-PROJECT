@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
 import './deliveryHome.css';
 import ProgressBar from './progressBar';
-import { getDelivery } from '../services/delivery';
+import { addDelivery, getDelivery } from '../../services/delivery';
 
 
 const DeliveryHome = (props) => {
     const [order_id, setOrderId] = useState("");
     const [shippingAddress, setShippingAddress] = useState("");
     const [deliveries, setDeliveries] = useState([]);
+    const [shippingPrice, setShippingPrice] = useState(0);
 
-    const [status, setStatus] = useState('Pending');
+    const [status, setStatus] = useState();
     const [deliveryMethod, setDeliveryMethod] = useState('');
     const [progress, setProgress] = useState(25);
     const progressBarRef = useRef(null);
@@ -36,35 +36,54 @@ const DeliveryHome = (props) => {
     //         }
     //     }
     // }, [progress]);
-    
+
 
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const response = await getDelivery(true)
-            setDeliveries(response.data);
-            console.log(setDeliveries);
-            setOrderId(response.data.order_id);
-            setShippingAddress(response.data.shippingAddress);
-          } catch (error) {
-            console.log(error)
-          }
+            try {
+                const response = await getDelivery(true)
+                setDeliveries(response.data);
+                console.log(setDeliveries);
+                setOrderId(response.data.order_id);
+                setShippingAddress(response.data.shippingAddress);
+                setShippingPrice(response.data.shippingPrice);
+                setStatus(response.data.status);
+            } catch (error) {
+                console.log(error)
+            }
         }
         fetchData()
-      }, [])
+    }, [])
 
-      console.log('Deliveries',deliveries);
+    console.log('Deliveries', deliveries);
+    console.log("Status", status);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus('Confirmed');
+        // setStatus('Confirmed');
         if (progress < 100) {
             setProgress(prevProgress => prevProgress + 25);
         }
         setFormSubmitted(true);
-        
-        window.location.replace(`/testProgress`);
+
+        try {
+            const data = {
+                order_id, 
+                shippingAddress ,
+                status: "Confirmed", 
+                shippingPrice
+            };
+            const response = await addDelivery(data, true); 
+
+            console.log("shipping price", shippingPrice)
+            console.log("answers",response); 
+        } catch (error) {
+            console.log(error); 
+        }
+
+        window.location.replace(`/delivery/testProgress`);
     };
+
 
 
     return (
@@ -88,6 +107,10 @@ const DeliveryHome = (props) => {
                         <input type="text" value={status} onChange={(e) => setStatus(e.target.value)} disabled />
                     </label>
                     <label>
+                        Price:
+                        <input type="Number" value={shippingPrice} onChange={(e) => setShippingPrice(e.target.value)} disabled />
+                    </label>
+                    <label>
                         Delivery Method:
                         <select value={deliveryMethod} onChange={(e) => setDeliveryMethod(e.target.value)}>
                             <option value="Shipping">Shipping</option>
@@ -97,7 +120,7 @@ const DeliveryHome = (props) => {
                     </label>
                     <button type="submit">Confirm</button>
                 </form>
-                 {/* )} */}
+                {/* )} */}
             </div>
         </>
     );

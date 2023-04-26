@@ -3,7 +3,7 @@ import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 
 const containerStyle = {
     width: '100%',
-    height: '400px',
+    height: '300px',
     float: 'right' // set the float property to "right"
 };
 

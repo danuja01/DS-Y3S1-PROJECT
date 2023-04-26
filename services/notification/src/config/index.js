@@ -28,4 +28,21 @@ if (error) {
   process.exit(1);
 }
 
+/*
+//FIREBASE
+
+const admin = require('firebase-admin');
+const express = require('express');
+
+const app = express();
+
+// Initialize Firebase admin SDK
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
+  databaseURL: 'https://your-firebase-project-id.firebaseio.com',
+});
+
+//-------------------
+*/
+
 export default config;

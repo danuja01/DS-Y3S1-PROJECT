@@ -1,4 +1,4 @@
-import DeliveryHome from '../components/deliveryHome'
+import DeliveryHome from '../components/delivery/deliveryHome'
 import Layout from '../components/layout'
 
 const Delivery = () => {

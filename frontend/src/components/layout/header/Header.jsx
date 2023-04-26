@@ -8,7 +8,7 @@ const Header = ({ CartItem }) => {
   return (
     <div className="">
       <Head />
-      {/* <Navbar CartItem={CartItem} /> */}
+      <Navbar CartItem={CartItem} />
     </div>
   )
 }
