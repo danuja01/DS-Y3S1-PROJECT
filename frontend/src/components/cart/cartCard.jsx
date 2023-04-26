@@ -2,29 +2,6 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeItem, updateItemQuantity } from '../../store/cartSlice'
 
-//   return (
-//     <div>
-//       <h2>Cart</h2>
-//       {cartItems.length === 0 && <p>Your cart is empty</p>}
-//       {cartItems.map((item) => (
-//         <div key={item.id}>
-//           <p>
-//             {item.name} - {item.price} - Quantity: {item.quantity}
-//           </p>
-//           <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
-//           <input type="number" min="1" value={item.quantity} onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))} />
-//         </div>
-//       ))}
-//       {/* Display total */}
-//       {cartItems.length > 0 && (
-//         <div>
-//           <p>Total: {total}</p>
-//         </div>
-//       )}
-//     </div>
-//   )
-// }
-
 // export default Cart
 
 const CartCard = (props) => {
@@ -37,6 +14,10 @@ const CartCard = (props) => {
 
   const handleQuantityChange = (id, value) => {
     const item = cartItems.find((item) => item.id === id)
+
+    // Prevent negative quantity
+    if (value < 1) return
+
     const newQuantity = value > item.quantity ? item.quantity + 1 : item.quantity - 1
     dispatch(updateItemQuantity({ id, quantity: newQuantity }))
   }
@@ -69,11 +50,11 @@ const CartCard = (props) => {
                   </div>
                   <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                     <div className="flex items-center border-gray-100">
-                      <span className="cursor-pointer rounded-l bg-green-100 py-1 px-3.5 duration-100 hover:bg-green-800 hover:text-blue-50" onClick={() => handleQuantityChange(item.id, item.quantity - 1)}>
+                      <span className="cursor-pointer rounded-l select-none bg-green-100 py-1 px-3.5 duration-100 hover:bg-green-800 hover:text-blue-50" onClick={() => handleQuantityChange(item.id, item.quantity - 1)}>
                         -
                       </span>
-                      <input className="h-8 w-10 border bg-white text-center text-xs outline-none" type="number" value={item.quantity} min={1} onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))} />
-                      <span className="cursor-pointer rounded-r bg-green-100 py-1 px-3 duration-100 hover:bg-green-800 hover:text-blue-50" onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>
+                      <input disabled className="h-8 w-10  bg-gray-100 text-center text-xs outline-none" type="number" value={item.quantity} min={1} onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))} />
+                      <span className="cursor-pointer select-none rounded-r bg-green-100 py-1 px-3 duration-100 hover:bg-green-800 hover:text-blue-50" onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>
                         +
                       </span>
                     </div>
@@ -108,7 +89,7 @@ const CartCard = (props) => {
                 <p className="mb-1 text-lg font-bold">LKR {subtotal + shipping}</p>
               </div>
             </div>
-            <button className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
+            <button className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">Check out</button>
           </div>
         </div>
       </div>
