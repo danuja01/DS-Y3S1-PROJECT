@@ -5,15 +5,20 @@ const { Schema } = mongoose;
 
 const ReviewSchema = new Schema(
   {
+    product_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+      required: false,
+    },
+    user_name: {
+      type: String,
+      ref: "User",
+      required: false,
+    },
     user_id: {
       type: String,
       ref: "User",
-      required: true,
-    },
-    product_id: {
-      type: String,
-      ref: "Product",
-      required: true,
+      required: false,
     },
     rating: {
       type: Number,
@@ -31,7 +36,7 @@ const ReviewSchema = new Schema(
     },
   },
   {
-    versionKey: false,
+    versionKey: "_version",
     minimize: false,
     timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
   }
