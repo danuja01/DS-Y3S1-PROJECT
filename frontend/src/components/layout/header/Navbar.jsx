@@ -1,17 +1,15 @@
-import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import NotificationDropDown from '../../common/notificationDropDown'
 
 //Notificaiton import
 import { getNotifications, addNotifications, updateNotifications } from '../../../services/notifications'
-import React, { useState, useRef, useEffect } from 'react';
-// import axios from 'axios';
+import React, { useState, useRef, useEffect } from 'react'
+import { getCurrentUser, logout } from '../../../services'
 // import firebase from 'firebase/app';
 // import 'firebase/messaging';
 
-
-const Navbar = ({ CartItem }) => {
+const Navbar = ({ name, email }) => {
   // fixed Header
   window.addEventListener('scroll', function () {
     const search = document.querySelector('.search')
@@ -87,56 +85,57 @@ const Navbar = ({ CartItem }) => {
     //----------
     */
   const [notificationMenu, setNotificationMenu] = useState(false)
-  const [notifications, setNotifications] = useState([]);
-  const [isRead, setIsRead] = useState();
+  const [notifications, setNotifications] = useState([])
+  const [isRead, setIsRead] = useState()
 
   //notification count
-  var count = 0;
+  var count = 0
   notifications.map((notification) => {
     if (notification.isRead == false) {
-      count++;
+      count++
     }
-    console.log(count);
+    console.log(count)
   })
-  const notificationCount = count;
+  const notificationCount = count
 
   // fetching notifications
   const fetchData = async () => {
     try {
       const response = await getNotifications(false)
-      setNotifications(response.data);
-      setIsRead(response.data.isRead);
+      setNotifications(response.data)
+      setIsRead(response.data.isRead)
     } catch (error) {
       console.log(error)
     }
   }
 
   useEffect(() => {
+    // const interval = setInterval(() => {
+    //   fetchData()
+    // }, 10000)
+    fetchData()
 
-    const interval = setInterval(() => {
-      fetchData();
-    }, 5000);
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval)
   }, [])
 
-  const currentTime = new Date().toISOString();
+  const currentTime = new Date().toISOString()
   const handleNotificaiton = async (e) => {
-    const updatedNotifications = [];
+    const updatedNotifications = []
     for (const notification of notifications) {
-      const data = { isRead: true};
+      const data = { isRead: true }
       if (!notification.isRead) {
-        data.time = currentTime;
+        data.time = currentTime
       }
-      const response = await updateNotifications(notification._id, data, false);
-      updatedNotifications.push(response.data);
+      const response = await updateNotifications(notification._id, data, false)
+      updatedNotifications.push(response.data)
     }
-    setNotifications(updatedNotifications);
-    setNotificationMenu(!notificationMenu);
-    setUserMenue(false);
+    setNotifications(updatedNotifications)
+    setNotificationMenu(!notificationMenu)
+    setUserMenue(false)
   }
 
-  console.log('isOpen:', notificationMenu);
-  console.log('notifications:', notifications);
+  console.log('isOpen:', notificationMenu)
+  console.log('notifications:', notifications)
   console.log('is array?', Array.isArray(notifications.data))
 
   //----------------------------------------------------------------------------------------------
@@ -182,7 +181,7 @@ const Navbar = ({ CartItem }) => {
           <div className="search-box f_flex">
             <i className="fa fa-search"></i>
             <input type="text" placeholder="Search and hit enter..." />
-            <span>All Category</span>
+            <span>Category</span>
           </div>
 
           <div className="icon f_flex width">
@@ -201,14 +200,13 @@ const Navbar = ({ CartItem }) => {
               <button onClick={handleNotificaiton}>
                 <i className="fa fa-bell icon-circle icon-circle" />
               </button>
-
             </div>
           </div>
           {/* mobile nav */}
-          <div className={`50 ${userMenue ? '' : 'hidden'}  absolute right-12  top-28 z-30 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown`}>
+          <div className={`50 ${userMenue ? '' : 'hidden'}  absolute right-40  top-28 z-30 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown`}>
             <div className="px-4 py-3">
-              <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-              <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+              <span className="block text-sm text-gray-900 dark:text-white">{name ? name : 'Guest'}</span>
+              <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{email ? email : 'your@email.com'}</span>
             </div>
             <ul className="py-2" aria-labelledby="user-menu-button">
               <li>
@@ -227,14 +225,20 @@ const Navbar = ({ CartItem }) => {
                 </a>
               </li>
               <li>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                <button
+                  onClick={() => {
+                    logout()
+                    window.location.reload()
+                  }}
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
                   Sign out
-                </a>
+                </button>
               </li>
             </ul>
           </div>
           {/*Notification*/}
-          <div className='relative'>
+          <div className="relative">
             <button onClick={() => setNotificationMenu(!notificationMenu)}>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" />
               {notificationCount > 0 && <span className="absolute -top-3 -right-0 px-2 rounded-full bg-red-500 text-white text-xs">{notificationCount}</span>}
@@ -242,15 +246,17 @@ const Navbar = ({ CartItem }) => {
             <div className={`50 ${notificationMenu ? '' : 'hidden'}  absolute right-5  top-25 z-30 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown`} style={{ maxHeight: '150px', overflowY: 'scroll' }}>
               <div className="px-4 py-3">
                 {notifications.map((notification) => {
-                    const time = new Date(notification.time).toLocaleTimeString();
+                  const time = new Date(notification.time).toLocaleTimeString()
                   return (
                     <div key={notification._id}>
                       <span className="block text-sm text-gray-900 dark:text-white">{notification.notification_title}</span>
                       <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{notification.message}</span>
-                      <span className="block text-sm  text-gray-500 truncate dark:text-gray-400" style={{textAlign: 'right'}}>{time}</span>
+                      <span className="block text-sm  text-gray-500 truncate dark:text-gray-400" style={{ textAlign: 'right' }}>
+                        {time}
+                      </span>
                       <hr />
                     </div>
-                  );
+                  )
                 })}
               </div>
             </div>

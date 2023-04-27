@@ -18,7 +18,6 @@ orchestrator.all(
         return routeGuards[req.params.module](req, res, next);
       case "emails":
         return permittedRoles[("admin", "seller")](req, res, next);
-
       default:
         return;
     }

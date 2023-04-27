@@ -33,6 +33,8 @@ const Login = () => {
         const store = rememberMe ? localStorage : sessionStorage
         store.setItem('access_token', data.data.access_token)
         store.setItem('refresh_token', data.data.refresh_token)
+        localStorage.setItem('email', formData.email)
+        localStorage.setItem('name', formData.name)
         dispatch(setAuthUser(data.data.user))
         dispatch(setFormData({}))
         navigateTo('/')
@@ -116,7 +118,7 @@ const Login = () => {
 
             <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?
-              <a href="#" className="font-semibold leading-6 text-green-800 hover:text-green-500">
+              <a href="/register" className="font-semibold leading-6 text-green-800 hover:text-green-500">
                 {' Register Now!'}
               </a>
             </p>
