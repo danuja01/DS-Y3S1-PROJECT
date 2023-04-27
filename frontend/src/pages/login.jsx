@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { login } from '../services'
+import { getCurrentUser, login } from '../services'
 import { setFormData, toggleRememberMe } from '../store/ui/login'
 import { setAuthUser } from '../store/data/user'
 
@@ -30,11 +30,17 @@ const Login = () => {
     e.preventDefault()
     await login({ email: formData.email, password: formData.password }, true).then((data) => {
       if (data) {
+        getCurrentUser().then((data) => {
+          localStorage.setItem('id', data.data._id)
+          localStorage.setItem('name', data.data.name)
+          localStorage.setItem('email', data.data.email)
+          localStorage.setItem('role', data.data.role)
+        })
+
         const store = rememberMe ? localStorage : sessionStorage
         store.setItem('access_token', data.data.access_token)
         store.setItem('refresh_token', data.data.refresh_token)
-        localStorage.setItem('email', formData.email)
-        localStorage.setItem('name', formData.name)
+
         dispatch(setAuthUser(data.data.user))
         dispatch(setFormData({}))
         navigateTo('/')

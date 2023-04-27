@@ -1,15 +1,17 @@
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import NotificationDropDown from '../../common/notificationDropDown'
 
 //Notificaiton import
 import { getNotifications, addNotifications, updateNotifications } from '../../../services/notifications'
 import React, { useState, useRef, useEffect } from 'react'
-import { getCurrentUser, logout } from '../../../services'
+import { logout } from '../../../services'
 // import firebase from 'firebase/app';
 // import 'firebase/messaging';
 
 const Navbar = ({ name, email }) => {
+  const navigate = useNavigate()
+
   // fixed Header
   window.addEventListener('scroll', function () {
     const search = document.querySelector('.search')
@@ -227,8 +229,8 @@ const Navbar = ({ name, email }) => {
               <li>
                 <button
                   onClick={() => {
-                    logout()
-                    window.location.reload()
+                    logout(true)
+                    navigate('/login')
                   }}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                 >

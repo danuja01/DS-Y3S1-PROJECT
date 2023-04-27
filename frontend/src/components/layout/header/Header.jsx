@@ -1,13 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Header.css'
 import Head from './Head'
 
 import Navbar from './Navbar'
-import { getCurrentUser } from '../../../services'
 
 const Header = () => {
-  const name = localStorage.getItem('name')
-  const email = localStorage.getItem('email')
+  const [name, setName] = useState()
+  const [email, setEmail] = useState()
+
+  useEffect(() => {
+    setName(localStorage.getItem('name'))
+    setEmail(localStorage.getItem('email'))
+  }, [])
+
+  // const name = localStorage.getItem('name')
+  // const email = localStorage.getItem('email')
   return (
     <div className="">
       <Head />
