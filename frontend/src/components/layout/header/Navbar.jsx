@@ -7,9 +7,6 @@ import NotificationDropDown from '../../common/notificationDropDown'
 import { getNotificationById, updateNotifications } from '../../../services/notifications'
 
 import { logout } from '../../../services'
-// import axios from 'axios';
-// import firebase from 'firebase/app';
-// import 'firebase/messaging';
 
 const Navbar = ({ name, email }) => {
   const navigate = useNavigate()
@@ -37,59 +34,7 @@ const Navbar = ({ name, email }) => {
 
   // navLinks
 
-  //Notifications-----------------------------------------------------------------------------------------
-  /*
-    //FIREBASE
-  
-    // Initialize Firebase client SDK
-    firebase.initializeApp({
-      apiKey: "AIzaSyBB29SJIFo_GE5_FyiAyCRIQEnb-wrrZmY",
-      authDomain: "distributedsystemsprojec-b662c.firebaseapp.com",
-      projectId: "distributedsystemsprojec-b662c",
-      storageBucket: "distributedsystemsprojec-b662c.appspot.com",
-      messagingSenderId: "532404390755",
-      appId: "1:532404390755:web:3a67f9cfc17bf883cee156"
-    });
-  
-    // Request permission from the user to receive push notifications
-    useEffect(() => {
-      const messaging = firebase.messaging();
-      messaging.requestPermission()
-        .then(() => {
-          console.log('Permission granted');
-          // Subscribe to the messaging service
-          messaging.getToken()
-            .then((token) => {
-              console.log(`Token received: ${token}`);
-              // Send the token to your backend endpoint
-              const tokenString = JSON.stringify({ token });
-              const fetchData = async () => {
-                try {
-                  const response = await addNotifications(tokenString, true)
-                  setNotifications(response.data)
-                } catch (error) {
-                  console.log(error)
-                }
-              }
-              fetchData()
-            })
-            .catch((err) => {
-              console.log(`Error getting token: ${err}`);
-            });
-        })
-        .catch((err) => {
-          console.log(`Error requesting permission: ${err}`);
-        });
-    })
-  
-    // Listen for incoming messages
-    messaging.onMessage((message) => {
-      console.log('Message received:', message);
-      // Display the message to the user
-      // ...
-    });
-    //----------
-    */
+
   const [notificationMenu, setNotificationMenu] = useState(false)
   const [notifications, setNotifications] = useState([])
   const [isRead, setIsRead] = useState()
@@ -109,9 +54,11 @@ const Navbar = ({ name, email }) => {
   // fetching notifications
   const fetchData = async () => {
     try {
-      const response = await getNotificationById(id, true)
-      setNotifications(response.data)
-      setIsRead(response.data.isRead)
+      if (id.length > 10) {
+        const response = await getNotificationById(id, true)
+        setNotifications(response.data)
+        setIsRead(response.data.isRead)
+      }
     } catch (error) {
       console.log(error)
     }
@@ -145,8 +92,6 @@ const Navbar = ({ name, email }) => {
   console.log('isOpen:', notificationMenu)
   console.log('notifications:', notifications)
   console.log('is array?', Array.isArray(notifications.data))
-
-  //----------------------------------------------------------------------------------------------
 
   const navLinks = [
     {
