@@ -1,5 +1,7 @@
 # DS PROJECT -Y3S1
 
+youtube video link- https://youtu.be/uAu0NMSOHa0
+
 ## WellnessRoots
 
 `... Feel free to add if theres any suggetions :)`
