@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import NotificationDropDown from '../../common/notificationDropDown'
 
 //Notificaiton import
 import { getNotifications, addNotifications, updateNotifications } from '../../../services/notifications'
-import React, { useState, useRef, useEffect } from 'react';
+// import React, { useState, useRef, useEffect } from 'react';
 // import axios from 'axios';
 // import firebase from 'firebase/app';
 // import 'firebase/messaging';
