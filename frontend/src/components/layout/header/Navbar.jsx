@@ -109,9 +109,11 @@ const Navbar = ({ name, email }) => {
   // fetching notifications
   const fetchData = async () => {
     try {
-      const response = await getNotificationById(id, true)
-      setNotifications(response.data)
-      setIsRead(response.data.isRead)
+      if (id.length > 10) {
+        const response = await getNotificationById(id, true)
+        setNotifications(response.data)
+        setIsRead(response.data.isRead)
+      }
     } catch (error) {
       console.log(error)
     }
