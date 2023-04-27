@@ -1,11 +1,10 @@
-
 import React, { useState, useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import NotificationDropDown from '../../common/notificationDropDown'
 
 //Notificaiton import
-import { getNotifications, addNotifications, updateNotifications } from '../../../services/notifications'
+import { getNotificationById, updateNotifications } from '../../../services/notifications'
 
 import { logout } from '../../../services'
 // import axios from 'axios';
@@ -27,6 +26,8 @@ const Navbar = ({ name, email }) => {
 
   const handleClick = () => {
     setUserMenue(!userMenue)
+
+    notificationMenu && setNotificationMenu(!notificationMenu)
   }
 
   const cartItems = useSelector((state) => state.cart.items)
@@ -103,10 +104,12 @@ const Navbar = ({ name, email }) => {
   })
   const notificationCount = count
 
+  const id = localStorage.getItem('id')
+
   // fetching notifications
   const fetchData = async () => {
     try {
-      const response = await getNotifications(false)
+      const response = await getNotificationById(id, true)
       setNotifications(response.data)
       setIsRead(response.data.isRead)
     } catch (error) {
@@ -115,12 +118,12 @@ const Navbar = ({ name, email }) => {
   }
 
   useEffect(() => {
-    // const interval = setInterval(() => {
-    //   fetchData()
-    // }, 10000)
-    fetchData()
+    const interval = setInterval(() => {
+      fetchData()
+    }, 3000)
+    // fetchData()
 
-    // return () => clearInterval(interval)
+    return () => clearInterval(interval)
   }, [])
 
   const currentTime = new Date().toISOString()
@@ -128,9 +131,9 @@ const Navbar = ({ name, email }) => {
     const updatedNotifications = []
     for (const notification of notifications) {
       const data = { isRead: true }
-      if (!notification.isRead) {
-        data.time = currentTime
-      }
+      // if (!notification.isRead) {
+      //   data.time = currentTime
+      // }
       const response = await updateNotifications(notification._id, data, false)
       updatedNotifications.push(response.data)
     }
@@ -251,7 +254,7 @@ const Navbar = ({ name, email }) => {
             <div className={`50 ${notificationMenu ? '' : 'hidden'}  absolute right-5  top-25 z-30 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown`} style={{ maxHeight: '150px', overflowY: 'scroll' }}>
               <div className="px-4 py-3">
                 {notifications.map((notification) => {
-                  const time = new Date(notification.time).toLocaleTimeString()
+                  const time = new Date(notification.created_at).toLocaleTimeString()
                   return (
                     <div key={notification._id}>
                       <span className="block text-sm text-gray-900 dark:text-white">{notification.notification_title}</span>

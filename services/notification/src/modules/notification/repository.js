@@ -1,4 +1,4 @@
-import { Notification } from "./api/v1/models";
+import { Notification } from './api/v1/models';
 
 export function createNotification(notification) {
   return Notification.create(notification);
@@ -9,7 +9,7 @@ export function getNotificationByEmail(email) {
 }
 
 export function getNotificationById(id) {
-  return Notification.findById(id).lean();
+  return Notification.find({ user_id: id }).lean();
 }
 
 export function getNotificationByRole(role) {

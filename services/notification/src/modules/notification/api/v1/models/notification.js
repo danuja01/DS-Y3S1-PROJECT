@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import mongoosePaginate from "mongoose-paginate-v2";
+import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 // import { roles } from "@app/constants";
 
 const { Schema } = mongoose;
@@ -8,7 +8,7 @@ const NotificationSchema = new Schema(
   {
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
       required: false,
     },
     notification_title: {
@@ -19,11 +19,6 @@ const NotificationSchema = new Schema(
       type: String,
       required: true,
     },
-    time: {
-      type: Date,
-      required: true,
-      default: Date.now,
-    },
     isRead: {
       type: Boolean,
       default: false,
@@ -32,7 +27,7 @@ const NotificationSchema = new Schema(
   {
     versionKey: false,
     minimize: false,
-    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
   }
 );
 
@@ -40,7 +35,7 @@ NotificationSchema.index({ createdAt: 1 });
 
 NotificationSchema.plugin(mongoosePaginate);
 
-const Notification = mongoose.model("Notification", NotificationSchema);
+const Notification = mongoose.model('Notification', NotificationSchema);
 
 Notification.syncIndexes();
 

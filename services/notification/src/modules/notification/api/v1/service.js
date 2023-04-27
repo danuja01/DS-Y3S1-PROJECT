@@ -11,7 +11,7 @@ import {
   // getNotificationsByUser,
   // updateNotificationRead
   // ------------------
-} from "../../repository";
+} from '../../repository';
 
 // import { hashPasswordIfProvided } from "./helpers";
 
@@ -25,7 +25,8 @@ export const serviceGetNotifications = (filters, sorts, page, limit) => {
 };
 
 export const serviceGetNotificationById = (id) => {
-  return getNotificationById(id);
+  const data = getNotificationById(id);
+  return data;
 };
 
 // eslint-disable-next-line
