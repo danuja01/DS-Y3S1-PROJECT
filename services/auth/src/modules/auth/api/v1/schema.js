@@ -21,6 +21,7 @@ export const registerSchema = Joi.object({
       })
     ),
   address: Joi.string().optional(),
+  role: Joi.string().valid("buyer", "seller").default("buyer"),
   verification_code: Joi.string().optional().allow(null),
 });
 

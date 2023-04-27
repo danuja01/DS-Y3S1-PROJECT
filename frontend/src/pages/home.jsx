@@ -1,9 +1,12 @@
+import ItemCategories from '../components/home/items/ItemCategories'
+import Hero from '../components/home/hero'
 import Layout from '../components/layout'
 
 const Home = () => {
   return (
     <Layout title="Home">
-      <h1>HELLOOOO</h1>
+      <Hero />
+      <ItemCategories />
     </Layout>
   )
 }
