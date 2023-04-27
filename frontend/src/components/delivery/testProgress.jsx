@@ -54,10 +54,9 @@ const TestProgress = () => {
                 shippingPrice
             };
             const response = await updateDelivery(_id, updData, true);
-            console.log(response); // Log the response from the server
-            // Do something else with the response, like update the UI
+            console.log(response); 
           } catch (error) {
-            console.log(error); // Log the error if there is one
+            console.log(error); 
           } 
 
          window.location.replace("/delivery/dispatchDelivery");

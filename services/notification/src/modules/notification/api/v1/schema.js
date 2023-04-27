@@ -1,4 +1,4 @@
-import { Joi } from 'celebrate';
+import { Joi } from "celebrate";
 // import { roles } from "@app/constants";
 
 export const createNotificationSchema = Joi.object({

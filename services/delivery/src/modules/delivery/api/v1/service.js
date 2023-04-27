@@ -1,4 +1,3 @@
-// import crypto from "crypto";
 import {
   createDelivery,
   getAllDeliveries,
@@ -7,12 +6,8 @@ import {
   deleteDeliveryById,
 } from "../../repository";
 
-// import { hashPasswordIfProvided } from "./helpers";
-
 // eslint-disable-next-line
 export const serviceCreateDelivery = async (delivery) => {
-  // if (!delivery.message) throw new Error("Delivery not created");
-  // await hashPasswordIfProvided(delivery);
   return createDelivery(delivery);
 };
 
@@ -21,12 +16,12 @@ export const serviceGetDeliveries = (filters, sorts, page, limit) => {
 };
 
 export const serviceGetDeliveryById = (id) => {
-  return getDeliveryById(id);
+  const data = getDeliveryById(id);
+  return data;
 };
 
 // eslint-disable-next-line
 export const serviceUpdateDeliveryById = async (id, data) => {
-  // await hashPasswordIfProvided(data);
   return updateDeliveryById(id, data);
 };
 

@@ -1,19 +1,10 @@
-// import crypto from "crypto";
 import {
   createNotification,
   getAllNotifications,
   getNotificationById,
   updateNotificationById,
   deleteNotificationById,
-  // -----------------
-  // getNotification,
-  // getAllNotifications,
-  // getNotificationsByUser,
-  // updateNotificationRead
-  // ------------------
-} from '../../repository';
-
-// import { hashPasswordIfProvided } from "./helpers";
+} from "../../repository";
 
 // eslint-disable-next-line
 export const serviceCreateNotification = async (notification) => {
@@ -37,23 +28,3 @@ export const serviceUpdateNotificationById = async (id, data) => {
 export const serviceDeleteNotificationById = (id) => {
   return deleteNotificationById(id);
 };
-
-// --------------------------------
-
-// export const serviceGetNotification = (notificationId) => {
-//   return getNotification(notificationId);
-// };
-
-// export const serviceNotificationsByUser = (
-//   userId,
-//   filters,
-//   sorts,
-//   page,
-//   limit
-// ) => {
-//   return getNotificationsByUser(userId, filters, sorts, page, limit);
-// };
-
-// export const serviceUpdateNotificationRead = (notificationId, isRead) => {
-//   return updateNotificationRead(notificationId, isRead);
-// };

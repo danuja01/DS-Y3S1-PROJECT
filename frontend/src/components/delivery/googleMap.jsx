@@ -4,7 +4,7 @@ import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 const containerStyle = {
     width: '100%',
     height: '300px',
-    float: 'right' // set the float property to "right"
+    float: 'right' 
 };
 
 const center = {
@@ -27,7 +27,6 @@ function GoogleMaps() {
     const [map, setMap] = React.useState(null)
 
     const onLoad = React.useCallback(function callback(map) {
-        // This is just an example of getting and using the map instance!!! don't just blindly copy!
         const bounds = new window.google.maps.LatLngBounds(boralesgamuwa);
         map.fitBounds(bounds);
 
