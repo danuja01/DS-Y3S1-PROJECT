@@ -10,6 +10,8 @@ import DispatchDelivery from '../pages/dispatchDelivery'
 import Cart from '../pages/cart'
 import Login from '../pages/login'
 import Register from '../pages/register'
+import Redirection from '../pages/redirect'
+import Verify from '../pages/verify'
 
 const AnimatedRoutes = () => {
   useAuth()
@@ -24,8 +26,10 @@ const AnimatedRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/delivery" element={<Delivery />} />
-        <Route path='/delivery/testProgress' element={<TestProgress />} />
-        <Route path='/delivery/dispatchDelivery' element={<DispatchDelivery />}/>
+        <Route path="/delivery/testProgress" element={<TestProgress />} />
+        <Route path="/delivery/dispatchDelivery" element={<DispatchDelivery />} />
+        <Route path="/redirect" element={<Redirection />} />
+        <Route path="/verify/:code" element={<Verify />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>

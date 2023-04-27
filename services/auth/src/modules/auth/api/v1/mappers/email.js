@@ -6,7 +6,7 @@ export const constructVerificationEmailPayload = (name, email, code) => ({
     header: "Activate Account",
     text: "Your almost there. To finish activating your account please click the link below.",
     c2a_name: name,
-    c2a_link: `${config.FRONTEND_BASE_URL}/auth/verify/${code}`,
+    c2a_link: `${config.FRONTEND_BASE_URL}/verify/${code}`,
     c2a_button: "Activate Account",
   },
   options: {

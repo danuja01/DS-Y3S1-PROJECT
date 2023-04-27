@@ -24,9 +24,9 @@ export const verify = (code, showLoader) => {
   return apiRequest(() => axiosInstance.get(`/api/v1/auth/verify/${code}`), showLoader)
 }
 
-export const logout = (showLoader) => {
+export const logout = async (showLoader) => {
   return apiRequest(() => axiosInstance.post(`/api/v1/auth/logout`), showLoader).then((data) => {
-    if (!data) return
+    // if (!data) return
     localStorage.clear()
     sessionStorage.clear()
   })

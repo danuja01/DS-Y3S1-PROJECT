@@ -7,12 +7,6 @@ const initialState = {
     password: '',
     address: '',
     role: 'buyer',
-    business: {
-      name: '',
-      email: '',
-      license_number: '',
-      owner_nic: '',
-    },
   },
   allowedRoles: [
     {
