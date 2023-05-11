@@ -70,11 +70,7 @@ review.get(
   filterQuery,
   asyncHandler(async function controllerGetReviews(req, res) {
     const { filter, sort, page, limit } = req.query;
-    const reviews = await serviceGetReviews(filter, sort, page, limit);
-    const ratings = reviews.map((review) => review.rating);
-    const avgRating =
-      ratings.reduce((acc, val) => acc + val, 0) / ratings.length;
-    const data = { reviews, avgRating };
+    const data = await serviceGetReviews(filter, sort, page, limit);
     return toSuccess({ res, data, message: "Reviews fetched successfully!" });
   })
 );

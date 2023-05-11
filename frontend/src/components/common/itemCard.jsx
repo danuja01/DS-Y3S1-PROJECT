@@ -1,15 +1,15 @@
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { addItem } from '../../store/cartSlice'
 
 import Button from './button'
 
-const ItemCard = (props) => {
-
-  const item = {
-    id: 1,
-    name: 'Cinomon Herbal Cream',
-    price: 1250.0,
-  }
+const ItemCard = ({ item }) => {
+  // const item = {
+  //   id: 1,
+  //   name: 'Cinomon Herbal Cream',
+  //   price: 1250.0,
+  // }
 
   const dispatch = useDispatch()
 
@@ -18,19 +18,19 @@ const ItemCard = (props) => {
   }
 
   return (
-    <div className=" flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-      <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
-        <img className="object-cover w-full" src="https://www.srisrimadhara.com/wp-content/uploads/2020/12/Muhurath_1.png" alt="product image" />
+    <div key={item._id} className=" flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+      <Link className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" to={`/item/${item._id}`}>
+        <img className="object-cover w-full" src={item.selectedFile} alt="product image" />
         {/* OFF LIMIT */}
         {/* <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span> */}
-      </a>
+      </Link>
       <div className="mt-4 px-5 pb-5">
-        <a href="#">
-          <h5 className="text-md tracking-tight text-slate-900">Muharat - Herbal Body Lotion</h5>
-        </a>
+        <Link to={`/item/${item._id}`}>
+          <h5 className="text-md tracking-tight text-slate-900">{item.title}</h5>
+        </Link>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>
-            <span className="text-lg font-bold text-slate-900">LKR 449</span>
+            <span className="text-lg font-bold text-slate-900">LKR {item.price}</span>
             {/* {OFFER} */}
             {/* <span className="text-sm text-slate-900 line-through">$699</span> */}
           </p>

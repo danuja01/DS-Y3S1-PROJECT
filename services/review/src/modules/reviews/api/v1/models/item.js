@@ -1,33 +1,33 @@
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
-import { Item } from "./item";
 
 const { Schema } = mongoose;
 
-const ReviewSchema = new Schema(
+const ItemSchema = new Schema(
   {
-    item: {
-      type: mongoose.Types.ObjectId,
-      required: false,
-      ref: 'Item'
-    },
-    user: {
+    title: {
       type: String,
       required: false,
     },
-    user_id: {
+    message: {
       type: String,
       required: false,
     },
-    rating: {
+    category: {
+      type: String,
+      required: false,
+    },
+    price: {
       type: Number,
-      required: true,
-      min: 1,
-      max: 5,
+      required: false,
     },
-    text: {
+    seller: {
       type: String,
-      required: true,
+      required: false,
+    },
+    selectedFile: {
+      type: String,
+      required: false,
     }
   },
   {
@@ -37,12 +37,12 @@ const ReviewSchema = new Schema(
   }
 );
 
-ReviewSchema.index({ createdAt: 1 });
+ItemSchema.index({ createdAt: 1 });
 
-ReviewSchema.plugin(mongoosePaginate);
+ItemSchema.plugin(mongoosePaginate);
 
-const Review = mongoose.model("Review", ReviewSchema);
+const Item = mongoose.model("Item", ItemSchema);
 
-Review.syncIndexes();
+Item.syncIndexes();
 
-export { Review };
+export { Item };

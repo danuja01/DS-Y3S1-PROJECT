@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeItem, updateItemQuantity } from '../../store/cartSlice'
 
@@ -89,7 +90,9 @@ const CartCard = (props) => {
                 <p className="mb-1 text-lg font-bold">LKR {subtotal + shipping}</p>
               </div>
             </div>
-            <button className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">Check out</button>
+            <Link to={`/payments?subtotal=${subtotal + shipping}`}>
+              <button  className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">Check out</button>
+            </Link>
           </div>
         </div>
       </div>

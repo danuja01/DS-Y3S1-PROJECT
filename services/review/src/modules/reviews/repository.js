@@ -25,7 +25,7 @@ export function getAllReviews({ filters = {}, sorts = {}, page, limit }) {
       lean: true,
     });
   }
-  return Review.find(filters).sort(sorts).lean();
+  return Review.find(filters).sort(sorts).lean().populate("item");
 }
 
 export function updateReviewById(id, data) {
