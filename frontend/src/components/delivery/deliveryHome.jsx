@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './deliveryHome.css';
 import ProgressBar from './progressBar';
-import { addDelivery, getDelivery } from '../../services/delivery';
+import { addDelivery, getDeliveryById } from '../../services/delivery';
 
 
 const DeliveryHome = (props) => {
@@ -17,31 +17,12 @@ const DeliveryHome = (props) => {
     const [showPopup, setShowPopup] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
 
-    // useEffect(() => {
-    //     if (progressBarRef.current) {
-    //         progressBarRef.current.style.width = `${progress}%`;
-    //         if (progress === 25) {
-    //             progressBarRef.current.textContent = 'Pending';
-    //         } else if (progress === 50) {
-    //             progressBarRef.current.textContent = 'Confirmed';
-    //         } else if (progress === 75) {
-    //             progressBarRef.current.textContent = 'Dispatched';
-    //         }
-    //         if (progress === 100) {
-    //             progressBarRef.current.textContent = 'Delivered'
-    //             progressBarRef.current.classList.add('full');
-    //             setShowPopup(true);
-    //         } else {
-    //             progressBarRef.current.classList.remove('full');
-    //         }
-    //     }
-    // }, [progress]);
-
+    const orderId = localStorage.getItem('id')
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getDelivery(true)
+                const response = await getDeliveryById(orderId, true)
                 setDeliveries(response.data);
                 console.log(setDeliveries);
                 setOrderId(response.data.order_id);
@@ -91,7 +72,6 @@ const DeliveryHome = (props) => {
             <ProgressBar progress={progress} progressBarRef={progressBarRef} />
 
             <div>
-                {/* {!formSubmitted && ( */}
                 <form className="delivery-form" onSubmit={handleSubmit}>
                     <h1><center>Delivery</center></h1>
                     <label>
@@ -120,7 +100,6 @@ const DeliveryHome = (props) => {
                     </label>
                     <button type="submit">Confirm</button>
                 </form>
-                {/* )} */}
             </div>
         </>
     );

@@ -9,7 +9,7 @@ export function getDeliveryByEmail(email) {
 }
 
 export function getDeliveryById(id) {
-  return Delivery.findById(id).lean();
+  return Delivery.findById({ order_id: id }).lean();
 }
 
 export function getDeliveryByRole(role) {

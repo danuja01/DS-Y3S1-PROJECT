@@ -1,5 +1,5 @@
 import express from "express";
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 import { celebrate, Segments } from "celebrate";
 import { default as filterQuery } from "@sliit-foss/mongoose-filter-query";
 import { asyncHandler } from "@sliit-foss/functions";
@@ -21,13 +21,12 @@ delivery.post(
   "/",
   celebrate({ [Segments.BODY]: createDeliverySchema }),
   asyncHandler(async function controllerCreateDelivery(req, res) {
-    const data = await serviceCreateDelivery({
-      ...req.body,
-
-      user_id: mongoose.Types.ObjectId(req.body.user_id), // convert user_id to ObjectId
-      order_id: mongoose.Types.ObjectId(req.body.order_id), // convert order_id to ObjectId
+    const data = await serviceCreateDelivery(req.body);
+    return toSuccess({
+      res,
+      data,
+      message: "Delivery created successfully!",
     });
-    return toSuccess({ res, data, message: "Delivery created successfully!" });
   })
 );
 

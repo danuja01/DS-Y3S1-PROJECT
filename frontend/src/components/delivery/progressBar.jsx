@@ -26,18 +26,6 @@ const ProgressBar = ({ progress, showPopup, handleClosePopup }) => {
 
     return (
         <>
-            {/* <div>
-                {showPopup && (
-                    <div className="popup">
-                        <p>Item dispatched!</p>
-                        <button className="popup-close" onClick={handleClosePopup}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                                <path fill="#ff0000" d="M16.54 5.046l-1.591-1.59-4.949 4.95-4.95-4.95-1.59 1.59 4.95 4.95-4.95 4.95 1.59 1.59 4.95-4.95 4.95 4.95 1.591-1.59-4.95-4.95z" />
-                            </svg>
-                        </button>
-                    </div>
-                )}
-            </div> */}
             <div className="progress-bar">
                 <div className="progress-bar-endpoint" />
                 <div className="progress-bar-endpoint" />
