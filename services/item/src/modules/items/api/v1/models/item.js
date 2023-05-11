@@ -28,7 +28,7 @@ const ItemSchema = new Schema(
     selectedFile: {
       type: String,
       required: false,
-    }
+    },
   },
   {
     versionKey: "_version",

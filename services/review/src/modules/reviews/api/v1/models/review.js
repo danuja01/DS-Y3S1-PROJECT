@@ -9,7 +9,7 @@ const ReviewSchema = new Schema(
     item: {
       type: mongoose.Types.ObjectId,
       required: false,
-      ref: 'Item'
+      ref: "Item",
     },
     user: {
       type: String,
@@ -28,7 +28,7 @@ const ReviewSchema = new Schema(
     text: {
       type: String,
       required: true,
-    }
+    },
   },
   {
     versionKey: "_version",

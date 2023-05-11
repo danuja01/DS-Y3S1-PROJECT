@@ -11,7 +11,7 @@ import {
   // getNotificationsByUser,
   // updateNotificationRead
   // ------------------
-} from '../../repository';
+} from "../../repository";
 
 // import { hashPasswordIfProvided } from "./helpers";
 

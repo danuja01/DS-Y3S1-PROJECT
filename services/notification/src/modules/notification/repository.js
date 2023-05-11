@@ -1,4 +1,4 @@
-import { Notification } from './api/v1/models';
+import { Notification } from "./api/v1/models";
 
 export function createNotification(notification) {
   return Notification.create(notification);

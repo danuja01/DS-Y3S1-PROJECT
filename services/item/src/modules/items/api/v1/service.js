@@ -1,8 +1,4 @@
-import {
-  createItem,
-  getAllItems,
-  getItemById,
-} from "../../repository";
+import { createItem, getAllItems, getItemById } from "../../repository";
 
 export const serviceCreateItem = (review) => {
   return createItem(review);
