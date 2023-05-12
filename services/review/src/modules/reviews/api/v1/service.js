@@ -2,6 +2,7 @@ import {
   createReview,
   getAllReviews,
   getReviewById,
+  getReviewByRating,
   updateReviewById,
   deleteReviewById,
 } from "../../repository";
@@ -20,6 +21,10 @@ export const serviceGetReviews = (filters, sorts, page, limit) => {
 
 export const serviceGetReviewById = (id) => {
   return getReviewById(id);
+};
+
+export const serviceGetReviewByRating = (rating) => {
+  return getReviewByRating(rating);
 };
 
 export const serviceUpdateReviewById = (id, data) => {

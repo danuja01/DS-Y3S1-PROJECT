@@ -8,9 +8,10 @@ import {
   serviceCreateItem,
   serviceGetItems,
   serviceGetItemById,
+  serviceUpdateItemById
 } from "./service";
 
-import { createItemSchema } from "./schema";
+import { createItemSchema, updateItemSchema } from "./schema";
 
 const item = express.Router();
 
@@ -46,17 +47,17 @@ item.get(
   })
 );
 
-// review.patch(
-//   "/:id",
-//   celebrate({
-//     [Segments.PARAMS]: objectIdSchema(),
-//     [Segments.BODY]: updateReviewSchema,
-//   }),
-//   asyncHandler(async function controllerUpdateReviewById(req, res) {
-//     const data = await serviceUpdateReviewById(req.params.id, req.body);
-//     return toSuccess({ res, data, message: "Review updated successfully!" });
-//   })
-// );
+item.patch(
+  "/:id",
+  celebrate({
+    [Segments.PARAMS]: objectIdSchema(),
+    [Segments.BODY]: updateItemSchema,
+  }),
+  asyncHandler(async function controllerUpdateItemById(req, res) {
+    const data = await serviceUpdateItemById(req.params.id, req.body);
+    return toSuccess({ res, data, message: "Item updated successfully!" });
+  })
+);
 
 // review.delete(
 //   "/:id",

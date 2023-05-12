@@ -1,4 +1,4 @@
-import { createItem, getAllItems, getItemById } from "../../repository";
+import { createItem, getAllItems, getItemById, updateItemById } from "../../repository";
 
 export const serviceCreateItem = (review) => {
   return createItem(review);
@@ -12,10 +12,9 @@ export const serviceGetItemById = (id) => {
   return getItemById(id);
 };
 
-// export const serviceUpdateReviewById = (id, data) => {
-//   // await hashPasswordIfProvided(data);
-//   return updateReviewById(id, data);
-// };
+export const serviceUpdateItemById = (id, data) => {
+  return updateItemById(id, data);
+};
 
 // export const serviceDeleteReviewById = (id) => {
 //   return deleteReviewById(id);

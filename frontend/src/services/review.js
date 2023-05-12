@@ -8,6 +8,10 @@ export const getReviewById = async (id, showLoader) => {
   return await apiRequest(() => axiosInstance.get(`/api/v1/reviews/${id}`), showLoader)
 }
 
+export const getReviewsByRating = async (rating, showLoader) => {
+  return await apiRequest(() => axiosInstance.get(`/api/v1/reviews/rating/${rating}`), showLoader)
+}
+
 export const createReview = async (data, showLoader) => {
   return await apiRequest(() => axiosInstance.post('/api/v1/reviews', data), showLoader)
 }

@@ -26,10 +26,21 @@ const Item = () => {
   const [numRatings, setNumRatings] = useState(0)
   const [averageRating, setAverageRating] = useState(0)
 
-  const handleReviewsData  = (numRatingsFromChild, averageRatingFromChild) => {
-    setNumRatings(numRatingsFromChild);
-    setAverageRating(averageRatingFromChild);
-  };
+  // This effect will run whenever the average rating changes, and send the PATCH request
+  useEffect(() => {
+    axios.patch(`http://localhost:4006/api/v1/items/${id}`, { avgRating: averageRating })
+      .then((response) => {
+        console.log(response.data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [averageRating]);
+
+  const handleReviewsData = (numRatingsFromChild, averageRatingFromChild) => {
+    setNumRatings(numRatingsFromChild)
+    setAverageRating(averageRatingFromChild)
+  }
 
   for (let i = 1; i <= 5; i++) {
     if (i <= averageRating) {
@@ -57,14 +68,9 @@ const Item = () => {
   }
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4006/api/v1/items/${id}`)
-      .then((response) => {
-        setItemRes(response.data.data)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    axios.get(`http://localhost:4006/api/v1/items/${id}`).then((response) => {
+      setItemRes(response.data.data)
+    })
   }, [id])
 
   // const refresh = debounce(() => {
@@ -111,7 +117,7 @@ const Item = () => {
           </div>{' '}
           <br />
           {/* render reviews */}
-          <Reviews id={id} onReviewsData={handleReviewsData} source="item" />
+          <Reviews id={id} onReviewsData={handleReviewsData} />
         </div>
       )}
       <Dialog open={open} onClose={handleClose}>

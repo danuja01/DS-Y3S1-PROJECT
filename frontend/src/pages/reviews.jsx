@@ -1,6 +1,6 @@
 import { debounce } from 'lodash'
 import { useEffect, useState } from 'react'
-import { getAllReviews, createReview, deleteReview } from '../services/review'
+import { getAllReviews, createReview, deleteReview, getReviewsByRating } from '../services/review'
 import Moment from 'moment'
 import EditReview from './edit-review'
 import { NIL } from 'uuid'
@@ -64,9 +64,9 @@ const Reviews = ({ id, onReviewsData }) => {
 
   const refresh = debounce(() => {
     if (rating) {
-      // getReviewByRating(rating).then(({ data }) => setReviews(data))
+      getReviewsByRating(rating).then(({ data }) => setReviews(data))
     } else {
-      getAllReviews(true).then(({ data }) => setReviews(data))
+      getAllReviews().then(({ data }) => setReviews(data))
     }
   }, 300)
 
@@ -124,7 +124,7 @@ const Reviews = ({ id, onReviewsData }) => {
           <p>No reviews found.</p>
         ) : (
           filteredReviews
-            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
             .map((review) => (
               <div className="bg-white rounded-lg shadow-md mb-5" key={review._id}>
                 <div className="p-4">
@@ -132,7 +132,7 @@ const Reviews = ({ id, onReviewsData }) => {
                   <p className="text-sm font-medium text-gray-500 mb-2">
                     <span className="font-bold">User:</span> {review.user}
                     <br />
-                    <span className="font-bold">Date:</span> {Moment(review.date).format('LLLL')}
+                    <span className="font-bold">Date:</span> {Moment(review.updated_at).format('LLLL')}
                   </p>
                   <div className="flex items-center">
                     <Rating name="read-only" value={review.rating} size="small" readOnly />

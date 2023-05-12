@@ -5,7 +5,7 @@ export function createReview(review) {
 }
 
 export function getReviewByRating(rating) {
-  return Review.findOne({ rating }).lean();
+  return Review.find({ rating }).lean().populate("item");
 }
 
 export function getReviewById(id) {

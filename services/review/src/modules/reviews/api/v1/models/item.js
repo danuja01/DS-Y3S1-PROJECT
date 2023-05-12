@@ -29,6 +29,11 @@ const ItemSchema = new Schema(
       type: String,
       required: false,
     },
+    avgRating: {
+      type: Number,
+      default: 0,
+      required: false,
+    },
   },
   {
     versionKey: "_version",
