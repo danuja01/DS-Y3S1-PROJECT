@@ -1,6 +1,6 @@
 # DS PROJECT -Y3S1
 
-youtube video link- https://youtu.be/uAu0NMSOHa0
+youtube video link- https://youtu.be/3p6TGeuybQ8
 
 ## WellnessRoots
 
