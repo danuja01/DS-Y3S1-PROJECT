@@ -9,5 +9,5 @@ export const serviceHosts = {
   reviews: config.REVIEW_SERVICE_BASE_URL,
   notification: config.NOTIFICATION_SERVICE_BASE_URL,
   delivery: config.DELIVERY_SERVICE_BASE_URL,
-  item: config.ITEM_SERVICE_BASE_URL,
+  items: config.SELLER_SERVICE_BASE_URL,
 };

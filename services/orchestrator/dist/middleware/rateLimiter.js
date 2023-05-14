@@ -31,8 +31,6 @@ __export(rateLimiter_exports, {
 });
 module.exports = __toCommonJS(rateLimiter_exports);
 var import_express_rate_limit = __toESM(require("express-rate-limit"));
-var import_rate_limit_redis = __toESM(require("rate-limit-redis"));
-var import_config = __toESM(require("../config"));
 const options = {
   windowMs: 1 * 60 * 1e3,
   standardHeaders: true,
@@ -42,12 +40,6 @@ const options = {
     message: `Too many requests`
   })
 };
-if (import_config.default.REDIS_CONNECTION_STRING) {
-  const { redis } = require("@app/redis").default;
-  options.store = new import_rate_limit_redis.default({
-    sendCommand: (...args) => redis.call(...args)
-  });
-}
 const defaultLimiter = (0, import_express_rate_limit.default)(options);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

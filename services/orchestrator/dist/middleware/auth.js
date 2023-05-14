@@ -46,6 +46,9 @@ const authorizer = (0, import_functions.tracedAsyncHandler)(/* @__PURE__ */ __na
   import_express_http_context.default.set("headers", req.headers);
   const user = await (0, import_services.getAuthUser)();
   req.user = user;
+  req.headers["x-user-id"] = user._id;
+  req.headers["x-user-role"] = user.role;
+  req.headers["x-user-email"] = user.email;
 }, "authorizer"));
 const permittedRoles = /* @__PURE__ */ __name((roles) => (0, import_functions.asyncHandler)(/* @__PURE__ */ __name(function roleGuard(req) {
   if (roles && !roles.includes(req.user.role)) {

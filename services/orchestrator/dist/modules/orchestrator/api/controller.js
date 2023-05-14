@@ -46,7 +46,7 @@ orchestrator.all(
       case "users":
         return import_middleware2.routeGuards[req.params.module](req, res, next);
       case "emails":
-        return import_middleware.permittedRoles["admin", "seller"](req, res, next);
+        return (0, import_middleware.permittedRoles)(["admin", "seller"])(req, res, next);
       default:
         return;
     }
