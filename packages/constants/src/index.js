@@ -28,3 +28,8 @@ export const objectIdSchema = (name = "id") =>
   Joi.object({
     [name]: Joi.string().hex().length(24).required(),
   });
+
+  export const ratingParamSchema = (name = "rating") =>
+  Joi.object({
+    [name]: Joi.number().integer().min(1).max(5).required(),
+  });

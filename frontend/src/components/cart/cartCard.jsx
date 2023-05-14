@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeItem, updateItemQuantity } from '../../store/cartSlice'
 
@@ -42,11 +43,11 @@ const CartCard = (props) => {
           <div className="rounded-lg md:w-2/3">
             {cartItems.map((item) => (
               <div key={item.id} className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-                <img src="https://www.srisrimadhara.com/wp-content/uploads/2020/12/Muhurath_1.png" alt="product-image" className="w-full rounded-lg sm:w-40" />
+                <img src={item.selectedFile} alt="product-image" className="w-full rounded-lg sm:w-40" />
                 <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                   <div className="mt-5 sm:mt-0">
-                    <h2 className="text-lg font-bold text-gray-900">{item.name}</h2>
-                    <p className="mt-1 text-xs text-gray-700">{item.category} Body Lotion</p>
+                    <h2 className="text-lg font-bold text-gray-900">{item.title}</h2>
+                    <p className="mt-1 text-xs text-gray-700">{item.category}</p>
                   </div>
                   <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                     <div className="flex items-center border-gray-100">
@@ -89,7 +90,9 @@ const CartCard = (props) => {
                 <p className="mb-1 text-lg font-bold">LKR {subtotal + shipping}</p>
               </div>
             </div>
-            <button className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">Check out</button>
+            <Link to={`/payments?subtotal=${subtotal + shipping}`}>
+              <button  className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">Check out</button>
+            </Link>
           </div>
         </div>
       </div>

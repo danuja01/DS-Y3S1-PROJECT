@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/services/auth.service.js"],
+  "sourcesContent": ["import context from \"express-http-context\";\nimport serviceConnector from \"@sliit-foss/service-connector\";\nimport config from \"../config\";\n\nconst connector = serviceConnector({\n  baseURL: config.AUTH_SERVICE_BASE_URL,\n  service: \"Auth-Service\",\n  headerIntercepts: () => ({\n    authorization: context.get(\"headers\")?.authorization,\n  }),\n});\n\nexport const getAuthUser = (v = \"v1\") => {\n  return connector.get(`/api/${v}/auth/current`).then(connector.resolve);\n};\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,kCAAoB;AACpB,+BAA6B;AAC7B,oBAAmB;AAEnB,MAAM,gBAAY,yBAAAA,SAAiB;AAAA,EACjC,SAAS,cAAAC,QAAO;AAAA,EAChB,SAAS;AAAA,EACT,kBAAkB,MAAG;AAPvB;AAO2B;AAAA,MACvB,gBAAe,iCAAAC,QAAQ,IAAI,SAAS,MAArB,mBAAwB;AAAA,IACzC;AAAA;AACF,CAAC;AAEM,MAAM,cAAc,wBAAC,IAAI,SAAS;AACvC,SAAO,UAAU,IAAI,QAAQ,gBAAgB,EAAE,KAAK,UAAU,OAAO;AACvE,GAF2B;",
+  "names": ["serviceConnector", "config", "context"]
+}
