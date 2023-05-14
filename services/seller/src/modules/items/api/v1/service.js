@@ -1,4 +1,4 @@
-import { createItem, getAllItems, getItemById, updateItemById } from "../../repository";
+import { createItem, getAllItems, getItemById, updateItemById, deleteItemById } from "../../repository";
 
 export const serviceCreateItem = (review) => {
   return createItem(review);
@@ -16,6 +16,6 @@ export const serviceUpdateItemById = (id, data) => {
   return updateItemById(id, data);
 };
 
-// export const serviceDeleteReviewById = (id) => {
-//   return deleteReviewById(id);
-// };
+export const serviceDeleteItemById = (id) => {
+  return deleteItemById(id);
+};
