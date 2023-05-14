@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../src/modules/emails/api/v1/controller.js"],
+  "sourcesContent": ["import express from \"express\";\nimport { celebrate, Segments } from \"celebrate\";\nimport { tracedAsyncHandler, traced } from \"@sliit-foss/functions\";\nimport { toSuccess } from \"@app/middleware\";\nimport { serviceSendEmail } from \"./service\";\nimport { sendEmailSchema } from \"./schema\";\n\nconst email = express.Router();\n\nemail.post(\n  \"/\",\n  celebrate({ [Segments.BODY]: sendEmailSchema }),\n  tracedAsyncHandler(async function controllerSendEmail(req, res) {\n    const data = await traced(serviceSendEmail)(req.body);\n    return toSuccess({ res, data, message: \"Email sent successfully!\" });\n  })\n);\n\nexport default email;\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,qBAAoB;AACpB,uBAAoC;AACpC,uBAA2C;AAC3C,wBAA0B;AAC1B,qBAAiC;AACjC,oBAAgC;AAEhC,MAAM,QAAQ,eAAAA,QAAQ,OAAO;AAE7B,MAAM;AAAA,EACJ;AAAA,MACA,4BAAU,EAAE,CAAC,0BAAS,IAAI,GAAG,8BAAgB,CAAC;AAAA,MAC9C,qCAAmB,sCAAe,oBAAoB,KAAK,KAAK;AAC9D,UAAM,OAAO,UAAM,yBAAO,+BAAgB,EAAE,IAAI,IAAI;AACpD,eAAO,6BAAU,EAAE,KAAK,MAAM,SAAS,2BAA2B,CAAC;AAAA,EACrE,GAHmB,sBAGlB;AACH;AAEA,IAAO,qBAAQ;",
+  "names": ["express"]
+}

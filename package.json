@@ -15,7 +15,8 @@
     "lint": "turbo run lint",
     "prepare": "husky install",
     "test": "dotenv -- turbo run test",
-    "kill": "sh ./workspace-scripts/terminate.sh"
+    "kill": "sh ./workspace-scripts/terminate.sh",
+    "clean": "find . -name '.DS_Store' -type f -delete"
   },
   "dependencies": {
     "dotenv-cli": "7.0.0",

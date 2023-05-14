@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/utils/constants.js"],
+  "sourcesContent": ["import createError from \"http-errors\";\n\nexport const errors = {\n  missing_token: createError(401, \"Bearer token is missing\"),\n  invalid_token: createError(401, \"Token is invalid\"),\n  cancelled_token: createError(401, \"Token has been revoked\"),\n  invalid_password: createError(401, \"Invalid password\"),\n  invalid_email: createError(401, \"Invalid email\"),\n  token_expired: createError(401, \"Token has expired\"),\n  user_deactivated: createError(401, \"User has been deactivated\"),\n  unverified_user: createError(401, \"User hasn't been verified yet\"),\n  invalid_code: createError(400, \"Invalid verification code\"),\n};\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,yBAAwB;AAEjB,MAAM,SAAS;AAAA,EACpB,mBAAe,mBAAAA,SAAY,KAAK,yBAAyB;AAAA,EACzD,mBAAe,mBAAAA,SAAY,KAAK,kBAAkB;AAAA,EAClD,qBAAiB,mBAAAA,SAAY,KAAK,wBAAwB;AAAA,EAC1D,sBAAkB,mBAAAA,SAAY,KAAK,kBAAkB;AAAA,EACrD,mBAAe,mBAAAA,SAAY,KAAK,eAAe;AAAA,EAC/C,mBAAe,mBAAAA,SAAY,KAAK,mBAAmB;AAAA,EACnD,sBAAkB,mBAAAA,SAAY,KAAK,2BAA2B;AAAA,EAC9D,qBAAiB,mBAAAA,SAAY,KAAK,+BAA+B;AAAA,EACjE,kBAAc,mBAAAA,SAAY,KAAK,2BAA2B;AAC5D;",
+  "names": ["createError"]
+}
