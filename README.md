@@ -1,12 +1,15 @@
 # DS PROJECT -Y3S1
 
-## Name Suggestions
+youtube video link- https://youtu.be/3p6TGeuybQ8
 
-1. HerbalHealingHub
-2. OrganicHerbals
-3. WellnessRoots
+#GROUP MEMBERS
 
-`... Feel free to add if theres any suggetions :)`
+Group Leader - IT21113772 - M.E Katipearachchi
+Member 2 - IT21143236 - Sachethana B. L. O
+Member 3 - IT21131424 - Perera.P.Y.C
+Member 4 - IT21023378 - Jayasuriya T. D. D. H
+
+## WellnessRoots
 
 ### Utilities
 

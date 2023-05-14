@@ -21,13 +21,13 @@ __export(users_exports, {
   default: () => users_default
 });
 module.exports = __toCommonJS(users_exports);
-var import_constants = require("@app/constants");
 var import_middleware = require("../../../../../middleware");
 const guard = /* @__PURE__ */ __name((req, res, next) => {
   var _a;
+  console.log(req.user._id);
   if (req.path.match(new RegExp("/v1/users/*")) && ((_a = req.params[0]) == null ? void 0 : _a.replace("/", "")) === req.user._id)
     return next();
-  return (0, import_middleware.permittedRoles)([import_constants.roles.admin])(req, res, next);
+  return (0, import_middleware.permittedRoles)(["admin"])(req, res, next);
 }, "guard");
 var users_default = guard;
 // Annotate the CommonJS export names for ESM import in node:

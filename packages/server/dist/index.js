@@ -95,9 +95,8 @@ const initialize = /* @__PURE__ */ __name(({
   app.use(`/api`, ...lMiddleware, routes);
   app.use(import_middleware.responseInterceptor);
   app.use(import_middleware.errorHandler);
-  const HOST = config.HOST ?? "0.0.0.0";
   app.listen(config.PORT, () => {
-    logger.info(`${service} listening on ${HOST}:${config.PORT}`);
+    logger.info(`${service} listening on ${config.PORT}`);
   });
 }, "initialize");
 var src_default = initialize;

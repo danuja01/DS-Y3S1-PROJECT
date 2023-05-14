@@ -27,7 +27,7 @@ var import_config = __toESM(require("./config"));
 (0, import_server.default)({
   service: "Orchestrator",
   routes: import_routes.default,
-  leadingMiddleware: [import_middleware.authorizer, import_middleware.defaultLimiter],
+  lMiddleware: [import_middleware.authorizer, import_middleware.defaultLimiter],
   cors: true,
   config: import_config.default
 });

@@ -14,6 +14,9 @@ export const authorizer = tracedAsyncHandler(async function authorizer(req) {
   context.set("headers", req.headers);
   const user = await getAuthUser();
   req.user = user;
+  req.headers["x-user-id"] = user._id;
+  req.headers["x-user-role"] = user.role;
+  req.headers["x-user-email"] = user.email;
 });
 
 export const permittedRoles = (roles) =>
