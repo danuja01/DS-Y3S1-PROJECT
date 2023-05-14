@@ -11,10 +11,11 @@ export const createItemSchema = Joi.object({
 });
 
 export const updateItemSchema = Joi.object({
-  // title: Joi.string().optional(),
-  // message: Joi.string().optional(),
-  // category: Joi.string().optional(),
-  // price: Joi.number().required(),
-  // seller: Joi.string().required(),
+  title: Joi.string().optional(),
+  message: Joi.string().optional(),
+  category: Joi.string().optional(),
+  price: Joi.number().optional(),
+  seller: Joi.string().optional(),
+  selectedFile: Joi.string().optional(),
   avgRating: Joi.number().optional(),
 });
