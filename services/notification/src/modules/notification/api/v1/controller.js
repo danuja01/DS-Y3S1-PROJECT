@@ -13,8 +13,54 @@ import {
   serviceDeleteNotificationById,
 } from "./service";
 
-import { createNotificationSchema, updateNotificationSchema } from "./schema";
+// ----------------------------------
+// serviceGetNotification,
+// serviceNotificationsByUser,
+// serviceUpdateNotificationRead
+// ----------------------------------
 
+import { createNotificationSchema, updateNotificationSchema } from "./schema";
+/*
+
+// FIREBASE
+
+const admin = require('firebase-admin');
+// const express = require('express');
+
+const app = express();
+
+// Initialize Firebase admin SDK
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
+  databaseURL: 'https://distributedsystemsprojec-b662c.firebaseio.com',
+});
+
+// ----
+const { celebrate, Segments, Joi } = require('celebrate');
+const asyncHandler = require('express-async-handler');
+
+app.post('/',
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      token: Joi.string().required(),
+      // add any other validation rules for your message object
+    }),
+  }),
+  asyncHandler(async (req, res) => {
+    const { token, ...message } = req.body;
+    await admin.messaging().send({
+      token,
+      notification: {
+        ...message,
+      },
+    });
+    res.send('Message sent successfully');
+  })
+);
+
+// -------------------
+
+*/
 const notification = express.Router();
 
 notification.post(
