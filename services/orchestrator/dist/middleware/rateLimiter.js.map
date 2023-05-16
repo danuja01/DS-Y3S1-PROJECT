@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../src/middleware/rateLimiter.js"],
-  "sourcesContent": ["import rateLimit from \"express-rate-limit\";\n\nconst options = {\n  windowMs: 1 * 60 * 1000,\n  standardHeaders: true,\n  legacyHeaders: false,\n  max: 1000000,\n  message: (_req, res) =>\n    res.status(429).json({\n      message: `Too many requests`,\n    }),\n};\n\nexport const defaultLimiter = rateLimit(options);\n"],
+  "sourcesContent": ["import rateLimit from \"express-rate-limit\";\r\n\r\nconst options = {\r\n  windowMs: 1 * 60 * 1000,\r\n  standardHeaders: true,\r\n  legacyHeaders: false,\r\n  max: 1000000,\r\n  message: (_req, res) =>\r\n    res.status(429).json({\r\n      message: `Too many requests`,\r\n    }),\r\n};\r\n\r\nexport const defaultLimiter = rateLimit(options);\r\n"],
   "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,gCAAsB;AAEtB,MAAM,UAAU;AAAA,EACd,UAAU,IAAI,KAAK;AAAA,EACnB,iBAAiB;AAAA,EACjB,eAAe;AAAA,EACf,KAAK;AAAA,EACL,SAAS,CAAC,MAAM,QACd,IAAI,OAAO,GAAG,EAAE,KAAK;AAAA,IACnB,SAAS;AAAA,EACX,CAAC;AACL;AAEO,MAAM,qBAAiB,0BAAAA,SAAU,OAAO;",
   "names": ["rateLimit"]
 }

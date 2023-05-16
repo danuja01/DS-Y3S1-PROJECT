@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../../../src/modules/auth/api/v1/mappers/email.js"],
-  "sourcesContent": ["import config from \"../../../../../config\";\n\nexport const constructVerificationEmailPayload = (name, email, code) => ({\n  template: \"call_to_action\",\n  data: {\n    header: \"Activate Account\",\n    text: \"Your almost there. To finish activating your account please click the link below.\",\n    c2a_name: name,\n    c2a_link: `${config.FRONTEND_BASE_URL}/verify/${code}`,\n    c2a_button: \"Activate Account\",\n  },\n  options: {\n    to: [email],\n    subject: \"Activate your account\",\n  },\n});\n"],
+  "sourcesContent": ["import config from \"../../../../../config\";\r\n\r\nexport const constructVerificationEmailPayload = (name, email, code) => ({\r\n  template: \"call_to_action\",\r\n  data: {\r\n    header: \"Activate Account\",\r\n    text: \"Your almost there. To finish activating your account please click the link below.\",\r\n    c2a_name: name,\r\n    c2a_link: `${config.FRONTEND_BASE_URL}/verify/${code}`,\r\n    c2a_button: \"Activate Account\",\r\n  },\r\n  options: {\r\n    to: [email],\r\n    subject: \"Activate your account\",\r\n  },\r\n});\r\n"],
   "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,oBAAmB;AAEZ,MAAM,oCAAoC,wBAAC,MAAM,OAAO,UAAU;AAAA,EACvE,UAAU;AAAA,EACV,MAAM;AAAA,IACJ,QAAQ;AAAA,IACR,MAAM;AAAA,IACN,UAAU;AAAA,IACV,UAAU,GAAG,cAAAA,QAAO,4BAA4B;AAAA,IAChD,YAAY;AAAA,EACd;AAAA,EACA,SAAS;AAAA,IACP,IAAI,CAAC,KAAK;AAAA,IACV,SAAS;AAAA,EACX;AACF,IAbiD;",
   "names": ["config"]
 }
