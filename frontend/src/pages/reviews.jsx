@@ -131,7 +131,7 @@ const Reviews = ({ id, onReviewsData, userId }) => {
             {filteredReviews
               .filter((review) => review.user._id === userId2) // Filter the user's review
               .map((review) => (
-                <div className="bg-white rounded-lg shadow-md mb-5" key={review._id}>
+                <div className="bg-white rounded-lg shadow-md mb-5" style={{ width: "60%" }} key={review._id}>
                   {/* Render the user's review */}
                   <div className="p-4">
                     <p className="text-lg font-medium leading-tight mb-2 break-words">{review.text}</p>
@@ -156,7 +156,7 @@ const Reviews = ({ id, onReviewsData, userId }) => {
               .filter((review) => review.user._id !== userId2) // Filter the other reviews
               .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
               .map((review) => (
-                <div className="bg-white rounded-lg shadow-md mb-5" key={review._id}>
+                <div className="bg-white rounded-lg shadow-md mb-5" style={{ width: "60%" }} key={review._id}>
                   {/* Render the other reviews */}
                   <div className="p-4">
                     <p className="text-lg font-medium leading-tight mb-2 break-words">{review.text}</p>
