@@ -8,7 +8,7 @@ import { NIL } from 'uuid'
 //mui
 import { Rating, TextField } from '@mui/material'
 
-const Reviews = ({ id, onReviewsData }) => {
+const Reviews = ({ id, onReviewsData, userName }) => {
   const [reviews, setReviews] = useState([])
   const [selectedReviewId, setSelectedReviewId] = useState(null)
   const [rating, setRating] = useState(null)
@@ -37,8 +37,7 @@ const Reviews = ({ id, onReviewsData }) => {
 
   const [reviewData, setReviewData] = useState({
     item: itemId,
-    user_id: 'admin',
-    user: 'admin',
+    user: userName,
     text: '',
     rating: NIL,
   })
