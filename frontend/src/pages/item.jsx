@@ -26,9 +26,11 @@ const Item = () => {
   const [numRatings, setNumRatings] = useState(0)
   const [averageRating, setAverageRating] = useState(0)
   const [name, setName] = useState()
+  const [userId, setUserID] = useState()
 
   useEffect(() => {
     setName(localStorage.getItem('name'))
+    setUserID(localStorage.getItem('id'))
   }, [])
 
   // This effect will run whenever the average rating changes, and send the PATCH request
@@ -122,7 +124,7 @@ const Item = () => {
           </div>{' '}
           <br />
           {/* render reviews */}
-          <Reviews id={id} onReviewsData={handleReviewsData} userName={name} />
+          <Reviews id={id} onReviewsData={handleReviewsData} userName={name} userId={userId} />
         </div>
       )}
       <Dialog open={open} onClose={handleClose}>

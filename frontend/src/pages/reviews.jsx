@@ -8,13 +8,15 @@ import { NIL } from 'uuid'
 //mui
 import { Rating, TextField } from '@mui/material'
 
-const Reviews = ({ id, onReviewsData, userName }) => {
+const Reviews = ({ id, onReviewsData, userId }) => {
+  console.log('Reviews.jsx: ', userId)
   const [reviews, setReviews] = useState([])
   const [selectedReviewId, setSelectedReviewId] = useState(null)
   const [rating, setRating] = useState(null)
 
   // Set the appropriate id based on the source prop
   const itemId = id;
+  const userId2 = userId;
 
   // Filter the reviews array based on the item id or tour id
   const filteredReviews = reviews.filter((review) => (review.item && review.item._id === id))
@@ -37,7 +39,7 @@ const Reviews = ({ id, onReviewsData, userName }) => {
 
   const [reviewData, setReviewData] = useState({
     item: itemId,
-    user: userName,
+    user: userId2,
     text: '',
     rating: NIL,
   })
@@ -129,7 +131,7 @@ const Reviews = ({ id, onReviewsData, userName }) => {
                 <div className="p-4">
                   <p className="text-lg font-medium leading-tight mb-2 break-words">{review.text}</p>
                   <p className="text-sm font-medium text-gray-500 mb-2">
-                    <span className="font-bold">User:</span> {review.user}
+                    <span className="font-bold">User:</span> {review.user.name}
                     <br />
                     <span className="font-bold">Date:</span> {Moment(review.updated_at).format('LLLL')}
                   </p>

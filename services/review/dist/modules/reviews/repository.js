@@ -53,7 +53,7 @@ function getAllReviews({ filters = {}, sorts = {}, page, limit }) {
       lean: true
     });
   }
-  return import_models.Review.find(filters).sort(sorts).lean().populate("item");
+  return import_models.Review.find(filters).sort(sorts).lean().populate("item").populate("user");
 }
 __name(getAllReviews, "getAllReviews");
 function updateReviewById(id, data) {
