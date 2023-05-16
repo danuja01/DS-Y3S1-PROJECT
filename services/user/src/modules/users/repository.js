@@ -1,6 +1,7 @@
 import { User } from "./api/v1/models";
 
 export function createUser(user) {
+  User.validate(user);
   return User.create(user);
 }
 

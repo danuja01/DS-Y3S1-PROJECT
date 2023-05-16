@@ -9,6 +9,7 @@ import {
   cancelOrder,
   refundOrder,
 } from "../../repository";
+import { Order } from "./models";
 
 export const serviceCreateOrder = (order) => {
   return createOrder(order);

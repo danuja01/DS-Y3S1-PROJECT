@@ -32,29 +32,27 @@ export const getOrderAggregateOptions = (filters, sorts, page, limit) => {
         {
           $project: {
             _id: 1,
-            name: 1,
+            title: 1,
             price: 1,
-            seller: {
-              $toObjectId: "$seller",
-            },
+            seller: 1,
           },
         },
-        {
-          $lookup: {
-            from: "users",
-            localField: "seller",
-            foreignField: "_id",
-            pipeline: [
-              {
-                $project: {
-                  _id: 1,
-                  name: 1,
-                },
-              },
-            ],
-            as: "seller",
-          },
-        },
+        // {
+        //   $lookup: {
+        //     from: "users",
+        //     localField: "seller",
+        //     foreignField: "_id",
+        //     pipeline: [
+        //       {
+        //         $project: {
+        //           _id: 1,
+        //           name: 1,
+        //         },
+        //       },
+        //     ],
+        //     as: "seller",
+        //   },
+        // },
       ],
       as: "productsDetails",
     },
