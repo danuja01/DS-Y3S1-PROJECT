@@ -46,7 +46,6 @@ const ItemCard = ({ item }) => {
         </div>
         <Button
           onClick={() => {
-            console.log('clicked')
             handleAddToCart(item)
           }}
           className="flex items-center justify-center rounded-md px-5 py-2.5 text-center text-sm font-medium  focus:outline-none focus:ring-4 focus:ring-green-300"
