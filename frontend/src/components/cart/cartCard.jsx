@@ -9,18 +9,18 @@ const CartCard = (props) => {
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart.items)
 
-  const handleRemoveItem = (id) => {
-    dispatch(removeItem(id))
+  const handleRemoveItem = (_id) => {
+    dispatch(removeItem(_id))
   }
 
-  const handleQuantityChange = (id, value) => {
-    const item = cartItems.find((item) => item.id === id)
+  const handleQuantityChange = (_id, value) => {
+    const item = cartItems.find((item) => item._id === _id)
 
     // Prevent negative quantity
     if (value < 1) return
 
     const newQuantity = value > item.quantity ? item.quantity + 1 : item.quantity - 1
-    dispatch(updateItemQuantity({ id, quantity: newQuantity }))
+    dispatch(updateItemQuantity({ _id, quantity: newQuantity }))
   }
 
   // Calculate total
@@ -42,7 +42,7 @@ const CartCard = (props) => {
           {/* Cart Items */}
           <div className="rounded-lg md:w-2/3">
             {cartItems.map((item) => (
-              <div key={item.id} className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
+              <div key={item._id} className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
                 <img src={item.selectedFile} alt="product-image" className="w-full rounded-lg sm:w-40" />
                 <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                   <div className="mt-5 sm:mt-0">
@@ -51,18 +51,18 @@ const CartCard = (props) => {
                   </div>
                   <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                     <div className="flex items-center border-gray-100">
-                      <span className="cursor-pointer rounded-l select-none bg-green-100 py-1 px-3.5 duration-100 hover:bg-green-800 hover:text-blue-50" onClick={() => handleQuantityChange(item.id, item.quantity - 1)}>
+                      <span className="cursor-pointer rounded-l select-none bg-green-100 py-1 px-3.5 duration-100 hover:bg-green-800 hover:text-blue-50" onClick={() => handleQuantityChange(item._id, item.quantity - 1)}>
                         -
                       </span>
-                      <input disabled className="h-8 w-10  bg-gray-100 text-center text-xs outline-none" type="number" value={item.quantity} min={1} onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))} />
-                      <span className="cursor-pointer select-none rounded-r bg-green-100 py-1 px-3 duration-100 hover:bg-green-800 hover:text-blue-50" onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>
+                      <input disabled className="h-8 w-10  bg-gray-100 text-center text-xs outline-none" type="number" value={item.quantity} min={1} onChange={(e) => handleQuantityChange(item._id, Number(e.target.value))} />
+                      <span className="cursor-pointer select-none rounded-r bg-green-100 py-1 px-3 duration-100 hover:bg-green-800 hover:text-blue-50" onClick={() => handleQuantityChange(item._id, item.quantity + 1)}>
                         +
                       </span>
                     </div>
                     <div className="flex items-center space-x-4">
                       <p className="text-md ">LKR {item.price}</p>
-                      <button onClick={() => handleRemoveItem(item.id)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500">
+                      <button onClick={() => handleRemoveItem(item._id)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeW_idth="1.5" stroke="currentColor" className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
@@ -91,7 +91,7 @@ const CartCard = (props) => {
               </div>
             </div>
             <Link to={`/payments?subtotal=${subtotal + shipping}`}>
-              <button  className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">Check out</button>
+              <button className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">Check out</button>
             </Link>
           </div>
         </div>
