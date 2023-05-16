@@ -9,7 +9,6 @@ import { NIL } from 'uuid'
 import { Rating, TextField } from '@mui/material'
 
 const Reviews = ({ id, onReviewsData, userId }) => {
-  console.log('Reviews.jsx: ', userId)
   const [reviews, setReviews] = useState([])
   const [selectedReviewId, setSelectedReviewId] = useState(null)
   const [rating, setRating] = useState(null)
@@ -139,14 +138,15 @@ const Reviews = ({ id, onReviewsData, userId }) => {
                     <Rating name="read-only" value={review.rating} size="small" readOnly />
                   </div>
                 </div>
-                {/* {props.user && props.user.id === review.user_id && ( */}
-                <div className="bg-gray-100 px-4 py-2 flex justify-between">
-                  <button onClick={() => handleEditReview(review._id)}>Edit</button>
-                  <button className="text-red-500 font-medium hover:text-red-800" onClick={() => deleteReviews(review._id)}>
-                    Delete Review
-                  </button>
-                </div>
-                {/* )} */}
+                {/* check if the user is the owner of the review */}
+                {review.user._id === userId2 && (
+                  <div className="bg-gray-100 px-4 py-2 flex justify-between">
+                    <button onClick={() => handleEditReview(review._id)}>Edit</button>
+                    <button className="text-red-500 font-medium hover:text-red-800" onClick={() => deleteReviews(review._id)}>
+                      Delete Review
+                    </button>
+                  </div>
+                )}
               </div>
             ))
         )}
