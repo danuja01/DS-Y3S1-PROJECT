@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from "axios";
+import axios from 'axios'
 import { debounce } from 'lodash'
 import Heading from '../../common/heading'
 import Section from '../../common/section'
@@ -18,17 +18,18 @@ const ItemCategories = () => {
   //   refresh()
   // }, [])
 
-  const [itemsRes, setItems] = useState([]);
+  const [itemsRes, setItems] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:4006/api/v1/items")
-      .then(response => {
-        setItems(response.data.data);
+    axios
+      .get('http://localhost:4006/api/v1/items')
+      .then((response) => {
+        setItems(response.data.data)
       })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
 
   return (
     <>
@@ -36,7 +37,7 @@ const ItemCategories = () => {
         <Heading>Body-Lotions</Heading>
         {itemsRes && <ItemSlider data={itemsRes.filter((item) => item.category === 'Body Lotion')} />}
       </Section>
-       <Section className="bg-white">
+      <Section className="bg-white">
         <Heading>Scrubs</Heading>
         {itemsRes && <ItemSlider data={itemsRes.filter((item) => item.category === 'Scrub')} />}
       </Section>

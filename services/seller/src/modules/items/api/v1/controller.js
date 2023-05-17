@@ -8,7 +8,8 @@ import {
   serviceCreateItem,
   serviceGetItems,
   serviceGetItemById,
-  serviceUpdateItemById
+  serviceUpdateItemById,
+  serviceDeleteItemById
 } from "./service";
 
 import { createItemSchema, updateItemSchema } from "./schema";
@@ -59,13 +60,14 @@ item.patch(
   })
 );
 
-// review.delete(
-//   "/:id",
-//   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
-//   asyncHandler(async function controllerDeleteReviewById(req, res) {
-//     const data = await serviceDeleteReviewById(req.params.id);
-//     return toSuccess({ res, data, message: "Review deleted successfully!" });
-//   })
-// );
+item.delete(
+  "/:id",
+  celebrate({ [Segments.PARAMS]: objectIdSchema() }),
+  asyncHandler(async function controllerDeleteItemById(req, res) {
+    const data = await serviceDeleteItemById(req.params.id);
+    return toSuccess({ res, data, message: "Item deleted successfully!" });
+  })
+);
+
 
 export default item;

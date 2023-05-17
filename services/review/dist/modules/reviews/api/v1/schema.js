@@ -26,7 +26,7 @@ const createReviewSchema = import_celebrate.Joi.object({
   item: import_celebrate.Joi.string().optional(),
   // needs to integrate with item id in items collection
   user: import_celebrate.Joi.string().optional(),
-  user_id: import_celebrate.Joi.string().optional(),
+  // needs to integrate with user id in users collection
   rating: import_celebrate.Joi.number().required(),
   text: import_celebrate.Joi.string().required()
 });

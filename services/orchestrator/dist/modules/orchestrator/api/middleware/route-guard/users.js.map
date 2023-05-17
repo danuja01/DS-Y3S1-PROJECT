@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../../../src/modules/orchestrator/api/middleware/route-guard/users.js"],
-  "sourcesContent": ["import { roles } from \"@app/constants\";\nimport { permittedRoles } from \"../../../../../middleware\";\n\nconst guard = (req, res, next) => {\n  if (\n    req.path.match(new RegExp(\"/v1/users/*\")) &&\n    req.params[0]?.replace(\"/\", \"\") === req.user._id\n  )\n    return next();\n  return permittedRoles([roles.admin])(req, res, next);\n};\n\nexport default guard;\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,uBAAsB;AACtB,wBAA+B;AAE/B,MAAM,QAAQ,wBAAC,KAAK,KAAK,SAAS;AAHlC;AAIE,MACE,IAAI,KAAK,MAAM,IAAI,OAAO,aAAa,CAAC,OACxC,SAAI,OAAO,CAAC,MAAZ,mBAAe,QAAQ,KAAK,SAAQ,IAAI,KAAK;AAE7C,WAAO,KAAK;AACd,aAAO,kCAAe,CAAC,uBAAM,KAAK,CAAC,EAAE,KAAK,KAAK,IAAI;AACrD,GAPc;AASd,IAAO,gBAAQ;",
+  "sourcesContent": ["import { permittedRoles } from \"../../../../../middleware\";\r\n\r\nconst guard = (req, res, next) => {\r\n  console.log(req.user._id);\r\n  if (\r\n    req.path.match(new RegExp(\"/v1/users/*\")) &&\r\n    req.params[0]?.replace(\"/\", \"\") === req.user._id\r\n  )\r\n    return next();\r\n  return permittedRoles([\"admin\"])(req, res, next);\r\n};\r\n\r\nexport default guard;\r\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,wBAA+B;AAE/B,MAAM,QAAQ,wBAAC,KAAK,KAAK,SAAS;AAFlC;AAGE,UAAQ,IAAI,IAAI,KAAK,GAAG;AACxB,MACE,IAAI,KAAK,MAAM,IAAI,OAAO,aAAa,CAAC,OACxC,SAAI,OAAO,CAAC,MAAZ,mBAAe,QAAQ,KAAK,SAAQ,IAAI,KAAK;AAE7C,WAAO,KAAK;AACd,aAAO,kCAAe,CAAC,OAAO,CAAC,EAAE,KAAK,KAAK,IAAI;AACjD,GARc;AAUd,IAAO,gBAAQ;",
   "names": []
 }

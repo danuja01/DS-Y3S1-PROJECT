@@ -9,6 +9,8 @@ export const protectedRoutes = [
   "/v1/auth/refresh-token",
   "/v1/auth/verify/*",
   "/v1/system/health",
+  "/v1/items",
+  "/v1/reviews",
 ];
 
 export const roles = ["admin", "seller", "buyer"].reduce((acc, role) => {
@@ -29,7 +31,7 @@ export const objectIdSchema = (name = "id") =>
     [name]: Joi.string().hex().length(24).required(),
   });
 
-  export const ratingParamSchema = (name = "rating") =>
+export const ratingParamSchema = (name = "rating") =>
   Joi.object({
     [name]: Joi.number().integer().min(1).max(5).required(),
   });

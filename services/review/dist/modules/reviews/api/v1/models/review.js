@@ -33,6 +33,7 @@ module.exports = __toCommonJS(review_exports);
 var import_mongoose = __toESM(require("mongoose"));
 var import_mongoose_paginate_v2 = __toESM(require("mongoose-paginate-v2"));
 var import_item = require("./item");
+var import_user = require("./user");
 const { Schema } = import_mongoose.default;
 const ReviewSchema = new Schema(
   {
@@ -42,12 +43,9 @@ const ReviewSchema = new Schema(
       ref: "Item"
     },
     user: {
-      type: String,
-      required: false
-    },
-    user_id: {
-      type: String,
-      required: false
+      type: import_mongoose.default.Types.ObjectId,
+      required: false,
+      ref: "User"
     },
     rating: {
       type: Number,

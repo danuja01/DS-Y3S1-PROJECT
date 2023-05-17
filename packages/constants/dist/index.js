@@ -35,7 +35,9 @@ const protectedRoutes = [
   "/v1/auth/register",
   "/v1/auth/refresh-token",
   "/v1/auth/verify/*",
-  "/v1/system/health"
+  "/v1/system/health",
+  "/v1/items",
+  "/v1/reviews"
 ];
 const roles = ["admin", "seller", "buyer"].reduce((acc, role) => {
   acc[role] = role;

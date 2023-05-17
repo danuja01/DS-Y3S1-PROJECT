@@ -40,7 +40,7 @@ const serviceHosts = {
   reviews: import_config.default.REVIEW_SERVICE_BASE_URL,
   notification: import_config.default.NOTIFICATION_SERVICE_BASE_URL,
   delivery: import_config.default.DELIVERY_SERVICE_BASE_URL,
-  item: import_config.default.ITEM_SERVICE_BASE_URL
+  items: import_config.default.SELLER_SERVICE_BASE_URL
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

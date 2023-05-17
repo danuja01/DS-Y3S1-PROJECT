@@ -11,7 +11,7 @@ class Base {
   }
   static get values() {
     return {
-      PORT: process.env.PORT ?? 2000,
+      PORT: process.env.PORT ?? 4006,
       DB_URL: process.env.DB_URL,
     };
   }

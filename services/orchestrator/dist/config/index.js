@@ -36,7 +36,7 @@ class Base {
       REVIEW_SERVICE_BASE_URL: import_celebrate.Joi.string().required(),
       NOTIFICATION_SERVICE_BASE_URL: import_celebrate.Joi.string().required(),
       DELIVERY_SERVICE_BASE_URL: import_celebrate.Joi.string().required(),
-      ITEM_SERVICE_BASE_URL: import_celebrate.Joi.string().required()
+      SELLER_SERVICE_BASE_URL: import_celebrate.Joi.string().required()
     };
   }
   static get values() {
@@ -50,7 +50,7 @@ class Base {
       REVIEW_SERVICE_BASE_URL: process.env.REVIEW_SERVICE_BASE_URL,
       NOTIFICATION_SERVICE_BASE_URL: process.env.NOTIFICATION_SERVICE_BASE_URL,
       DELIVERY_SERVICE_BASE_URL: process.env.DELIVERY_SERVICE_BASE_URL,
-      ITEM_SERVICE_BASE_URL: process.env.ITEM_SERVICE_BASE_URL
+      SELLER_SERVICE_BASE_URL: process.env.SELLER_SERVICE_BASE_URL
     };
   }
 }
