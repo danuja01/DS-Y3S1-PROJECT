@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../src/index.js"],
-  "sourcesContent": ["export * from \"./error-handler\";\nexport * from \"./response\";\n"],
-  "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;AAAA,wBAAc,4BAAd;AACA,wBAAc,uBADd;",
-  "names": []
-}

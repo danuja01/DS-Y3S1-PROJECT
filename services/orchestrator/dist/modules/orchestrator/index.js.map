@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/modules/orchestrator/index.js"],
-  "sourcesContent": ["import express from \"express\";\nimport routes from \"./api/controller\";\n\nconst router = express.Router();\n\nrouter.use(`/`, routes);\n\nexport default router;\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,qBAAoB;AACpB,wBAAmB;AAEnB,MAAM,SAAS,eAAAA,QAAQ,OAAO;AAE9B,OAAO,IAAI,KAAK,kBAAAC,OAAM;AAEtB,IAAO,uBAAQ;",
-  "names": ["express", "routes"]
-}

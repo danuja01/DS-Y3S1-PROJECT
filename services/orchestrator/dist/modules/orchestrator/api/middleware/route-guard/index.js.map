@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../../src/modules/orchestrator/api/middleware/route-guard/index.js"],
-  "sourcesContent": ["import users from \"./users\";\n\nexport default {\n  users,\n};\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,mBAAkB;AAElB,IAAO,sBAAQ;AAAA,EACb,oBAAAA;AACF;",
-  "names": ["users"]
-}
