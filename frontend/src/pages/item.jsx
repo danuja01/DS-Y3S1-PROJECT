@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import Layout from '../components/layout'
 // import { GlobeAltIcon } from '@heroicons/react/20/solid'
 import { FaMapMarkerAlt } from 'react-icons/fa'
-import { getSingleProduct } from '../services/item'
+import { getSingleProduct, getAllProducts } from '../services/item'
 
 import Reviews from './reviews'
 
@@ -73,8 +73,8 @@ const Item = () => {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:4006/api/v1/items/${id}`).then((response) => {
-      setItemRes(response.data.data)
+    getSingleProduct(id).then((response) => {
+      setItemRes(response.data)
     })
   }, [id])
 
@@ -91,10 +91,13 @@ const Item = () => {
       {itemRes && (
         <div className="container max-w-7xl py-10 mx-20">
           <h2 className="text-xl title-font text-gray-500 tracking-widest">{itemRes.title}</h2>
+          <h2 className="text-l title-font text-gray-500 tracking-widest">{itemRes.category}</h2>
           <div className="w-full h-auto mt-10 flex flex-wrap">
             <img alt="ecommerce" className="lg:w-[45%] shadow-md rounded-lg  w-full object-cover object-center  border border-gray-200" src={itemRes.selectedFile} />
             <div className="lg:w-1/2 w-full  pl-10 lg:pb-6 lg:pt-5  mt-6 lg:mt-0">
-              <p className="leading-relaxed">{itemRes.description}</p>
+              <p className="leading-relaxed">{itemRes.message}</p> <br />
+              <p className="leading-relaxed">LKR {itemRes.price}</p> <br />
+              <p className="leading-relaxed">Seller: {itemRes.seller}</p>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
                 <div className="flex mb-4">
                   <span className="flex items-center">

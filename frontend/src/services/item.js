@@ -12,10 +12,10 @@ export const createProduct = async (data) => {
   return await apiRequest(() => axiosInstance.post(`/api/v1/items`, data))
 }
 
-// export const updateProduct = async (id, data) => {
-//   return await apiRequest(() => axiosInstance.patch(`/api/v1/items/${id}`, data));
-// };
+export const updateProduct = async (id, data) => {
+  return await apiRequest(() => axiosInstance.patch(`/api/v1/items/${id}`, data));
+};
 
-// export const deleteProduct = async (id) => {
-//   return await apiRequest(() => axiosInstance.delete(`/api/v1/items/${id}`));
-// };
+export const deleteProduct = async (id) => {
+  return await apiRequest(() => axiosInstance.delete(`/api/v1/items/${id}`));
+};

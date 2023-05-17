@@ -110,6 +110,10 @@ const Navbar = ({ name, email }) => {
       title: 'Contact',
       path: '/delivery',
     },
+    {
+      title: 'Seller',
+      path: '/seller',
+    },
   ]
 
   return (
