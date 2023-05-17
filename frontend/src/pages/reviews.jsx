@@ -1,23 +1,23 @@
 import { debounce } from 'lodash'
 import { useEffect, useState } from 'react'
-import { getAllReviews, createReview, deleteReview, getReviewsByRating } from '../services/review'
+import { getAllReviews, deleteReview, getReviewsByRating } from '../services/review'
 import Moment from 'moment'
 import EditReview from './edit-review'
+import AddReview from './add-review'
 import { NIL } from 'uuid'
 
 //mui
-import { Rating, TextField } from '@mui/material'
+import { Rating } from '@mui/material'
 
 const Reviews = ({ id, onReviewsData, userId }) => {
   const [reviews, setReviews] = useState([])
   const [selectedReviewId, setSelectedReviewId] = useState(null)
   const [rating, setRating] = useState(null)
 
-  // Set the appropriate id based on the source prop
   const itemId = id
   const userId2 = userId
 
-  // Filter the reviews array based on the item id or tour id
+  // Filter the reviews array based on the item id
   const filteredReviews = reviews.filter((review) => review.item && review.item._id === id)
 
   const totalRating = filteredReviews.reduce((acc, review) => acc + review.rating, 0)
@@ -50,16 +50,6 @@ const Reviews = ({ id, onReviewsData, userId }) => {
     } catch (error) {
       console.error(error)
     }
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-
-    // Send a POST request to the server to add the new review
-    createReview(reviewData)
-    refresh().catch((error) => {
-      console.log(error)
-    })
   }
 
   const refresh = debounce(() => {
@@ -101,26 +91,7 @@ const Reviews = ({ id, onReviewsData, userId }) => {
           </div>
         </div>
 
-        <div className="mt-4">
-          <h2 className="text-2xl font-bold">Add a Review</h2>
-          {filteredReviews.some((review) => review.user._id === userId2) ? (
-            <p>You have already submitted a review.</p>
-          ) : (
-            <form onSubmit={handleSubmit} className="mt-4">
-              <div className="mb-4">
-                <label className="block font-medium">Review Text:</label>
-                <TextField multiline rows={4} variant="outlined" className="w-full mt-2" value={reviewData.text} onChange={(event) => setReviewData({ ...reviewData, text: event.target.value })} />
-              </div>
-              <div className="mb-4">
-                <label className="block font-medium">Rating:</label>
-                <TextField type="number" inputProps={{ min: '1', max: '5' }} variant="outlined" className="w-full mt-2" value={reviewData.rating} onChange={(event) => setReviewData({ ...reviewData, rating: event.target.value })} />
-              </div>
-              <button type="submit" className="flex  text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-secondary rounded">
-                Submit Review
-              </button>
-            </form>
-          )}
-        </div>
+        <AddReview filteredReviews={filteredReviews} userId2={userId2} reviewData={reviewData} setReviewData={setReviewData} refresh={refresh} />
 
         <br />
         {selectedReviewId !== null && <EditReview reviewId={selectedReviewId} onClose={handleCloseEditReview} refresh={refresh} />}
