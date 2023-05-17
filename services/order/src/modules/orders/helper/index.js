@@ -32,27 +32,9 @@ export const getOrderAggregateOptions = (filters, sorts, page, limit) => {
         {
           $project: {
             _id: 1,
-            name: 1,
+            title: 1,
             price: 1,
-            seller: {
-              $toObjectId: "$seller",
-            },
-          },
-        },
-        {
-          $lookup: {
-            from: "users",
-            localField: "seller",
-            foreignField: "_id",
-            pipeline: [
-              {
-                $project: {
-                  _id: 1,
-                  name: 1,
-                },
-              },
-            ],
-            as: "seller",
+            seller: 1,
           },
         },
       ],
@@ -64,25 +46,22 @@ export const getOrderAggregateOptions = (filters, sorts, page, limit) => {
     $addFields: {
       productsDetails: {
         $map: {
-          input: "$productsDetails",
-          as: "op",
+          input: "$products",
+          as: "prod",
           in: {
             $mergeObjects: [
               {
-                quantity: {
-                  $let: {
-                    vars: {
-                      index: {
-                        $indexOfArray: ["$products.product", "$$op._id"],
-                      },
-                    },
-                    in: {
-                      $arrayElemAt: ["$products.quantity", "$$index"],
+                $arrayElemAt: [
+                  {
+                    $filter: {
+                      input: "$productsDetails",
+                      cond: { $eq: ["$$this._id", "$$prod.product"] },
                     },
                   },
-                },
+                  0,
+                ],
               },
-              "$$op",
+              "$$prod",
             ],
           },
         },
@@ -122,6 +101,104 @@ export const getOrderAggregateOptions = (filters, sorts, page, limit) => {
       },
     },
   });
+
+  // aggregateOptions.push({
+  //   $lookup: {
+  //     from: "products",
+  //     localField: "products.product",
+  //     foreignField: "_id",
+  //     pipeline: [
+  //       {
+  //         $project: {
+  //           _id: 1,
+  //           title: 1,
+  //           price: 1,
+  //           seller: 1,
+  //         },
+  //       },
+  //       // {
+  //       //   $lookup: {
+  //       //     from: "users",
+  //       //     localField: "seller",
+  //       //     foreignField: "_id",
+  //       //     pipeline: [
+  //       //       {
+  //       //         $project: {
+  //       //           _id: 1,
+  //       //           name: 1,
+  //       //         },
+  //       //       },
+  //       //     ],
+  //       //     as: "seller",
+  //       //   },
+  //       // },
+  //     ],
+  //     as: "productsDetails",
+  //   },
+  // });
+
+  // aggregateOptions.push({
+  //   $addFields: {
+  //     productsDetails: {
+  //       $map: {
+  //         input: "$productsDetails",
+  //         as: "op",
+  //         in: {
+  //           $mergeObjects: [
+  //             {
+  //               quantity: {
+  //                 $let: {
+  //                   vars: {
+  //                     index: {
+  //                       $indexOfArray: ["$products.product", "$$op._id"],
+  //                     },
+  //                   },
+  //                   in: {
+  //                     $arrayElemAt: ["$products.quantity", "$$index"],
+  //                   },
+  //                 },
+  //               },
+  //             },
+  //             "$$op",
+  //           ],
+  //         },
+  //       },
+  //     },
+  //   },
+  // });
+
+  // aggregateOptions.push({
+  //   $addFields: {
+  //     productsDetails: {
+  //       $map: {
+  //         input: "$productsDetails",
+  //         as: "op",
+  //         in: {
+  //           $mergeObjects: [
+  //             {
+  //               cancellationDetails: {
+  //                 $let: {
+  //                   vars: {
+  //                     index: {
+  //                       $indexOfArray: ["$products.product", "$$op._id"],
+  //                     },
+  //                   },
+  //                   in: {
+  //                     $arrayElemAt: [
+  //                       "$products.cancellationDetails",
+  //                       "$$index",
+  //                     ],
+  //                   },
+  //                 },
+  //               },
+  //             },
+  //             "$$op",
+  //           ],
+  //         },
+  //       },
+  //     },
+  //   },
+  // });
 
   if (sorts && Object.keys(sorts).length > 0) {
     aggregateOptions.push({ $sort: sorts });

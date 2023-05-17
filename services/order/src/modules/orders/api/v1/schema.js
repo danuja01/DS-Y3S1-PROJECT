@@ -2,10 +2,10 @@ import { Joi } from "celebrate";
 import { cancellationStatus } from "@app/constants";
 
 export const createOrderSchema = Joi.object({
-  buyer: Joi.string().required(),
+  buyer: Joi.string().length(24).hex().required(),
   products: Joi.array().items(
     Joi.object({
-      product: Joi.string().required(),
+      product: Joi.string().length(24).hex().required(),
       quantity: Joi.number().required(),
       cancellationDetails: Joi.object({
         isRequested: Joi.boolean().optional(),
