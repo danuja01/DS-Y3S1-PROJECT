@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../src/routes/index.js"],
-  "sourcesContent": ["import express from \"express\";\nimport orchestratorRoutes from \"../modules/orchestrator\";\n\nconst router = express.Router();\n\nrouter.use(orchestratorRoutes);\n\nexport default router;\n"],
+  "sourcesContent": ["import express from \"express\";\r\nimport orchestratorRoutes from \"../modules/orchestrator\";\r\n\r\nconst router = express.Router();\r\n\r\nrouter.use(orchestratorRoutes);\r\n\r\nexport default router;\r\n"],
   "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,qBAAoB;AACpB,0BAA+B;AAE/B,MAAM,SAAS,eAAAA,QAAQ,OAAO;AAE9B,OAAO,IAAI,oBAAAC,OAAkB;AAE7B,IAAO,iBAAQ;",
   "names": ["express", "orchestratorRoutes"]
 }

@@ -30,6 +30,7 @@ __export(repository_exports, {
 module.exports = __toCommonJS(repository_exports);
 var import_models = require("./api/v1/models");
 function createUser(user) {
+  import_models.User.validate(user);
   return import_models.User.create(user);
 }
 __name(createUser, "createUser");

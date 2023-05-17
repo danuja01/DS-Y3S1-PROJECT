@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../../src/modules/reviews/api/v1/schema.js"],
-  "sourcesContent": ["import { Joi } from \"celebrate\";\n\nexport const createReviewSchema = Joi.object({\n  item: Joi.string().optional(), // needs to integrate with item id in items collection\n  user: Joi.string().optional(),\n  user_id: Joi.string().optional(),\n  rating: Joi.number().required(),\n  text: Joi.string().required(),\n});\n\nexport const updateReviewSchema = Joi.object({\n  rating: Joi.number().optional(),\n  text: Joi.string().optional(),\n});\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,uBAAoB;AAEb,MAAM,qBAAqB,qBAAI,OAAO;AAAA,EAC3C,MAAM,qBAAI,OAAO,EAAE,SAAS;AAAA;AAAA,EAC5B,MAAM,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC5B,SAAS,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC/B,QAAQ,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC9B,MAAM,qBAAI,OAAO,EAAE,SAAS;AAC9B,CAAC;AAEM,MAAM,qBAAqB,qBAAI,OAAO;AAAA,EAC3C,QAAQ,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC9B,MAAM,qBAAI,OAAO,EAAE,SAAS;AAC9B,CAAC;",
+  "sourcesContent": ["import { Joi } from \"celebrate\";\r\n\r\nexport const createReviewSchema = Joi.object({\r\n  item: Joi.string().optional(), // needs to integrate with item id in items collection\r\n  user: Joi.string().optional(),  // needs to integrate with user id in users collection\r\n  rating: Joi.number().required(),\r\n  text: Joi.string().required(),\r\n});\r\n\r\nexport const updateReviewSchema = Joi.object({\r\n  rating: Joi.number().optional(),\r\n  text: Joi.string().optional(),\r\n});\r\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,uBAAoB;AAEb,MAAM,qBAAqB,qBAAI,OAAO;AAAA,EAC3C,MAAM,qBAAI,OAAO,EAAE,SAAS;AAAA;AAAA,EAC5B,MAAM,qBAAI,OAAO,EAAE,SAAS;AAAA;AAAA,EAC5B,QAAQ,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC9B,MAAM,qBAAI,OAAO,EAAE,SAAS;AAC9B,CAAC;AAEM,MAAM,qBAAqB,qBAAI,OAAO;AAAA,EAC3C,QAAQ,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC9B,MAAM,qBAAI,OAAO,EAAE,SAAS;AAC9B,CAAC;",
   "names": []
 }

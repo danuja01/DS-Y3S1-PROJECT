@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../../../src/modules/payments/api/v1/models/index.js"],
-  "sourcesContent": ["export * from \"./payment\";\n"],
+  "sourcesContent": ["export * from \"./payment\";\r\n"],
   "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;AAAA,2BAAc,sBAAd;",
   "names": []
 }

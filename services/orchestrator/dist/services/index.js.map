@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../src/services/index.js"],
-  "sourcesContent": ["export * from \"./auth.service\";\n"],
+  "sourcesContent": ["export * from \"./auth.service\";\r\n"],
   "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;AAAA,6BAAc,2BAAd;",
   "names": []
 }
