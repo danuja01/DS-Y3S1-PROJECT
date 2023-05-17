@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../src/modules/users/api/v1/schema.js"],
-  "sourcesContent": ["import { Joi } from \"celebrate\";\r\nimport { roles } from \"@app/constants\";\r\n\r\nexport const createUserSchema = Joi.object({\r\n  name: Joi.string().required(),\r\n  email: Joi.string().email().required(),\r\n  password: Joi.string().optional(),\r\n  role: Joi.string()\r\n    .valid(...Object.values(roles))\r\n    .optional(),\r\n  address: Joi.string().optional(),\r\n  verification_code: Joi.string().optional().allow(null),\r\n});\r\n\r\nexport const updateUserSchema = Joi.object({\r\n  name: Joi.string().optional(),\r\n  password: Joi.string().optional(),\r\n  address: Joi.string().optional(),\r\n  is_verified: Joi.boolean().optional(),\r\n  verification_code: Joi.string().optional().allow(null),\r\n});\r\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,uBAAoB;AACpB,uBAAsB;AAEf,MAAM,mBAAmB,qBAAI,OAAO;AAAA,EACzC,MAAM,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC5B,OAAO,qBAAI,OAAO,EAAE,MAAM,EAAE,SAAS;AAAA,EACrC,UAAU,qBAAI,OAAO,EAAE,SAAS;AAAA,EAChC,MAAM,qBAAI,OAAO,EACd,MAAM,GAAG,OAAO,OAAO,sBAAK,CAAC,EAC7B,SAAS;AAAA,EACZ,SAAS,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC/B,mBAAmB,qBAAI,OAAO,EAAE,SAAS,EAAE,MAAM,IAAI;AACvD,CAAC;AAEM,MAAM,mBAAmB,qBAAI,OAAO;AAAA,EACzC,MAAM,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC5B,UAAU,qBAAI,OAAO,EAAE,SAAS;AAAA,EAChC,SAAS,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC/B,aAAa,qBAAI,QAAQ,EAAE,SAAS;AAAA,EACpC,mBAAmB,qBAAI,OAAO,EAAE,SAAS,EAAE,MAAM,IAAI;AACvD,CAAC;",
-  "names": []
-}

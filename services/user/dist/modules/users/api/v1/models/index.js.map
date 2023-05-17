@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../../src/modules/users/api/v1/models/index.js"],
-  "sourcesContent": ["export * from \"./user\";\r\n"],
-  "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;AAAA,2BAAc,mBAAd;",
-  "names": []
-}
