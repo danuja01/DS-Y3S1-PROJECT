@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { clearCart, removeItem, updateItemQuantity } from '../../store/cartSlice'
 import { createOrder } from '../../services/order'
@@ -7,6 +7,7 @@ import { createOrder } from '../../services/order'
 // export default Cart
 
 const CartCard = (props) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart.items)
   const user = useSelector((state) => state.data.user.authUser)
@@ -69,6 +70,9 @@ const CartCard = (props) => {
 
     //alert
     alert('Order created successfully')
+    
+    // Redirect to payment page
+    navigate(`/payment?subtotal=${subtotal}&shipping=${shipping}`);
   }
 
   return (
