@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { addItem } from '../../store/cartSlice'
 
 import Button from './button'
+import { useAuth } from '../../hooks'
 
 const ItemCard = ({ item }) => {
   const dispatch = useDispatch()
@@ -10,6 +11,8 @@ const ItemCard = ({ item }) => {
   const handleAddToCart = (item) => {
     dispatch(addItem(item))
   }
+
+  const token = localStorage.getItem('access_token') || sessionStorage.getItem('access_token')
 
   return (
     <div key={item._id} className="  flex w-full max-w-xs flex-col overflow-hidden h-[25rem] rounded-lg border border-gray-100 bg-white shadow-md">
@@ -47,7 +50,7 @@ const ItemCard = ({ item }) => {
         </div>
         <Button
           onClick={() => {
-            handleAddToCart(item)
+            token ? handleAddToCart(item) : alert('Please login to add items to cart')
           }}
           className="flex items-center rounded-md px-5 py-2.5 text-center text-sm font-medium  focus:outline-none focus:ring-4 focus:ring-green-300"
         >
