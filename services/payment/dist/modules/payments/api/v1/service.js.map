@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../src/modules/payments/api/v1/service.js"],
-  "sourcesContent": ["import {\r\n  createPayment,\r\n  getAllPayments,\r\n  getPaymentById,\r\n  updatePaymentById,\r\n  deletePaymentById,\r\n} from \"../../repository\";\r\n\r\n// import { hashPasswordIfProvided } from \"./helpers\";\r\n\r\nexport const serviceCreatePayment = (payment) => {\r\n  // if (!payment.rating) throw new Error(\"Rating is required\");\r\n  // await hashPasswordIfProvided(payment);\r\n  return createPayment(payment);\r\n};\r\n\r\nexport const serviceGetPayments = (filters, sorts, page, limit) => {\r\n  return getAllPayments({ filters, sorts, page, limit });\r\n};\r\n\r\nexport const serviceGetPaymentById = (id) => {\r\n  return getPaymentById(id);\r\n};\r\n\r\nexport const serviceUpdatePaymentById = (id, data) => {\r\n  // await hashPasswordIfProvided(data);\r\n  return updatePaymentById(id, data);\r\n};\r\n\r\nexport const serviceDeletePaymentById = (id) => {\r\n  return deletePaymentById(id);\r\n};\r\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,wBAMO;AAIA,MAAM,uBAAuB,wBAAC,YAAY;AAG/C,aAAO,iCAAc,OAAO;AAC9B,GAJoC;AAM7B,MAAM,qBAAqB,wBAAC,SAAS,OAAO,MAAM,UAAU;AACjE,aAAO,kCAAe,EAAE,SAAS,OAAO,MAAM,MAAM,CAAC;AACvD,GAFkC;AAI3B,MAAM,wBAAwB,wBAAC,OAAO;AAC3C,aAAO,kCAAe,EAAE;AAC1B,GAFqC;AAI9B,MAAM,2BAA2B,wBAAC,IAAI,SAAS;AAEpD,aAAO,qCAAkB,IAAI,IAAI;AACnC,GAHwC;AAKjC,MAAM,2BAA2B,wBAAC,OAAO;AAC9C,aAAO,qCAAkB,EAAE;AAC7B,GAFwC;",
-  "names": []
-}
