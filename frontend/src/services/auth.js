@@ -32,7 +32,7 @@ export const logout = async (showLoader) => {
   })
 }
 
-export const refreshToken = () => {
+export const refreshToken = async () => {
   const store = localStorage.getItem('refresh_token') ? localStorage : sessionStorage
   return apiRequest(() => axiosInstance.post(`/api/v1/auth/refresh-token`, { refresh_token: store.getItem('refresh_token') }), false).then((data) => {
     if (!data) return
