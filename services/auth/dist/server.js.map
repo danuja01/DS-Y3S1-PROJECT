@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../src/server.js"],
-  "sourcesContent": ["import initializeServer from \"@app/server\";\r\nimport { authorizer } from \"./middleware\";\r\nimport config from \"./config\";\r\n\r\ninitializeServer({\r\n  service: \"Auth service\",\r\n  lMiddleware: [authorizer],\r\n  config,\r\n});\r\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;AAAA,oBAA6B;AAC7B,wBAA2B;AAC3B,oBAAmB;AAAA,IAEnB,cAAAA,SAAiB;AAAA,EACf,SAAS;AAAA,EACT,aAAa,CAAC,4BAAU;AAAA,EACxB,sBAAAC;AACF,CAAC;",
-  "names": ["initializeServer", "config"]
-}

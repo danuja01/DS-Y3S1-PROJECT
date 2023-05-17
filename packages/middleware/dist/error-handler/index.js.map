@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/error-handler/index.js"],
-  "sourcesContent": ["import { isCelebrateError } from \"celebrate\";\r\nimport { moduleLogger } from \"@sliit-foss/module-logger\";\r\n\r\nconst logger = moduleLogger(\"Error-handler\");\r\n\r\n// eslint-disable-next-line no-unused-vars\r\nexport const errorHandler = (err, _req, res, next) => {\r\n  if (!res.errorLogged) {\r\n    logger.error(err.message, err);\r\n    res.errorLogged = true;\r\n  }\r\n  if (isCelebrateError(err)) {\r\n    for (const [, value] of err.details.entries()) {\r\n      return res.status(422).json({ message: value.details[0].message });\r\n    }\r\n  }\r\n  let message = err.message;\r\n  if (res.polyglot) message = res.polyglot.t(message);\r\n  return res.status(err.status ?? 500).json({\r\n    message,\r\n  });\r\n};\r\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,uBAAiC;AACjC,2BAA6B;AAE7B,MAAM,aAAS,mCAAa,eAAe;AAGpC,MAAM,eAAe,wBAAC,KAAK,MAAM,KAAK,SAAS;AACpD,MAAI,CAAC,IAAI,aAAa;AACpB,WAAO,MAAM,IAAI,SAAS,GAAG;AAC7B,QAAI,cAAc;AAAA,EACpB;AACA,UAAI,mCAAiB,GAAG,GAAG;AACzB,eAAW,CAAC,EAAE,KAAK,KAAK,IAAI,QAAQ,QAAQ,GAAG;AAC7C,aAAO,IAAI,OAAO,GAAG,EAAE,KAAK,EAAE,SAAS,MAAM,QAAQ,CAAC,EAAE,QAAQ,CAAC;AAAA,IACnE;AAAA,EACF;AACA,MAAI,UAAU,IAAI;AAClB,MAAI,IAAI;AAAU,cAAU,IAAI,SAAS,EAAE,OAAO;AAClD,SAAO,IAAI,OAAO,IAAI,UAAU,GAAG,EAAE,KAAK;AAAA,IACxC;AAAA,EACF,CAAC;AACH,GAf4B;",
-  "names": []
-}
