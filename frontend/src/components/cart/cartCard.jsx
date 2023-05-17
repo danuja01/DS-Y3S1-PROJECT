@@ -22,6 +22,8 @@ const CartCard = (props) => {
     commission: 0,
   })
 
+  const [loading, setLoading] = useState(false)
+
   const handleRemoveItem = (_id) => {
     dispatch(removeItem(_id))
   }
@@ -57,10 +59,13 @@ const CartCard = (props) => {
   }, [cartItems, subtotal, shipping, user])
 
   const handleOrder = async () => {
+    setLoading(true)
     await createOrder(order)
 
     // Clear cart
     dispatch(clearCart())
+
+    setLoading(false)
 
     //alert
     alert('Order created successfully')
@@ -131,7 +136,7 @@ const CartCard = (props) => {
             </div>
 
             <button onClick={handleOrder} className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">
-              Confirm
+              {loading ? 'Loading...' : 'Confirm Order'}
             </button>
           </div>
         </div>
