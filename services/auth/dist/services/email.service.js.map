@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/services/email.service.js"],
-  "sourcesContent": ["import serviceConnector from \"@sliit-foss/service-connector\";\nimport config from \"../config\";\n\nconst connector = serviceConnector({\n  baseURL: config.EMAIL_SERVICE_BASE_URL,\n  service: \"Email-Service\",\n});\n\nexport const sendVerificationEmail = (payload, v = \"v1\") => {\n  console.log();\n  return connector.post(`/api/${v}/emails`, payload).then(connector.resolve);\n};\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,+BAA6B;AAC7B,oBAAmB;AAEnB,MAAM,gBAAY,yBAAAA,SAAiB;AAAA,EACjC,SAAS,cAAAC,QAAO;AAAA,EAChB,SAAS;AACX,CAAC;AAEM,MAAM,wBAAwB,wBAAC,SAAS,IAAI,SAAS;AAC1D,UAAQ,IAAI;AACZ,SAAO,UAAU,KAAK,QAAQ,YAAY,OAAO,EAAE,KAAK,UAAU,OAAO;AAC3E,GAHqC;",
-  "names": ["serviceConnector", "config"]
-}
