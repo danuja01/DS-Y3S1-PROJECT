@@ -31,6 +31,7 @@ order.post(
   celebrate({ [Segments.BODY]: createOrderSchema }),
 
   asyncHandler(async function controllerCreateOrder(req, res) {
+    console.log("req.body", req.body);
     const data = await serviceCreateOrder(req.body);
     return toSuccess({ res, data, message: "User created successfully!" });
   })

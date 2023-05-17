@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeItem, updateItemQuantity } from '../../store/cartSlice'
+import { createOrder } from '../../services/order'
 
 // export default Cart
 
 const CartCard = (props) => {
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart.items)
+  const user = useSelector((state) => state.data.user.authUser)
+
+  const [order, setOrder] = useState({
+    buyer: '',
+    products: [],
+    shippingAddress: '',
+    paymentMethod: 'paypal',
+    itemsPrice: 0,
+    shippingPrice: 0,
+    totalPrice: 0,
+    commission: 0,
+  })
 
   const handleRemoveItem = (_id) => {
     dispatch(removeItem(_id))
@@ -27,6 +40,32 @@ const CartCard = (props) => {
   const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
   const shipping = subtotal > 100 ? subtotal * 0.05 : 0
 
+  useEffect(() => {
+    setOrder((prev) => ({
+      ...prev,
+      buyer: user._id,
+      products: cartItems.map((item) => ({
+        product: item._id,
+        quantity: item.quantity,
+      })),
+      itemsPrice: subtotal,
+      shippingAddress: user.address,
+      shippingPrice: shipping,
+      totalPrice: subtotal + shipping,
+      commission: (subtotal + shipping) * 0.1,
+    }))
+  }, [cartItems, subtotal, shipping])
+
+  useEffect(() => {
+    console.log('order : ', order)
+    console.log('user', user)
+    console.log('cartItems', cartItems)
+  }, [order, user, cartItems])
+
+  const handleOrder = () => {
+    createOrder(order)
+  }
+
   return (
     <>
       {/* component */}
@@ -36,7 +75,7 @@ const CartCard = (props) => {
           __html: '\n    @layer utilities {\n    input[type="number"]::-webkit-inner-spin-button,\n    input[type="number"]::-webkit-outer-spin-button {\n      -webkit-appearance: none;\n      margin: 0;\n    }\n  }\n',
         }}
       />
-      <div className="h-screen bg-gray-100 pt-10">
+      <div className="h-screen  pt-10 ">
         <h1 className="mb-10 text-center text-3xl font-bold">CART ITEMS</h1>
         <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
           {/* Cart Items */}
@@ -91,7 +130,9 @@ const CartCard = (props) => {
               </div>
             </div>
             <Link to={`/payments?subtotal=${subtotal + shipping}`}>
-              <button className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">Check out</button>
+              <button onClick={handleOrder} className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">
+                Check out
+              </button>
             </Link>
           </div>
         </div>
