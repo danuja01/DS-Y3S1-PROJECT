@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../src/modules/delivery/api/v1/models/index.js"],
+  "sourcesContent": ["export * from \"./delivery\";\n"],
+  "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;AAAA,2BAAc,uBAAd;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../src/modules/notification/api/v1/helpers/index.js"],
+  "sourcesContent": ["import bcrypt from \"bcryptjs\";\n\nexport const hashPasswordIfProvided = async (user) => {\n  if (!user.password) {\n    return user;\n  }\n\n  if (user.password.match(/^\\$2[ayb]\\$.{56}$/)) {\n    return user;\n  }\n\n  const hashedPassword = await bcrypt.hash(user.password, 10);\n  const newUser = { ...user, password: hashedPassword };\n  return newUser;\n};\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,sBAAmB;AAEZ,MAAM,yBAAyB,8BAAO,SAAS;AACpD,MAAI,CAAC,KAAK,UAAU;AAClB,WAAO;AAAA,EACT;AAEA,MAAI,KAAK,SAAS,MAAM,mBAAmB,GAAG;AAC5C,WAAO;AAAA,EACT;AAEA,QAAM,iBAAiB,MAAM,gBAAAA,QAAO,KAAK,KAAK,UAAU,EAAE;AAC1D,QAAM,UAAU,EAAE,GAAG,MAAM,UAAU,eAAe;AACpD,SAAO;AACT,GAZsC;",
+  "names": ["bcrypt"]
+}
