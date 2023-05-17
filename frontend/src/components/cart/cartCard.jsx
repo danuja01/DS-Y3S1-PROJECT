@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { removeItem, updateItemQuantity } from '../../store/cartSlice'
+import { clearCart, removeItem, updateItemQuantity } from '../../store/cartSlice'
 import { createOrder } from '../../services/order'
 
 // export default Cart
@@ -54,16 +54,16 @@ const CartCard = (props) => {
       totalPrice: subtotal + shipping,
       commission: (subtotal + shipping) * 0.1,
     }))
-  }, [cartItems, subtotal, shipping])
+  }, [cartItems, subtotal, shipping, user])
 
-  useEffect(() => {
-    console.log('order : ', order)
-    console.log('user', user)
-    console.log('cartItems', cartItems)
-  }, [order, user, cartItems])
+  const handleOrder = async () => {
+    await createOrder(order)
 
-  const handleOrder = () => {
-    createOrder(order)
+    // Clear cart
+    dispatch(clearCart())
+
+    //alert
+    alert('Order created successfully')
   }
 
   return (
@@ -129,11 +129,10 @@ const CartCard = (props) => {
                 <p className="mb-1 text-lg font-bold">LKR {subtotal + shipping}</p>
               </div>
             </div>
-            <Link to={`/payments?subtotal=${subtotal + shipping}`}>
-              <button onClick={handleOrder} className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">
-                Check out
-              </button>
-            </Link>
+
+            <button onClick={handleOrder} className="mt-6 w-full rounded-md bg-green-800 py-1.5 font-medium text-blue-50 hover:bg-green-600">
+              Confirm
+            </button>
           </div>
         </div>
       </div>

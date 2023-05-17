@@ -85,11 +85,6 @@ const Login = () => {
                   <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                     Password
                   </label>
-                  <div className="text-sm">
-                    <a href="#" className="font-semibold text-green-800 hover:text-green-600">
-                      Forgot password?
-                    </a>
-                  </div>
                 </div>
                 <div className="mt-2">
                   <input
@@ -116,9 +111,6 @@ const Login = () => {
                   <Checkbox checked={rememberMe} toggle={() => dispatch(toggleRememberMe())} />
                   <p class="text-sm ml-2 font-semibold">Remember Me</p>
                 </div>
-                <Link to="/forgot-password" class="font-semibold text-sm text-green-800 hover:text-green-600">
-                  Forgot Password
-                </Link>
               </div>
             </form>
 
