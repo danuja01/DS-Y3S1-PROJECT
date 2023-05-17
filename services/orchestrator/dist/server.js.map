@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../src/server.js"],
-  "sourcesContent": ["import initializeServer from \"@app/server\";\nimport { defaultLimiter as rateLimiter, authorizer } from \"./middleware\";\nimport routes from \"./routes\";\nimport config from \"./config\";\n\ninitializeServer({\n  service: \"Orchestrator\",\n  routes,\n  lMiddleware: [authorizer, rateLimiter],\n  cors: true,\n  config,\n});\n"],
+  "sourcesContent": ["import initializeServer from \"@app/server\";\r\nimport { defaultLimiter as rateLimiter, authorizer } from \"./middleware\";\r\nimport routes from \"./routes\";\r\nimport config from \"./config\";\r\n\r\ninitializeServer({\r\n  service: \"Orchestrator\",\r\n  routes,\r\n  lMiddleware: [authorizer, rateLimiter],\r\n  cors: true,\r\n  config,\r\n});\r\n"],
   "mappings": ";;;;;;;;;;;;;;;;;;;;;;AAAA,oBAA6B;AAC7B,wBAA0D;AAC1D,oBAAmB;AACnB,oBAAmB;AAAA,IAEnB,cAAAA,SAAiB;AAAA,EACf,SAAS;AAAA,EACT,sBAAAC;AAAA,EACA,aAAa,CAAC,8BAAY,kBAAAC,cAAW;AAAA,EACrC,MAAM;AAAA,EACN,sBAAAC;AACF,CAAC;",
   "names": ["initializeServer", "routes", "rateLimiter", "config"]
 }

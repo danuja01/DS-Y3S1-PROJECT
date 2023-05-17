@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../src/middleware/index.js"],
-  "sourcesContent": ["export * from \"./auth\";\n"],
+  "sourcesContent": ["export * from \"./auth\";\r\n"],
   "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;AAAA,+BAAc,mBAAd;",
   "names": []
 }

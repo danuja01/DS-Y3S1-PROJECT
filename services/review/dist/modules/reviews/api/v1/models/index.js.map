@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../../../../../src/modules/reviews/api/v1/models/index.js"],
-  "sourcesContent": ["export * from \"./review\";\n"],
+  "sourcesContent": ["export * from \"./review\";\r\n"],
   "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;AAAA,2BAAc,qBAAd;",
   "names": []
 }
