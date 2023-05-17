@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/server.js"],
+  "sourcesContent": ["import initializeServer from \"@app/server\";\nimport config from \"./config\";\n\ninitializeServer({\n  service: \"User service\",\n  database: true,\n  config,\n});\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;AAAA,oBAA6B;AAC7B,oBAAmB;AAAA,IAEnB,cAAAA,SAAiB;AAAA,EACf,SAAS;AAAA,EACT,UAAU;AAAA,EACV,sBAAAC;AACF,CAAC;",
+  "names": ["initializeServer", "config"]
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../src/modules/notification/api/v1/schema.js"],
+  "sourcesContent": ["import { Joi } from \"celebrate\";\n// import { roles } from \"@app/constants\";\n\nexport const createNotificationSchema = Joi.object({\n  user_id: Joi.string().optional(),\n  notification_title: Joi.string().required(),\n  message: Joi.string().required(),\n  isRead: Joi.boolean().optional().default(false),\n});\n\nexport const updateNotificationSchema = Joi.object({\n  notification_title: Joi.string().optional(),\n  message: Joi.string().optional(),\n  isRead: Joi.boolean().optional(),\n});\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,uBAAoB;AAGb,MAAM,2BAA2B,qBAAI,OAAO;AAAA,EACjD,SAAS,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC/B,oBAAoB,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC1C,SAAS,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC/B,QAAQ,qBAAI,QAAQ,EAAE,SAAS,EAAE,QAAQ,KAAK;AAChD,CAAC;AAEM,MAAM,2BAA2B,qBAAI,OAAO;AAAA,EACjD,oBAAoB,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC1C,SAAS,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC/B,QAAQ,qBAAI,QAAQ,EAAE,SAAS;AACjC,CAAC;",
+  "names": []
+}
