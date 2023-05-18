@@ -8,6 +8,10 @@ export const getAllOrdersNoPagination = async (filterQuery = '', sortQuery = '')
   return await apiRequest(() => axiosInstance.get(`/api/v1/orders?${filterQuery}&${sortQuery}`))
 }
 
+export const getAnOrder = async (id) => {
+  return await apiRequest(() => axiosInstance.get(`/api/v1/orders/${id}`))
+}
+
 export const createOrder = async (order) => {
   return await apiRequest(() => axiosInstance.post('/api/v1/orders', order), true)
 }
