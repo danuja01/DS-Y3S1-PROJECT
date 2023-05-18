@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../src/modules/delivery/api/v1/service.js"],
-  "sourcesContent": ["import {\r\n  createDelivery,\r\n  getAllDeliveries,\r\n  getDeliveryById,\r\n  updateDeliveryById,\r\n  deleteDeliveryById,\r\n} from \"../../repository\";\r\n\r\n// eslint-disable-next-line\r\nexport const serviceCreateDelivery = async (delivery) => {\r\n  return createDelivery(delivery);\r\n};\r\n\r\nexport const serviceGetDeliveries = (filters, sorts, page, limit) => {\r\n  return getAllDeliveries({ filters, sorts, page, limit });\r\n};\r\n\r\nexport const serviceGetDeliveryById = (id) => {\r\n  const data = getDeliveryById(id);\r\n  return data;\r\n};\r\n\r\n// eslint-disable-next-line\r\nexport const serviceUpdateDeliveryById = async (id, data) => {\r\n  return updateDeliveryById(id, data);\r\n};\r\n\r\nexport const serviceDeleteDeliveryById = (id) => {\r\n  return deleteDeliveryById(id);\r\n};\r\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,wBAMO;AAGA,MAAM,wBAAwB,8BAAO,aAAa;AACvD,aAAO,kCAAe,QAAQ;AAChC,GAFqC;AAI9B,MAAM,uBAAuB,wBAAC,SAAS,OAAO,MAAM,UAAU;AACnE,aAAO,oCAAiB,EAAE,SAAS,OAAO,MAAM,MAAM,CAAC;AACzD,GAFoC;AAI7B,MAAM,yBAAyB,wBAAC,OAAO;AAC5C,QAAM,WAAO,mCAAgB,EAAE;AAC/B,SAAO;AACT,GAHsC;AAM/B,MAAM,4BAA4B,8BAAO,IAAI,SAAS;AAC3D,aAAO,sCAAmB,IAAI,IAAI;AACpC,GAFyC;AAIlC,MAAM,4BAA4B,wBAAC,OAAO;AAC/C,aAAO,sCAAmB,EAAE;AAC9B,GAFyC;",
-  "names": []
-}

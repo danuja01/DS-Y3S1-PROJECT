@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../../src/modules/delivery/api/v1/helpers/index.js"],
-  "sourcesContent": ["import bcrypt from \"bcryptjs\";\r\n\r\nexport const hashPasswordIfProvided = async (user) => {\r\n  if (!user.password) {\r\n    return user;\r\n  }\r\n\r\n  if (user.password.match(/^\\$2[ayb]\\$.{56}$/)) {\r\n    return user;\r\n  }\r\n\r\n  const hashedPassword = await bcrypt.hash(user.password, 10);\r\n  const newUser = { ...user, password: hashedPassword };\r\n  return newUser;\r\n};\r\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,sBAAmB;AAEZ,MAAM,yBAAyB,8BAAO,SAAS;AACpD,MAAI,CAAC,KAAK,UAAU;AAClB,WAAO;AAAA,EACT;AAEA,MAAI,KAAK,SAAS,MAAM,mBAAmB,GAAG;AAC5C,WAAO;AAAA,EACT;AAEA,QAAM,iBAAiB,MAAM,gBAAAA,QAAO,KAAK,KAAK,UAAU,EAAE;AAC1D,QAAM,UAAU,EAAE,GAAG,MAAM,UAAU,eAAe;AACpD,SAAO;AACT,GAZsC;",
-  "names": ["bcrypt"]
-}
