@@ -72,7 +72,7 @@ const CartCard = (props) => {
     alert('Order created successfully')
 
     // Redirect to payment page with order ID
-    navigate(`/payment/${createdOrder.data.id}?subtotal=${subtotal}&shipping=${shipping}`)
+    navigate(`/payment/${createdOrder.data.id}`)
   }
 
   return (
