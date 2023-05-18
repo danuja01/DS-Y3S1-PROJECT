@@ -1,53 +1,78 @@
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
-import { useLocation, useParams } from 'react-router-dom'
-import { updateOrderPaymentStatus } from '../services/order'
+import { useParams } from 'react-router-dom'
+import { updateOrderPaymentStatus, getAnOrder } from '../services/order'
+import { useState, useEffect } from 'react'
 
 function PayPal() {
   const { id } = useParams()
-  const location = useLocation()
-  const queryParams = new URLSearchParams(location.search)
-  const subtotal = parseFloat(queryParams.get('subtotal')) || 0
-  const shipping = parseFloat(queryParams.get('shipping')) || 0
+  const [order, setOrder] = useState([])
+
+  useEffect(() => {
+    getAnOrder(id).then((response) => {
+      setOrder(response.data)
+      console.log(response.data)
+    })
+  }, [id])
 
   const updatePaymentStatus = {
     isPaid: true,
   }
 
-  const total = subtotal + shipping
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="p-8 bg-white rounded-lg shadow-lg" style={{ width: '70%', hight: '100%' }}>
-        <h3 className="text-2xl font-bold mb-4 text-center">Shampoo</h3>
-        <img className="w-32 h-auto mb-4 rounded-lg shadow-md" src="assets/images/homeopathy-burlington 1.png" alt="shampoo" />
-        <p className="text-center">
-          <span className="text-lg font-bold">Total Pay: {total}</span>
-        </p>
-        <PayPalScriptProvider options={{ 'client-id': import.meta.env.VITE_CLIENT_ID }}>
-          <PayPalButtons
-            createOrder={(data, actions) => {
-              return actions.order.create({
-                purchase_units: [
-                  {
-                    amount: {
-                      value: total,
+    <div className="flex flex-wrap justify-center items-center h-screen">
+      {order.map((orderItem) => (
+        <div key={orderItem._id} className="bg-white shadow-lg rounded-lg mx-4 my-4 p-6">
+          {/* Render the desired output for each order */}
+          <h1 className="text-2xl font-bold mb-2">PayPal</h1>
+          <h1 className="text-1xl font-bold mb-4">Order ID: {orderItem._id}</h1>
+          <p className="text-gray-500 mt-2">Buyer: {orderItem.buyer[0].name}</p>
+          <p className="text-gray-500 mt-2">Email: {orderItem.buyer[0].email}</p>
+          <p className="text-gray-500 mt-2">Shipping Address: {orderItem.shippingAddress}</p>
+          <p className="text-gray-500 mt-2">Payment Method: {orderItem.paymentMethod}</p>
+          <p className="text-gray-500 mt-2">Items Price: {orderItem.itemsPrice}</p>
+          <p className="text-gray-500 mt-2">Shipping Price: {orderItem.shippingPrice}</p>
+          <p className="text-gray-500 mt-2">Total Price: {orderItem.totalPrice}</p>
+          <p className="text-gray-500 mt-2">Commission: {orderItem.commission}</p>
+          <p className="text-gray-500 mt-2">Status: {orderItem.status}</p>
+          <p className="text-gray-500 mt-2">Delivered? : {orderItem.isDelivered ? 'Yes' : 'No'}</p>
+          <p className="text-gray-500 mt-2">Created At: {orderItem.createdAt}</p>
+          <p className="text-gray-500 mt-2 mb-8">Updated At: {orderItem.updatedAt}</p>
+
+          <p className="mb-8">
+            <span className="text-lg font-bold">Total Pay = {orderItem.totalPrice + orderItem.commission}</span>
+          </p>
+          <PayPalScriptProvider options={{ 'client-id': import.meta.env.VITE_CLIENT_ID }}>
+            <PayPalButtons
+              createOrder={(data, actions) => {
+                return actions.order.create({
+                  purchase_units: [
+                    {
+                      amount: {
+                        value: (orderItem.totalPrice + orderItem.commission).toFixed(2),
+                      },
                     },
-                  },
-                ],
-              })
-            }}
-            onApprove={async (data, actions) => {
-              const details = await actions.order.capture()
-              const name = details.payer.name.given_name
+                  ],
+                })
+              }}
+              onApprove={async (data, actions) => {
+                const details = await actions.order.capture()
+                const name = details.payer.name.given_name
 
-              // Update payment status
-              await updateOrderPaymentStatus(id, updatePaymentStatus)
+                // Update payment status
+                await updateOrderPaymentStatus(orderItem._id, updatePaymentStatus)
 
-              alert('Transaction completed by ' + name)
-            }}
-          />
-        </PayPalScriptProvider>
-      </div>
+                alert('Transaction completed by ' + name)
+              }}
+              onCancel={() => {
+                alert('Payment cancelled by the user.')
+              }}
+              onError={() => {
+                alert('An error occurred during payment processing.')
+              }}
+            />
+          </PayPalScriptProvider>
+        </div>
+      ))}
     </div>
   )
 }
