@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Layout from '../components/layout'
-// import { GlobeAltIcon } from '@heroicons/react/20/solid'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { getSingleProduct, getAllProducts } from '../services/item'
 
@@ -104,12 +103,6 @@ const Item = () => {
                     {starIcons}
                     <span className="text-gray-600 ml-3">{numRatings} Reviews</span>
                   </span>
-                  <div className="flex items-center ml-3 pl-3 py-2 border-l-2 border-gray-200  ">
-                    {/* <GlobeAltIcon className="h-5 w-5 text-primary" /> */}
-                    <a href="https://www.google.com/search?q=sigiriya" className="ml-1 text-primary">
-                      Explore More!
-                    </a>
-                  </div>
                 </div>
               </div>
               <div className="flex items-center pl-3 py-2">

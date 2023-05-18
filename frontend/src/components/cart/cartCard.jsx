@@ -7,7 +7,7 @@ import { createOrder } from '../../services/order'
 // export default Cart
 
 const CartCard = (props) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart.items)
   const user = useSelector((state) => state.data.user.authUser)
@@ -61,7 +61,7 @@ const CartCard = (props) => {
 
   const handleOrder = async () => {
     setLoading(true)
-    await createOrder(order)
+    const createdOrder = await createOrder(order)
 
     // Clear cart
     dispatch(clearCart())
@@ -70,9 +70,9 @@ const CartCard = (props) => {
 
     //alert
     alert('Order created successfully')
-    
-    // Redirect to payment page
-    navigate(`/payment?subtotal=${subtotal}&shipping=${shipping}`);
+
+    // Redirect to payment page with order ID
+    navigate(`/payment/${createdOrder.data.id}?subtotal=${subtotal}&shipping=${shipping}`)
   }
 
   return (
