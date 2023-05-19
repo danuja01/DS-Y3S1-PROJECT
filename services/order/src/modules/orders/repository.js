@@ -47,7 +47,15 @@ export function getOrdersByBuyer(
     limit
   );
 
-  aggregateOptions.push({
+  console.log("buyer", userId);
+
+  // Find the index of the first $lookup stage in aggregateOptions
+  const lookupStageIndex = aggregateOptions.findIndex(
+    (stage) => stage.$lookup !== undefined
+  );
+
+  // Insert the $match stage before the $lookup stages
+  aggregateOptions.splice(lookupStageIndex, 0, {
     $match: {
       buyer: mongoose.Types.ObjectId(userId),
     },
