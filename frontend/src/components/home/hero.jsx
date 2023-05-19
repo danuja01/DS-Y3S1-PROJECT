@@ -21,7 +21,7 @@ const Hero = () => {
           <div className="w-full px-4 lg:w-6/12">
             <div className="lg:ml-auto lg:text-right">
               <div className="relative z-10 inline-block  lg:pt-0">
-                <img src="/assets/images/homeopathy-burlington 1.png" alt="hero" className="w-[31rem] lg:ml-auto" />
+                <img src="/assets/images/image_1.png" alt="hero" className="w-[31rem] lg:ml-auto" />
               </div>
             </div>
           </div>

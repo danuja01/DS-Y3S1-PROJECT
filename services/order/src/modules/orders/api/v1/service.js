@@ -30,6 +30,8 @@ export const serviceGetOrdersByBuyer = (
   page,
   limit
 ) => {
+  console.log(userId);
+
   return getOrdersByBuyer(userId, filters, sorts, page, limit);
 };
 
@@ -40,6 +42,7 @@ export const serviceGetOrdersBySeller = (
   page,
   limit
 ) => {
+  console.log(userId);
   return getOrdersBySeller(userId, filters, sorts, page, limit);
 };
 

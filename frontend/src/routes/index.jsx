@@ -14,6 +14,7 @@ import Register from '../pages/register'
 import Redirection from '../pages/redirect'
 import Verify from '../pages/verify'
 import Item from '../pages/item'
+import MyOrders from '../pages/myOrders'
 
 const AnimatedRoutes = () => {
   useAuth()
@@ -34,6 +35,8 @@ const AnimatedRoutes = () => {
         <Route path="/delivery/dispatchDelivery" element={<DispatchDelivery />} />
         <Route path="/redirect" element={<Redirection />} />
         <Route path="/verify/:code" element={<Verify />} />
+
+        <Route path="/my-orders" element={<MyOrders />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
