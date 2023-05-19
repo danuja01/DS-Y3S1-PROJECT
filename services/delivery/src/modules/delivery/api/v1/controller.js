@@ -44,12 +44,25 @@ delivery.get(
   })
 );
 
+// delivery.get(
+//   "/:id",
+//   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
+//   asyncHandler(async function controllerGetDeliveryById(req, res) {
+//     const data = await serviceGetDeliveryById(req.params.id);
+//     return toSuccess({ res, data, message: "Delivery fetched successfully!" });
+//   })
+// );
+
 delivery.get(
   "/:id",
   celebrate({ [Segments.PARAMS]: objectIdSchema() }),
   asyncHandler(async function controllerGetDeliveryById(req, res) {
     const data = await serviceGetDeliveryById(req.params.id);
-    return toSuccess({ res, data, message: "Delivery fetched successfully!" });
+    if (!data) {
+      // Handle the case where the delivery with the provided ID is not found
+      return res.status(404).json({ message: "Delivery not found" });
+    }
+    return res.json({ data, message: "Delivery fetched successfully!" });
   })
 );
 

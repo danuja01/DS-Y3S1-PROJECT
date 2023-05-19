@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import './deliveryHome.css';
 import ProgressBar from './progressBar';
-import { getDelivery, updateDelivery } from '../../services/delivery';
+import { getDelivery, getDeliveryById, updateDelivery } from '../../services/delivery';
+import { addNotifications } from '../../services/notifications';
 import GoogleMaps from './googleMap';
 
 
@@ -21,12 +22,14 @@ const TestProgress = () => {
 
     const data = [status, shippingAddress, shippingPrice]
 
+    // const userid = localStorage.getItem('id')
+    const orderId = localStorage.getItem('id')
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getDelivery(true)
+                const response = await getDeliveryById(orderId, true)
                 setDeliveries(response.data);
-                console.log("setDele",deliveries);
+                console.log("setDele", deliveries);
                 setId(response.data._id);
                 setOrderId(response.data.order_id);
                 setShippingAddress(response.data.shippingAddress);
@@ -46,20 +49,33 @@ const TestProgress = () => {
             setProgress(prevProgress => prevProgress + 25);
         }
 
-        try {
-            const updData = {
-                order_id, 
-                shippingAddress ,
-                status: "Dispatched", 
-                shippingPrice
-            };
-            const response = await updateDelivery(_id, updData, true);
-            console.log(response); 
-          } catch (error) {
-            console.log(error); 
-          } 
+        // try {
+        //     const updData = {
+        //         order_id, 
+        //         shippingAddress ,
+        //         status: "Dispatched", 
+        //         shippingPrice
+        //     };
+        //     const response = await updateDelivery(_id, updData, true);
+        //     console.log(response); 
+        //   } catch (error) {
+        //     console.log(error); 
+        //   } 
 
-         window.location.replace("/delivery/dispatchDelivery");
+        try {
+            const data = {
+                user_id: userid,
+                notification_title: "Delivery",
+                message: "Your Delivery is Dispatched",
+                isRead: false
+            };
+            const response = await addNotifications(data, true);
+
+        } catch (error) {
+            console.log(error);
+        }
+
+        window.location.replace("/delivery/dispatchDelivery");
     };
 
 
@@ -74,13 +90,13 @@ const TestProgress = () => {
                     <h1><center>Delivery Information</center></h1>
 
                     <div>
-                        Order ID: {order_id}
+                        Order ID: {"001"}
                         <hr />
-                        Shipping Address: {shippingAddress}
+                        Shipping Address: {"No, 250/3A, Bellanwila"}
                         <hr />
-                        Status: {status}
+                        Status: {"Confirmed"}
                         <hr />
-                        Price: {shippingPrice}
+                        Price: {"1000"}
                         <div style={{ position: 'relative' }}>
                             <button type='submit' style={{ position: 'absolute', bottom: 0, right: 0 }}>Dispatch</button>
                         </div>

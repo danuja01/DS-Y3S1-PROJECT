@@ -198,7 +198,7 @@ const Navbar = ({ name, email }) => {
             </button>
             <div className={`50 ${notificationMenu ? '' : 'hidden'}  absolute right-5  top-25 z-30 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown`} style={{ maxHeight: '150px', overflowY: 'scroll' }}>
               <div className="px-4 py-3">
-                {notifications.map((notification) => {
+                {notifications.slice().reverse().map((notification) => {
                   const time = new Date(notification.created_at).toLocaleTimeString()
                   return (
                     <div key={notification._id}>

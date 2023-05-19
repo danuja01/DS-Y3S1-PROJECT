@@ -1,7 +1,7 @@
 import { axiosInstance, apiRequest } from './core/axios'
 
 export const getDelivery = async (showLoader) => {
-  return await apiRequest(() => axiosInstance.get(`/api/v1/delivery/`), showLoader)
+  return await apiRequest(() => axiosInstance.get(`/api/v1/delivery/643a39f152466cece5a7a501`), showLoader)
 }
 
 export const addDelivery = async (data, showLoader) => {

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './deliveryHome.css';
 import ProgressBar from './progressBar';
-import { getDelivery, addDelivery } from '../../services/delivery';
+import { getDelivery, addDelivery, getDeliveryById } from '../../services/delivery';
 import bike from './bike.gif';
 
 
@@ -16,19 +16,20 @@ const DispatchDelivery = () => {
     const [progress, setProgress] = useState(75);
     const progressBarRef = useRef(null);
 
+    // const orderId = localStorage.getItem('id')
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await getDelivery(true)
-                setDeliveries(response.data);
-                console.log(setDeliveries);
-                setOrderId(response.data.order_id);
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchData()
+        // const fetchData = async () => {
+        //     try {
+        //         const response = await getDelivery(true)
+        //         setDeliveries(response.data);
+        //         console.log(setDeliveries);
+        //         setOrderId(response.data.order_id);
+        //     } catch (error) {
+        //         console.log(error)
+        //     }
+        // }
+        // fetchData()
 
         // Redirect to another page after 5 seconds
         const redirectTimer = setTimeout(() => {

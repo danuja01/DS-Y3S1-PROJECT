@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './deliveryHome.css';
 import ProgressBar from './progressBar';
-import { addDelivery, getDeliveryById } from '../../services/delivery';
-
+import { addDelivery, getDeliveryById, getDelivery } from '../../services/delivery';
+import { addNotifications } from '../../services/notifications';
 
 const DeliveryHome = (props) => {
     const [order_id, setOrderId] = useState("");
@@ -17,14 +17,16 @@ const DeliveryHome = (props) => {
     const [showPopup, setShowPopup] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
 
-    const orderId = localStorage.getItem('id')
+    const userid = localStorage.getItem('id')
+    // const orderId = localStorage.getItem('id')
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await getDeliveryById(orderId, true)
+                console.log(userid)
+                const response = await getDeliveryById(userid, true)
                 setDeliveries(response.data);
-                console.log(setDeliveries);
+                console.log("setDEliveries", setDeliveries);
                 setOrderId(response.data.order_id);
                 setShippingAddress(response.data.shippingAddress);
                 setShippingPrice(response.data.shippingPrice);
@@ -47,19 +49,33 @@ const DeliveryHome = (props) => {
         }
         setFormSubmitted(true);
 
+        // try {
+        //     const data = {
+        //         order_id, 
+        //         shippingAddress ,
+        //         status: "Confirmed", 
+        //         shippingPrice
+        //     };
+        //     const response = await addDelivery(data, true); 
+
+        //     console.log("shipping price", shippingPrice)
+        //     console.log("answers",response); 
+        // } catch (error) {
+        //     console.log(error); 
+        // }
+
+
         try {
             const data = {
-                order_id, 
-                shippingAddress ,
-                status: "Confirmed", 
-                shippingPrice
+                user_id: userid,
+                notification_title: "Delivery",
+                message: "Your Delivery is Confirmed",
+                isRead: false
             };
-            const response = await addDelivery(data, true); 
+            const response = await addNotifications(data, true);
 
-            console.log("shipping price", shippingPrice)
-            console.log("answers",response); 
         } catch (error) {
-            console.log(error); 
+            console.log(error);
         }
 
         window.location.replace(`/delivery/testProgress`);
@@ -84,7 +100,7 @@ const DeliveryHome = (props) => {
                     </label>
                     <label>
                         Status:
-                        <input type="text" value={status} onChange={(e) => setStatus(e.target.value)} disabled />
+                        <input type="text" value={"Pending"} onChange={(e) => setStatus(e.target.value)} disabled />
                     </label>
                     <label>
                         Price:
