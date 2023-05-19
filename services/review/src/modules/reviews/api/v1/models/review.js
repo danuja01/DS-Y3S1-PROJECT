@@ -1,24 +1,21 @@
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
+import { Item } from "./item";
+import { User } from "./user";
 
 const { Schema } = mongoose;
 
 const ReviewSchema = new Schema(
   {
-    product_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
+    item: {
+      type: mongoose.Types.ObjectId,
       required: false,
+      ref: "Item",
     },
-    user_name: {
-      type: String,
-      ref: "User",
+    user: {
+      type: mongoose.Types.ObjectId,
       required: false,
-    },
-    user_id: {
-      type: String,
       ref: "User",
-      required: false,
     },
     rating: {
       type: Number,
@@ -26,11 +23,7 @@ const ReviewSchema = new Schema(
       min: 1,
       max: 5,
     },
-    title: {
-      type: String,
-      required: true,
-    },
-    description: {
+    text: {
       type: String,
       required: true,
     },

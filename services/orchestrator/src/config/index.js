@@ -15,6 +15,7 @@ class Base {
       REVIEW_SERVICE_BASE_URL: Joi.string().required(),
       NOTIFICATION_SERVICE_BASE_URL: Joi.string().required(),
       DELIVERY_SERVICE_BASE_URL: Joi.string().required(),
+      SELLER_SERVICE_BASE_URL: Joi.string().required(),
     };
   }
   static get values() {
@@ -28,6 +29,7 @@ class Base {
       REVIEW_SERVICE_BASE_URL: process.env.REVIEW_SERVICE_BASE_URL,
       NOTIFICATION_SERVICE_BASE_URL: process.env.NOTIFICATION_SERVICE_BASE_URL,
       DELIVERY_SERVICE_BASE_URL: process.env.DELIVERY_SERVICE_BASE_URL,
+      SELLER_SERVICE_BASE_URL: process.env.SELLER_SERVICE_BASE_URL,
     };
   }
 }

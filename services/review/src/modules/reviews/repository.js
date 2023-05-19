@@ -5,7 +5,7 @@ export function createReview(review) {
 }
 
 export function getReviewByRating(rating) {
-  return Review.findOne({ rating }).lean();
+  return Review.find({ rating }).lean().populate("item");
 }
 
 export function getReviewById(id) {
@@ -25,7 +25,7 @@ export function getAllReviews({ filters = {}, sorts = {}, page, limit }) {
       lean: true,
     });
   }
-  return Review.find(filters).sort(sorts).lean();
+  return Review.find(filters).sort(sorts).lean().populate("item").populate("user");
 }
 
 export function updateReviewById(id, data) {

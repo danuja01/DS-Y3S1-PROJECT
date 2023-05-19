@@ -9,9 +9,11 @@ import TestProgress from '../pages/testProgress'
 import DispatchDelivery from '../pages/dispatchDelivery'
 import Cart from '../pages/cart'
 import Login from '../pages/login'
+import PayPal from '../pages/payment-paypal'
 import Register from '../pages/register'
 import Redirection from '../pages/redirect'
 import Verify from '../pages/verify'
+import Item from '../pages/item'
 
 const AnimatedRoutes = () => {
   useAuth()
@@ -26,6 +28,8 @@ const AnimatedRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/delivery" element={<Delivery />} />
+        <Route path="/payments" element={<PayPal />} />
+        <Route path="/item/:id" element={<Item />} />
         <Route path="/delivery/testProgress" element={<TestProgress />} />
         <Route path="/delivery/dispatchDelivery" element={<DispatchDelivery />} />
         <Route path="/redirect" element={<Redirection />} />

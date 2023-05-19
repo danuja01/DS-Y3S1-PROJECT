@@ -21,12 +21,12 @@ const Cart = () => {
       <h2>Cart</h2>
       {cartItems.length === 0 && <p>Your cart is empty</p>}
       {cartItems.map((item) => (
-        <div key={item.id}>
+        <div key={item._id}>
           <p>
             {item.name} - {item.price} - Quantity: {item.quantity}
           </p>
-          <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
-          <input type="number" min="1" value={item.quantity} onChange={(e) => handleQuantityChange(item.id, Number(e.target.value))} />
+          <button onClick={() => handleRemoveItem(item._id)}>Remove</button>
+          <input type="number" min="1" value={item.quantity} onChange={(e) => handleQuantityChange(item._id, Number(e.target.value))} />
         </div>
       ))}
     </div>

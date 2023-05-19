@@ -7,7 +7,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import { useRef, useCallback, useState, useEffect } from 'react'
 
-const ItemSlider = (props) => {
+const ItemSlider = ({ data }) => {
   const [isBeginning, setIsBeginning] = useState(true)
   const [isEnd, setIsEnd] = useState(false)
   const sliderRef = useRef(null)
@@ -43,24 +43,12 @@ const ItemSlider = (props) => {
   return (
     <div className="mx-6 mt-10 relative">
       <Swiper ref={sliderRef} spaceBetween={30} slidesPerView={4} onSwiper={handleSwiper}>
-        <SwiperSlide>
-          <ItemCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ItemCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ItemCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ItemCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ItemCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ItemCard />
-        </SwiperSlide>
+        {data &&
+          data.map((item) => (
+            <SwiperSlide>
+              <ItemCard item={item} />
+            </SwiperSlide>
+          ))}
       </Swiper>
       <div className="mt-7 w-full flex justify-end">
         <button className={`prev-arrow w-10 h-7 bg-red bg-green-800 text-white mr-2 rounded-sm transform -translate-y-1/2  shadow-md z-10 ${isBeginning ? 'opacity-50 cursor-default' : 'cursor-pointer'}`} onClick={handlePrev} disabled={isBeginning}>
