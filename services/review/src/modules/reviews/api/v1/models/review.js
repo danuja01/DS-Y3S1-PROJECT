@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import { Item } from "./item";
+import { User } from "./user";
 
 const { Schema } = mongoose;
 
@@ -12,12 +13,9 @@ const ReviewSchema = new Schema(
       ref: "Item",
     },
     user: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       required: false,
-    },
-    user_id: {
-      type: String,
-      required: false,
+      ref: "User",
     },
     rating: {
       type: Number,

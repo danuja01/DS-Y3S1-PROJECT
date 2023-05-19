@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../src/modules/emails/api/v1/service.js"],
-  "sourcesContent": ["import fs from \"fs\";\nimport createError from \"http-errors\";\nimport { traced } from \"@sliit-foss/functions\";\nimport { sendMail } from \"../../../../services\";\n\nexport const serviceSendEmail = async ({\n  template,\n  data,\n  options: { to, cc, bcc, subject, attachments },\n}) => {\n  let html;\n  try {\n    html = fs.readFileSync(`${__dirname}/templates/${template}.html`, \"utf8\");\n  } catch (error) {\n    throw createError(400, \"Template not found\", { template });\n  }\n  const result = await traced(sendMail)({\n    to,\n    cc,\n    bcc,\n    templateHTML: html,\n    replacements: data,\n    subject,\n    attachments,\n  });\n  if (result) return;\n  throw createError(424, \"Failed to send email\");\n};\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,gBAAe;AACf,yBAAwB;AACxB,uBAAuB;AACvB,sBAAyB;AAElB,MAAM,mBAAmB,8BAAO;AAAA,EACrC;AAAA,EACA;AAAA,EACA,SAAS,EAAE,IAAI,IAAI,KAAK,SAAS,YAAY;AAC/C,MAAM;AACJ,MAAI;AACJ,MAAI;AACF,WAAO,UAAAA,QAAG,aAAa,GAAG,uBAAuB,iBAAiB,MAAM;AAAA,EAC1E,SAAS,OAAP;AACA,cAAM,mBAAAC,SAAY,KAAK,sBAAsB,EAAE,SAAS,CAAC;AAAA,EAC3D;AACA,QAAM,SAAS,UAAM,yBAAO,wBAAQ,EAAE;AAAA,IACpC;AAAA,IACA;AAAA,IACA;AAAA,IACA,cAAc;AAAA,IACd,cAAc;AAAA,IACd;AAAA,IACA;AAAA,EACF,CAAC;AACD,MAAI;AAAQ;AACZ,YAAM,mBAAAA,SAAY,KAAK,sBAAsB;AAC/C,GAtBgC;",
-  "names": ["fs", "createError"]
-}

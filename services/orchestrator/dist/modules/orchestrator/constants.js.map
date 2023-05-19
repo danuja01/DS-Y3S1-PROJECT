@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/modules/orchestrator/constants.js"],
-  "sourcesContent": ["import config from \"../../config\";\n\nexport const serviceHosts = {\n  auth: config.AUTH_SERVICE_BASE_URL,\n  users: config.USER_SERVICE_BASE_URL,\n  emails: config.EMAIL_SERVICE_BASE_URL,\n  orders: config.ORDER_SERVICE_BASE_URL,\n  payments: config.PAYMENT_SERVICE_BASE_URL,\n  reviews: config.REVIEW_SERVICE_BASE_URL,\n  notification: config.NOTIFICATION_SERVICE_BASE_URL,\n  delivery: config.DELIVERY_SERVICE_BASE_URL,\n  items: config.SELLER_SERVICE_BASE_URL,\n};\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,oBAAmB;AAEZ,MAAM,eAAe;AAAA,EAC1B,MAAM,cAAAA,QAAO;AAAA,EACb,OAAO,cAAAA,QAAO;AAAA,EACd,QAAQ,cAAAA,QAAO;AAAA,EACf,QAAQ,cAAAA,QAAO;AAAA,EACf,UAAU,cAAAA,QAAO;AAAA,EACjB,SAAS,cAAAA,QAAO;AAAA,EAChB,cAAc,cAAAA,QAAO;AAAA,EACrB,UAAU,cAAAA,QAAO;AAAA,EACjB,OAAO,cAAAA,QAAO;AAChB;",
-  "names": ["config"]
-}

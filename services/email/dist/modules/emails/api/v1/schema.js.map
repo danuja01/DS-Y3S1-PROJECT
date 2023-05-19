@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../src/modules/emails/api/v1/schema.js"],
-  "sourcesContent": ["import { Joi } from \"celebrate\";\n\nexport const sendEmailSchema = Joi.object({\n  template: Joi.string().required(),\n  data: Joi.object().required(),\n  options: {\n    to: Joi.array().items(Joi.string().email()).required(),\n    cc: Joi.array().items(Joi.string().email()),\n    bcc: Joi.array().items(Joi.string().email()),\n    subject: Joi.string().required(),\n    attachments: Joi.array().optional(),\n  },\n});\n"],
-  "mappings": ";;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,uBAAoB;AAEb,MAAM,kBAAkB,qBAAI,OAAO;AAAA,EACxC,UAAU,qBAAI,OAAO,EAAE,SAAS;AAAA,EAChC,MAAM,qBAAI,OAAO,EAAE,SAAS;AAAA,EAC5B,SAAS;AAAA,IACP,IAAI,qBAAI,MAAM,EAAE,MAAM,qBAAI,OAAO,EAAE,MAAM,CAAC,EAAE,SAAS;AAAA,IACrD,IAAI,qBAAI,MAAM,EAAE,MAAM,qBAAI,OAAO,EAAE,MAAM,CAAC;AAAA,IAC1C,KAAK,qBAAI,MAAM,EAAE,MAAM,qBAAI,OAAO,EAAE,MAAM,CAAC;AAAA,IAC3C,SAAS,qBAAI,OAAO,EAAE,SAAS;AAAA,IAC/B,aAAa,qBAAI,MAAM,EAAE,SAAS;AAAA,EACpC;AACF,CAAC;",
-  "names": []
-}

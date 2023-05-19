@@ -10,11 +10,9 @@ export const protectedRoutes = [
   "/v1/auth/verify/*",
   "/v1/system/health",
   "/v1/items",
-<<<<<<< Updated upstream
-=======
   "/v1/reviews",
   "/v1/notification",
->>>>>>> Stashed changes
+  "/v1/reviews",
 ];
 
 export const roles = ["admin", "seller", "buyer"].reduce((acc, role) => {
