@@ -28,11 +28,11 @@ const AnimatedRoutes = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/delivery" element={<Delivery />} />
+        <Route path="/delivery/:id" element={<Delivery />} />
         <Route path="/payment/:id" element={<PayPal />} />
         <Route path="/item/:id" element={<Item />} />
-        <Route path="/delivery/testProgress" element={<TestProgress />} />
-        <Route path="/delivery/dispatchDelivery" element={<DispatchDelivery />} />
+        <Route path="/delivery/:id/testProgress" element={<TestProgress />} />
+        <Route path="/delivery/:id/dispatchDelivery" element={<DispatchDelivery />} />
         <Route path="/redirect" element={<Redirection />} />
         <Route path="/verify/:code" element={<Verify />} />
         <Route path="/seller" element={<ProductList />} />

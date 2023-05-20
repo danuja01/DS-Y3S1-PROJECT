@@ -81,7 +81,8 @@ const initialize = ({
   // const HOST = config.HOST ?? "0.0.0.0";
 
   app.listen(config.PORT, () => {
-    logger.info(`${service} listening on ${HOST}:${config.PORT}`);
+    // logger.info(`${service} listening on ${HOST}:${config.PORT}`);
+    logger.info(`${service} listening on ${config.PORT}`);
   });
 };
 

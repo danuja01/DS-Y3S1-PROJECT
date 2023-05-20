@@ -19,3 +19,7 @@ export const createOrder = async (order) => {
 export const updateOrderPaymentStatus = async (id, data) => {
   return await apiRequest(() => axiosInstance.patch(`/api/v1/orders/${id}/payment-status`, data), true)
 }
+
+export const updateOrderDeliveryStatus = async (id, data) => {
+  return await apiRequest(() => axiosInstance.patch(`/api/v1/orders/${id}/delivery-status`, data), true)
+}

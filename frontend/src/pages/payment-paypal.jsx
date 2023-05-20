@@ -1,11 +1,15 @@
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
-import { useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import { updateOrderPaymentStatus, getAnOrder } from '../services/order'
 import { useState, useEffect } from 'react'
+import { addNotifications } from '../services/notifications'
 
 function PayPal() {
   const { id } = useParams()
   const [order, setOrder] = useState([])
+  const userid = localStorage.getItem('id')
+  const navigate = useNavigate()
+
 
   useEffect(() => {
     getAnOrder(id).then((response) => {
@@ -61,6 +65,19 @@ function PayPal() {
                 await updateOrderPaymentStatus(orderItem._id, updatePaymentStatus)
 
                 alert('Transaction completed by ' + name)
+                try {
+                  const data = {
+                    user_id: userid,
+                    notification_title: "Payment",
+                    message: "Your Payment of USD " + (orderItem.totalPrice) + " is Successful",
+                    isRead: false
+                  };
+                  await addNotifications(data, true);
+
+                } catch (error) {
+                  console.log(error);
+                }
+                navigate('/')
               }}
               onCancel={() => {
                 alert('Payment cancelled by the user.')

@@ -67,7 +67,7 @@ const Navbar = ({ name, email }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       fetchData()
-    }, 3000)
+    }, 10000)
     // fetchData()
 
     return () => clearInterval(interval)
@@ -78,9 +78,7 @@ const Navbar = ({ name, email }) => {
     const updatedNotifications = []
     for (const notification of notifications) {
       const data = { isRead: true }
-      // if (!notification.isRead) {
-      //   data.time = currentTime
-      // }
+
       const response = await updateNotifications(notification._id, data, false)
       updatedNotifications.push(response.data)
     }
@@ -120,13 +118,10 @@ const Navbar = ({ name, email }) => {
     <>
       <section className="search ">
         <div className="container c_flex">
-          {/* <div className="logo width ">
-            <h1 className="text-2xl text-green-800 font-bold">WellnessRoots</h1>
-          </div> */}
+
 
           <div className="navlink">
             <ul className="link f_flex capitalize ">
-              {/*<ul className='link f_flex uppercase {MobileMenu ? "nav-links-MobileMenu" : "nav-links"} onClick={() => setMobileMenu(false)}'>*/}
               {navLinks.map((link, index) => (
                 <li className="mr-10">
                   <Link to={link.path}>{link.title}</Link>
