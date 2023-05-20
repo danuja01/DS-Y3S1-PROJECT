@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './deliveryHome.css';
 import ProgressBar from './progressBar';
-import { getDelivery, addDelivery } from '../../services/delivery';
+import { getDelivery, addDelivery, getDeliveryById } from '../../services/delivery';
 import bike from './bike.gif';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getAnOrder } from '../../services/order';
 
 
 
@@ -17,22 +19,21 @@ const DispatchDelivery = () => {
     const progressBarRef = useRef(null);
 
 
+    const { id } = useParams()
+    const [order, setOrder] = useState([])
+    const navigation = useNavigate()
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await getDelivery(true)
-                setDeliveries(response.data);
-                console.log(setDeliveries);
-                setOrderId(response.data.order_id);
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchData()
+
 
         // Redirect to another page after 5 seconds
+        getAnOrder(id).then((response) => {
+            setOrder(response.data)
+            setOrderId(response.data[0]._id)
+            console.log(response.data)
+        })
         const redirectTimer = setTimeout(() => {
-            window.location.replace("/");
+            navigation(`/payment/${id}`)
         }, 3500);
 
         // Clear the timer when the component unmounts
@@ -46,7 +47,6 @@ const DispatchDelivery = () => {
         if (progress < 100) {
             setProgress(prevProgress => prevProgress + 25);
         }
-        window.location.replace("/");
     };
 
 

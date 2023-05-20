@@ -71,14 +71,13 @@ const CartCard = (props) => {
     //alert
     alert('Order created successfully')
 
-    // Redirect to payment page with order ID
-    navigate(`/payment/${createdOrder.data.id}`)
+    // Redirect to delivery page with order ID
+    navigate(`/delivery/${createdOrder.data.id}`)
   }
 
   return (
     <>
-      {/* component */}
-      {/* Create By Joker Banny */}
+
       <style
         dangerouslySetInnerHTML={{
           __html: '\n    @layer utilities {\n    input[type="number"]::-webkit-inner-spin-button,\n    input[type="number"]::-webkit-outer-spin-button {\n      -webkit-appearance: none;\n      margin: 0;\n    }\n  }\n',

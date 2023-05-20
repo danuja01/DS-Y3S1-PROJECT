@@ -16,7 +16,17 @@ const DeliverySchema = new Schema(
       ref: "Order",
       required: false,
     },
+    itemsPrice: {
+      type: Number,
+      ref: "Order",
+      required: true,
+    },
     shippingPrice: {
+      type: Number,
+      ref: "Order",
+      required: true,
+    },
+    totalPrice: {
       type: Number,
       ref: "Order",
       required: true,
