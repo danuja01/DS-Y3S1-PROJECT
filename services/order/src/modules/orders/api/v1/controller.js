@@ -73,7 +73,6 @@ order.get(
       req.query.page,
       req.query.limit
     );
-
     return toSuccess({ res, data, message: "Orders fetched successfully!" });
   })
 );
